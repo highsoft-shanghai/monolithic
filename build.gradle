@@ -8,11 +8,6 @@ apply from: "$rootDir/gradle/config/scripts/java.gradle"
 
 group = 'ltd.highsoft'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
-
-repositories {
-    mavenCentral()
-}
 
 ext {
     set('snippetsDir', file("build/generated-snippets"))
