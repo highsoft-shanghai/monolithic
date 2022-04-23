@@ -1,5 +1,13 @@
 # Scaffold For Monolithic Projects
 
+## Useful Commands
+
+### Static Code Check
+Statically check code format, style, etc.
+```bash
+./static-check
+```
+
 ### Reference Documentation
 
 For further reference, please consider the following sections:
