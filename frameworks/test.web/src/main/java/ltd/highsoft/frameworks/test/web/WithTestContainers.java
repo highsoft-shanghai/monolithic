@@ -1,16 +1,14 @@
-package ltd.highsoft.monolithic;
+package ltd.highsoft.frameworks.test.web;
 
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.lang.annotation.*;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
-@SpringBootTest
 @ExtendWith(TestContainersInitializerExtension.class)
-public @interface AbstractIntegrationTest {
+public @interface WithTestContainers {
 
     Class<?>[] containers() default {};
 

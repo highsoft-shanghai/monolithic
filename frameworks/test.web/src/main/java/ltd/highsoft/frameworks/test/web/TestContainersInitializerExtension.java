@@ -1,4 +1,4 @@
-package ltd.highsoft.monolithic;
+package ltd.highsoft.frameworks.test.web;
 
 import org.junit.jupiter.api.extension.BeforeAllCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
@@ -12,13 +12,13 @@ import java.util.stream.Collectors;
 
 public class TestContainersInitializerExtension implements BeforeAllCallback {
 
-    private static List<TestContainer<?>> containers;
+    static List<TestContainer<?>> containers;
 
     @Override
     public void beforeAll(ExtensionContext context) {
         if (containers != null) return;
-        Optional<AbstractIntegrationTest> annotation = AnnotationUtils.findAnnotation(context.getRequiredTestClass(), AbstractIntegrationTest.class);
-        List<Class<?>> containerClasses = List.of(annotation.map(AbstractIntegrationTest::containers).orElse(ArrayUtils.EMPTY_CLASS_ARRAY));
+        Optional<WithTestContainers> annotation = AnnotationUtils.findAnnotation(context.getRequiredTestClass(), WithTestContainers.class);
+        List<Class<?>> containerClasses = List.of(annotation.map(WithTestContainers::containers).orElse(ArrayUtils.EMPTY_CLASS_ARRAY));
         containers = containerClasses.stream().map(ReflectionUtils::newInstance).map(x -> (TestContainer<?>) x).collect(Collectors.toList());
         containers.stream().parallel().forEach(TestContainer::start);
     }

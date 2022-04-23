@@ -9,6 +9,7 @@ dependencies {
     implementation libs.spring.boot.quartz
     implementation libs.migration.flyway
     runtimeOnly libs.persistence.postgresql
+    testImplementation project(":test.web")
     testImplementation libs.test.testcontainers.junit.jupiter
     testImplementation libs.test.testcontainers.mongodb
     testImplementation libs.test.testcontainers.postgresql

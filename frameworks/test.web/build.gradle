@@ -1,0 +1,7 @@
+apply from: "$rootDir/gradle/config/scripts/library.gradle"
+
+dependencies {
+    implementation libs.test.junit.jupiter
+    implementation libs.test.junit.jupiter.engine
+    implementation libs.test.testcontainers.junit.jupiter
+}
