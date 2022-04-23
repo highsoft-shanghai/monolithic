@@ -1,0 +1,56 @@
+[versions]
+spring-dependency-management = "1.0.11.RELEASE"
+spring-boot = "2.6.7"
+spring-restdocs = "2.0.6.RELEASE"
+spring = "5.3.19"
+general-lombok = "1.18.24"
+general-guava = "31.1-jre"
+general-commons-lang3 = "3.12.0"
+general-uuid-generator = "4.0.1"
+persistence-postgresql = "42.3.4"
+migration-flyway = "8.0.5"
+migration-mongock = "5.0.39"
+test-junit = "5.8.2"
+test-assertj = "3.21.0"
+test-mockito = "4.0.0"
+test-hamcrest = "2.2"
+test-moco = "1.3.0"
+test-testcontainers = "1.17.1"
+test-asciidoctor = "1.5.8"
+
+[libraries]
+spring-boot-web = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "spring-boot" }
+spring-boot-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator", version.ref = "spring-boot" }
+spring-boot-data-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa", version.ref = "spring-boot" }
+spring-boot-data-mongodb = { module = "org.springframework.boot:spring-boot-starter-data-mongodb", version.ref = "spring-boot" }
+spring-boot-quartz = { module = "org.springframework.boot:spring-boot-starter-quartz", version.ref = "spring-boot" }
+spring-boot-aop = { module = "org.springframework.boot:spring-boot-starter-aop", version.ref = "spring-boot" }
+spring-boot-configuration-processor = { module = "org.springframework.boot:spring-boot-configuration-processor", version.ref = "spring-boot" }
+spring-context = { module = "org.springframework:spring-context", version.ref = "spring" }
+spring-tx = { module = "org.springframework:spring-tx", version.ref = "spring" }
+spring-web = { module = "org.springframework:spring-web", version.ref = "spring" }
+general-lombok = { module = "org.projectlombok:lombok", version.ref = "general-lombok" }
+general-guava = { module = "com.google.guava:guava", version.ref = "general-guava" }
+general-commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "general-commons-lang3" }
+general-uuid-generator = { module = "com.fasterxml.uuid:java-uuid-generator", version.ref = "general-uuid-generator" }
+persistence-postgresql = { module = "org.postgresql:postgresql", version.ref = "persistence-postgresql" }
+migration-flyway = { module = "org.flywaydb:flyway-core", version.ref = "migration-flyway" }
+migration-mongock-spring-boot = { module = "io.mongock:mongock-springboot", version.ref = "migration-mongock" }
+test-junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "test-junit" }
+test-junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "test-junit" }
+test-junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "test-junit" }
+test-mockito-core = { module = "org.mockito:mockito-core", version.ref = "test-mockito" }
+test-mockito-junit-jupiter = { module = "org.mockito:mockito-junit-jupiter", version.ref = "test-mockito" }
+test-assertj-core = { module = "org.assertj:assertj-core", version.ref = "test-assertj" }
+test-hamcrest = { module = "org.hamcrest:hamcrest", version.ref = "test-hamcrest" }
+test-mock = { module = "com.github.dreamhead:moco-core", version.ref = "test-moco" }
+test-spring-boot-test = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "spring-boot" }
+test-testcontainers-junit-jupiter = { module = "org.testcontainers:junit-jupiter", version.ref = "test-testcontainers" }
+test-testcontainers-mongodb = { module = "org.testcontainers:mongodb", version.ref = "test-testcontainers" }
+test-testcontainers-postgresql = { module = "org.testcontainers:postgresql", version.ref = "test-testcontainers" }
+test-spring-restdocs-restassured = { module = "org.springframework.restdocs:spring-restdocs-restassured", version.ref = "spring-restdocs" }
+
+[plugins]
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
+spring-dependency-management = { id = 'io.spring.dependency-management', version.ref = "spring.dependency.management" }
+test-asciidoctor = { id = "org.asciidoctor.convert", version.ref = "test-asciidoctor" }
