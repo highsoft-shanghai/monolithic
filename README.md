@@ -3,9 +3,15 @@
 ## Useful Commands
 
 ### Static Code Check
-Statically check code format, style, etc.
+To statically check code format, style, etc., use this command:
 ```bash
-./static-check
+./check-static
+```
+
+### Overall Check
+To run all tests, check test coverage, generate test reports and generate coverage reports for root project and all subprojects, please run this command:
+```bash
+./check-all
 ```
 
 ### Reference Documentation
