@@ -8,6 +8,8 @@ repositories {
 }
 
 dependencies {
+    compileOnly libs.general.lombok
+    annotationProcessor libs.general.lombok
     testImplementation libs.test.junit.jupiter
     testImplementation libs.test.junit.jupiter.engine
     testImplementation libs.test.assertj.core

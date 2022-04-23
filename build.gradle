@@ -8,9 +8,7 @@ dependencies {
     implementation libs.spring.boot.data.mongodb
     implementation libs.spring.boot.quartz
     implementation libs.migration.flyway
-    compileOnly libs.general.lombok
     runtimeOnly libs.persistence.postgresql
-    annotationProcessor libs.general.lombok
     testImplementation libs.test.testcontainers.mongodb
     testImplementation libs.test.testcontainers.postgresql
 }
