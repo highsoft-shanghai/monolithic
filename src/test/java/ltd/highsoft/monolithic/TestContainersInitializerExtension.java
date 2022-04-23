@@ -8,17 +8,19 @@ import org.testcontainers.shaded.org.apache.commons.lang3.ArrayUtils;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class TestContainersInitializerExtension implements BeforeAllCallback {
 
-    private static List<Class<?>> containerClasses;
+    private static List<TestContainer<?>> containers;
 
     @Override
     public void beforeAll(ExtensionContext context) {
-        if (containerClasses != null) return;
+        if (containers != null) return;
         Optional<AbstractIntegrationTest> annotation = AnnotationUtils.findAnnotation(context.getRequiredTestClass(), AbstractIntegrationTest.class);
-        containerClasses = List.of(annotation.map(AbstractIntegrationTest::containers).orElse(ArrayUtils.EMPTY_CLASS_ARRAY));
-        containerClasses.forEach(ReflectionUtils::newInstance);
+        List<Class<?>> containerClasses = List.of(annotation.map(AbstractIntegrationTest::containers).orElse(ArrayUtils.EMPTY_CLASS_ARRAY));
+        containers = containerClasses.stream().map(ReflectionUtils::newInstance).map(x -> (TestContainer<?>) x).collect(Collectors.toList());
+        containers.stream().parallel().forEach(TestContainer::start);
     }
 
 }
