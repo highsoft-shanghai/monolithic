@@ -1,4 +1,4 @@
-apply from: "$rootDir/gradle/config/scripts/web.gradle"
+apply from: "$rootDir/gradle/config/scripts/root.gradle"
 
 group = 'ltd.highsoft'
 version = '1.0.0'
@@ -9,8 +9,6 @@ dependencies {
     implementation libs.spring.boot.quartz
     implementation libs.migration.flyway
     runtimeOnly libs.persistence.postgresql
-    testImplementation project(":test.web")
-    testImplementation libs.test.testcontainers.junit.jupiter
     testImplementation libs.test.testcontainers.mongodb
     testImplementation libs.test.testcontainers.postgresql
 }
