@@ -1,7 +1,7 @@
 apply from: "$rootDir/gradle/config/scripts/web.gradle"
 
 group = 'ltd.highsoft'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0'
 
 dependencies {
     implementation libs.spring.boot.data.jpa
