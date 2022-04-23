@@ -19,3 +19,6 @@ subprojects {
         }
     }
 }
+
+apply from: "$rootDir/gradle/config/scripts/coverage-all.gradle"
+apply from: "$rootDir/coverage.gradle"

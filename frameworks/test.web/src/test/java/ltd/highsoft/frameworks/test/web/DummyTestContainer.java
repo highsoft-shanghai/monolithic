@@ -4,15 +4,15 @@ import org.testcontainers.lifecycle.Startable;
 
 public class DummyTestContainer extends TestContainer<Startable> {
 
-    static boolean started;
-    static boolean environmentSetup;
+    static int numberOfStarts;
+    static int numberOfEnvironmentSetups;
 
     @Override
     protected Startable createContainer() {
         return new Startable() {
             @Override
             public void start() {
-                started = true;
+                numberOfStarts += 1;
             }
 
             @Override
@@ -23,7 +23,7 @@ public class DummyTestContainer extends TestContainer<Startable> {
 
     @Override
     protected void setupEnvironment() {
-        environmentSetup = true;
+        numberOfEnvironmentSetups += 1;
     }
 
 }

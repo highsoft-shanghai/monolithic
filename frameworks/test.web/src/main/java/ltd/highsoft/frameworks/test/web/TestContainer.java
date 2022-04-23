@@ -18,7 +18,6 @@ public abstract class TestContainer<T extends Startable> {
 
     protected abstract T createContainer();
 
-    protected void setupEnvironment() {
-    }
+    protected abstract void setupEnvironment();
 
 }

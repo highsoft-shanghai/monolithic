@@ -1,4 +1,5 @@
 apply plugin: 'java'
+apply plugin: 'jacoco'
 apply from: "$rootDir/gradle/config/scripts/style.gradle"
 
 sourceCompatibility = "${javaSourceCompatibility}" as String
@@ -25,3 +26,12 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
     options.compilerArgs << "-parameters"
 }
+
+jacocoTestReport {
+    reports {
+        html
+        xml
+    }
+}
+
+check.dependsOn(jacocoTestReport)
