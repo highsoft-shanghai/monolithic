@@ -2,8 +2,9 @@ plugins {
     alias libs.plugins.spring.boot
     alias libs.plugins.spring.dependency.management
     alias libs.plugins.test.asciidoctor
-    id 'java'
 }
+
+apply from: "$rootDir/gradle/config/scripts/java.gradle"
 
 group = 'ltd.highsoft'
 version = '0.0.1-SNAPSHOT'

@@ -1,0 +1,13 @@
+apply plugin: 'java'
+
+sourceCompatibility = "${javaSourceCompatibility}" as String
+targetCompatibility = "${javaTargetCompatibility}" as String
+
+repositories {
+    mavenCentral()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << "-parameters"
+}
