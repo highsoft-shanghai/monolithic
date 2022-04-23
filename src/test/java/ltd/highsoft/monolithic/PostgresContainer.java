@@ -12,9 +12,9 @@ public class PostgresContainer extends TestContainer<PostgreSQLContainer<?>> {
 
     @Override
     protected void setupEnvironment() {
-        System.setProperty("spring.datasource.url", container.getJdbcUrl());
-        System.setProperty("spring.datasource.username", container.getUsername());
-        System.setProperty("spring.datasource.password", container.getPassword());
+        System.setProperty("spring.datasource.url", container().getJdbcUrl());
+        System.setProperty("spring.datasource.username", container().getUsername());
+        System.setProperty("spring.datasource.password", container().getPassword());
     }
 
 }

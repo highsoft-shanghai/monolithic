@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class TestContainersInitializerExtension implements BeforeAllCallback {
 
-    static List<TestContainer<?>> containers;
+    private static List<TestContainer<?>> containers;
 
     @Override
     public void beforeAll(ExtensionContext context) {
