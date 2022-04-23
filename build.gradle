@@ -1,42 +1,16 @@
-plugins {
-    alias libs.plugins.spring.boot
-    alias libs.plugins.spring.dependency.management
-    alias libs.plugins.test.asciidoctor
-}
-
-apply from: "$rootDir/gradle/config/scripts/java.gradle"
-apply from: "$rootDir/gradle/config/scripts/junit.gradle"
+apply from: "$rootDir/gradle/config/scripts/web.gradle"
 
 group = 'ltd.highsoft'
 version = '0.0.1-SNAPSHOT'
 
-ext {
-    set('snippetsDir', file("build/generated-snippets"))
-}
-
 dependencies {
-    implementation libs.spring.boot.actuator
     implementation libs.spring.boot.data.jpa
     implementation libs.spring.boot.data.mongodb
-    implementation libs.spring.boot.web
     implementation libs.spring.boot.quartz
     implementation libs.migration.flyway
     compileOnly libs.general.lombok
     runtimeOnly libs.persistence.postgresql
-    annotationProcessor libs.spring.boot.configuration.processor
     annotationProcessor libs.general.lombok
-    testImplementation libs.test.spring.boot.test
-    testImplementation libs.test.spring.restdocs.restassured
     testImplementation libs.test.testcontainers.mongodb
     testImplementation libs.test.testcontainers.postgresql
-}
-
-tasks.named('test') {
-    outputs.dir snippetsDir
-    useJUnitPlatform()
-}
-
-tasks.named('asciidoctor') {
-    inputs.dir snippetsDir
-    dependsOn test
 }
