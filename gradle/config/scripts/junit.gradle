@@ -1,0 +1,12 @@
+apply from: "$rootDir/gradle/config/scripts/java.gradle"
+
+dependencies {
+    testImplementation libs.test.junit.jupiter
+    testImplementation libs.test.junit.jupiter.engine
+    testImplementation libs.test.assertj.core
+    testImplementation libs.test.mockito.junit.jupiter
+}
+
+test {
+    useJUnitPlatform()
+}

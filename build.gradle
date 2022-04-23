@@ -5,6 +5,7 @@ plugins {
 }
 
 apply from: "$rootDir/gradle/config/scripts/java.gradle"
+apply from: "$rootDir/gradle/config/scripts/junit.gradle"
 
 group = 'ltd.highsoft'
 version = '0.0.1-SNAPSHOT'
@@ -26,7 +27,6 @@ dependencies {
     annotationProcessor libs.general.lombok
     testImplementation libs.test.spring.boot.test
     testImplementation libs.test.spring.restdocs.restassured
-    testImplementation libs.test.junit.jupiter
     testImplementation libs.test.testcontainers.mongodb
     testImplementation libs.test.testcontainers.postgresql
 }
