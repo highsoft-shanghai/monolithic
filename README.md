@@ -5,13 +5,13 @@
 ### STATIC CODE CHECK
 If we want to quickly check code format and styles for the whole project, below command will help:
 ```bash
-./check-static
+./scripts/check-static
 ```
 
 ### OVERALL CHECK
 Before pushing commits to CI, we must keep our software workable and keep the code clean. To run all tests, check test coverage, generate test reports and generate coverage reports for root project and all subprojects, please run this command:
 ```bash
-./check-all
+./scripts/check-all
 ```
 
 ### REFERENCE DOCUMENTATION
