@@ -1,20 +1,20 @@
-# SCAFFOLD FOR MONOLITHIC PROJECTS
+## SCAFFOLD FOR MONOLITHIC PROJECTS
 
-## USEFUL COMMANDS
+### USEFUL COMMANDS
 
-### STATIC CODE CHECK
+#### STATIC CODE CHECK
 If we want to quickly check code format and styles for the whole project, below command will help:
 ```bash
 ./scripts/check-static
 ```
 
-### OVERALL CHECK
+#### OVERALL CHECK
 Before pushing commits to CI, we must keep our software workable and keep the code clean. To run all tests, check test coverage, generate test reports and generate coverage reports for root project and all subprojects, please run this command:
 ```bash
 ./scripts/check-all
 ```
 
-### REFERENCE DOCUMENTATION
+#### REFERENCE DOCUMENTATION
 
 For further reference, please consider the following sections:
 
@@ -33,7 +33,7 @@ For further reference, please consider the following sections:
 * [Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/2.6.7/reference/htmlsingle/#production-ready)
 * [Testcontainers](https://www.testcontainers.org/)
 
-### GUIDES
+#### GUIDES
 
 The following guides illustrate how to use some features concretely:
 
@@ -44,7 +44,7 @@ The following guides illustrate how to use some features concretely:
 * [Accessing Data with MongoDB](https://spring.io/guides/gs/accessing-data-mongodb/)
 * [Building a RESTful Web Service with Spring Boot Actuator](https://spring.io/guides/gs/actuator-service/)
 
-### ADDITIONAL LINKS
+#### ADDITIONAL LINKS
 
 These additional references should also help you:
 
