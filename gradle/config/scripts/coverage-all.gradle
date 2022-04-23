@@ -13,8 +13,9 @@ boolean isJacocoProject(Project aProject) {
     return aProject.pluginManager.hasPlugin('jacoco')
 }
 
+//noinspection GrDeprecatedAPIUsage
 task jacocoMerge(type: JacocoMerge) {
-    def jacocoProjects = allprojects.findAll { isJacocoProject(it) }
+    var jacocoProjects = allprojects.findAll { isJacocoProject(it) } as Set<Project>
     dependsOn = jacocoProjects.jacocoTestReport
     jacocoProjects.each { subproject ->
         executionData subproject.tasks.withType(Test)
@@ -62,7 +63,7 @@ static SourceSet[] getMainSourceSets(Set<Project> projects) {
 
 void setJacocoTaskOptions(JacocoReportBase jacocoTask) {
     jacocoTask.dependsOn(jacocoMerge)
-    jacocoTask.sourceSets getMainSourceSets(allprojects.findAll { isJacocoProject(it) })
+    jacocoTask.sourceSets getMainSourceSets(allprojects.findAll { isJacocoProject(it) } as Set<Project>)
     jacocoTask.executionData.from(files("${buildDir}/jacoco/jacocoMerge.exec"))
     afterEvaluate {
         jacocoTask.classDirectories.setFrom(files(jacocoTask.classDirectories.files.collect {
