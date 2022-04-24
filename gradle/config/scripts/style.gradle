@@ -1,3 +1,7 @@
+if (project.extensions.findByName('style')) {
+    return
+}
+
 class StyleExtension {
     @SuppressWarnings('unused')
     List<String> excludePackages

@@ -1,4 +1,4 @@
-package ltd.highsoft.monolithic;
+package ltd.highsoft.frameworks.test.web;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -15,7 +15,6 @@ import static java.util.stream.Collectors.joining;
 import static java.util.stream.Stream.concat;
 import static org.springframework.restdocs.restassured3.RestAssuredRestDocumentation.document;
 
-@IntegrationTest
 @AutoConfigureRestDocs
 public class RestTest {
 
