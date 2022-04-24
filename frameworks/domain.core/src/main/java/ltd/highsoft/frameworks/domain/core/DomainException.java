@@ -1,5 +1,7 @@
 package ltd.highsoft.frameworks.domain.core;
 
+import java.util.List;
+
 public class DomainException extends RuntimeException {
 
     private static final Object[] EMPTY_DATA = {};
@@ -16,6 +18,10 @@ public class DomainException extends RuntimeException {
 
     public String format(MessageResolver resolver) {
         return resolver.resolve(getMessage(), data);
+    }
+
+    public List<Object> data() {
+        return List.of(data);
     }
 
 }
