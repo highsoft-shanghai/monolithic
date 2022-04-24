@@ -24,4 +24,11 @@ public class DomainExceptionTest {
         assertThat(exception.format(messageResolver)).isEqualTo("Error message from resolver");
     }
 
+    @Test
+    void should_be_able_to_format_as_message_with_data() {
+        given(messageResolver.resolve("error.a-test-message-code", "seg1", "seg2")).willReturn("Error message from resolver");
+        DomainException exception = new DomainException("error.a-test-message-code", "seg1", "seg2");
+        assertThat(exception.format(messageResolver)).isEqualTo("Error message from resolver");
+    }
+
 }
