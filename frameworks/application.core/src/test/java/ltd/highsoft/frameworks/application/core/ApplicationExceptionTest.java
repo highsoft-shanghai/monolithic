@@ -1,5 +1,6 @@
 package ltd.highsoft.frameworks.application.core;
 
+import ltd.highsoft.frameworks.domain.core.DomainException;
 import ltd.highsoft.frameworks.domain.core.MessageResolver;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -12,6 +13,7 @@ import static org.mockito.BDDMockito.given;
 class ApplicationExceptionTest {
 
     private @Mock MessageResolver messageResolver;
+    private @Mock DomainException cause;
 
     @Test
     void should_be_instance_of_unchecked_exception() {
@@ -25,6 +27,13 @@ class ApplicationExceptionTest {
         given(messageResolver.resolve("error-code")).willReturn("Error message");
         ApplicationException exception = new ApplicationException("error-code");
         assertThat(exception.format(messageResolver)).isEqualTo("Error message");
+    }
+
+    @Test
+    void should_be_able_to_delegate_formatting_to_caused_domain_exceptions() {
+        given(cause.format(messageResolver)).willReturn("Error message from cause");
+        ApplicationException exception = new ApplicationException(cause);
+        assertThat(exception.format(messageResolver)).isEqualTo("Error message from cause");
     }
 
 }
