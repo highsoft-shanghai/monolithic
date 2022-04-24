@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoSettings;
 
-import java.util.Locale;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 
@@ -31,13 +29,6 @@ public class DomainExceptionTest {
         given(messageResolver.resolve("error.a-test-message-code", "seg1", "seg2")).willReturn("Error message from resolver");
         DomainException exception = new DomainException("error.a-test-message-code", "seg1", "seg2");
         assertThat(exception.format(messageResolver)).isEqualTo("Error message from resolver");
-    }
-
-    @Test
-    void should_be_able_to_format_as_localized_message() {
-        given(messageResolver.resolve("error.a-test-message-code", Locale.CHINA, "seg1", "seg2")).willReturn("Error message from resolver");
-        DomainException exception = new DomainException("error.a-test-message-code", "seg1", "seg2");
-        assertThat(exception.format(messageResolver, Locale.CHINA)).isEqualTo("Error message from resolver");
     }
 
 }
