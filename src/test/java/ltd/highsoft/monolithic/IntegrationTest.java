@@ -1,6 +1,7 @@
 package ltd.highsoft.monolithic;
 
 import ltd.highsoft.frameworks.test.container.WithTestContainers;
+import ltd.highsoft.frameworks.test.mongo.MongoContainer;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.lang.annotation.*;

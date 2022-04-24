@@ -1,4 +1,4 @@
-package ltd.highsoft.monolithic;
+package ltd.highsoft.frameworks.test.mongo;
 
 import ltd.highsoft.frameworks.test.container.TestContainer;
 import org.testcontainers.containers.MongoDBContainer;
