@@ -10,5 +10,5 @@ dependencies {
     implementation libs.migration.flyway
     runtimeOnly libs.persistence.postgresql
     testImplementation project(":test.mongo")
-    testImplementation libs.test.testcontainers.postgresql
+    testImplementation project(":test.postgres")
 }
