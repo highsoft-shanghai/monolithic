@@ -28,7 +28,7 @@ public class RestTest {
     }
 
     protected RequestSpecification given() {
-        return RestAssured.given(spec).port(port).accept(ContentType.JSON).filter(document(documentKey()));
+        return RestAssured.given(spec).port(port).accept(ContentType.JSON).contentType(ContentType.JSON).filter(document(documentKey()));
     }
 
     private String documentKey() {

@@ -3,14 +3,14 @@ package ltd.highsoft.monolithic;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.hamcrest.Matchers.is;
 
 public class ApplicationExceptionTranslationTest extends IntegrationTest {
 
     @Disabled
     @Test
     void should_translate_aggregate_not_found_exception_to_http_not_found() {
-        fail();
+        given().post("/test/trigger-aggregate-not-found-exception").then().assertThat().statusCode(404).body("message", is("Order '1' is not found"));
     }
 
 }
