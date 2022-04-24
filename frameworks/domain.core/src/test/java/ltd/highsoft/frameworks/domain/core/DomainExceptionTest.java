@@ -23,6 +23,11 @@ public class DomainExceptionTest {
     }
 
     @Test
+    void should_be_able_to_carry_data() {
+        assertThat(new DomainException("error-code", "a", "b").data()).containsExactly("a", "b");
+    }
+
+    @Test
     void should_be_able_to_format_as_message() {
         given(messageResolver.resolve("error.a-test-message-code")).willReturn("Error message from resolver");
         DomainException exception = new DomainException("error.a-test-message-code");
