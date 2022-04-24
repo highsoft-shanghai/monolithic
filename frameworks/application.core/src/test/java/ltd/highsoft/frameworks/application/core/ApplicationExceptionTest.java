@@ -30,10 +30,17 @@ class ApplicationExceptionTest {
     }
 
     @Test
-    void should_be_able_to_delegate_formatting_to_caused_domain_exceptions() {
+    void should_delegate_formatting_to_caused_domain_exceptions() {
         given(cause.format(messageResolver)).willReturn("Error message from cause");
         ApplicationException exception = new ApplicationException(cause);
         assertThat(exception.format(messageResolver)).isEqualTo("Error message from cause");
+    }
+
+    @Test
+    void should_delegate_message_retrieving_to_caused_exceptions() {
+        given(cause.getMessage()).willReturn("Error message from cause");
+        ApplicationException exception = new ApplicationException(cause);
+        assertThat(exception).hasMessage("Error message from cause");
     }
 
 }

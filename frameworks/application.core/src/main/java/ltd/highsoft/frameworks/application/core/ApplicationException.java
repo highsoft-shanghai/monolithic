@@ -14,8 +14,14 @@ public class ApplicationException extends RuntimeException {
     }
 
     public String format(MessageResolver messageResolver) {
-        if (getCause() instanceof DomainException) return ((DomainException)getCause()).format(messageResolver);
+        if (getCause() instanceof DomainException) return ((DomainException) getCause()).format(messageResolver);
         return messageResolver.resolve(getMessage());
+    }
+
+    @Override
+    public String getMessage() {
+        if (getCause() != null) return getCause().getMessage();
+        return super.getMessage();
     }
 
 }
