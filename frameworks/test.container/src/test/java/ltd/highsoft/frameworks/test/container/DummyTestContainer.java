@@ -1,5 +1,6 @@
-package ltd.highsoft.frameworks.test.web;
+package ltd.highsoft.frameworks.test.container;
 
+import ltd.highsoft.frameworks.test.container.TestContainer;
 import org.testcontainers.lifecycle.Startable;
 
 public class DummyTestContainer extends TestContainer<Startable> {

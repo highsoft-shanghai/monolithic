@@ -1,6 +1,6 @@
 package ltd.highsoft.monolithic;
 
-import ltd.highsoft.frameworks.test.web.TestContainer;
+import ltd.highsoft.frameworks.test.container.TestContainer;
 import org.testcontainers.containers.PostgreSQLContainer;
 
 public class PostgresContainer extends TestContainer<PostgreSQLContainer<?>> {

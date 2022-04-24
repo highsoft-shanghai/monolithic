@@ -1,6 +1,6 @@
 package ltd.highsoft.monolithic;
 
-import ltd.highsoft.frameworks.test.web.WithTestContainers;
+import ltd.highsoft.frameworks.test.container.WithTestContainers;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.lang.annotation.*;

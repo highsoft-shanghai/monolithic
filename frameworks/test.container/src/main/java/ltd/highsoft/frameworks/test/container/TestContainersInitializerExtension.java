@@ -1,4 +1,4 @@
-package ltd.highsoft.frameworks.test.web;
+package ltd.highsoft.frameworks.test.container;
 
 import org.junit.jupiter.api.extension.BeforeAllCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;

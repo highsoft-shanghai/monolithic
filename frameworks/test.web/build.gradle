@@ -1,5 +1,3 @@
 dependencies {
-    implementation libs.test.junit.jupiter
-    implementation libs.test.junit.jupiter.engine
-    implementation libs.test.testcontainers.junit.jupiter
+    api project(":test.container")
 }
