@@ -41,4 +41,11 @@ public class DomainExceptionTest {
         assertThat(exception.format(messageResolver)).isEqualTo("Error message from resolver");
     }
 
+    @Test
+    void should_be_able_to_carry_cause() {
+        assertThat(new DomainException(new RuntimeException())).hasCauseInstanceOf(RuntimeException.class);
+        assertThat(new DomainException("error-code", new RuntimeException())).hasCauseInstanceOf(RuntimeException.class);
+        assertThat(new DomainException("error-code", new RuntimeException(), "a", "b")).hasCauseInstanceOf(RuntimeException.class);
+    }
+
 }

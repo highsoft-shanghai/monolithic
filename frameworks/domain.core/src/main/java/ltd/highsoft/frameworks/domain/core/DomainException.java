@@ -16,6 +16,16 @@ public class DomainException extends RuntimeException {
         this.data = data;
     }
 
+    public DomainException(Throwable cause) {
+        super(cause);
+        this.data = EMPTY_DATA;
+    }
+
+    public DomainException(String code, Throwable cause, Object... data) {
+        super(code, cause);
+        this.data = data;
+    }
+
     public String format(MessageResolver resolver) {
         return resolver.resolve(getMessage(), data);
     }
