@@ -6,4 +6,8 @@ public class AggregateNotFoundException extends DomainException {
         super(code, data);
     }
 
+    public AggregateNotFoundException(String code, Throwable cause, Object... data) {
+        super(code, cause, data);
+    }
+
 }
