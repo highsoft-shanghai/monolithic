@@ -1,4 +1,4 @@
 package ltd.highsoft.frameworks.domain.core;
 
-public class DomainException {
+public class DomainException extends RuntimeException {
 }
