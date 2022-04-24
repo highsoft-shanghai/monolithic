@@ -4,19 +4,16 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@WithSecurityContext(grantedAuthorities = {"f1", "f2"})
 public class SecurityContextResetterTest {
 
     @Test
     void should_be_able_to_reset_security_context() {
-        Principal principal = Principal.create(GrantedAuthorities.EMPTY, GrantedDataAuthorities.EMPTY);
-        SecurityContextResetter.reset(principal);
-        assertThat(SecurityContext.principal()).isEqualTo(principal);
+        assertThat(SecurityContext.principal().grantedAuthorities().asSet()).containsExactlyInAnyOrder("f1", "f2");
     }
 
     @Test
     void should_be_able_to_reset_to_defaults() {
-        Principal principal = Principal.create(GrantedAuthorities.EMPTY, GrantedDataAuthorities.EMPTY);
-        SecurityContextResetter.reset(principal);
         SecurityContextResetter.reset();
         assertThat(SecurityContext.principal()).isEqualTo(Principal.ANONYMOUS);
     }
