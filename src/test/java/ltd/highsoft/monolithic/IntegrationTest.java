@@ -9,6 +9,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@WithTestContainers(containers = {PostgresContainer.class})
+@WithTestContainers(containers = {PostgresContainer.class, MongoContainer.class})
 public @interface IntegrationTest {
 }
