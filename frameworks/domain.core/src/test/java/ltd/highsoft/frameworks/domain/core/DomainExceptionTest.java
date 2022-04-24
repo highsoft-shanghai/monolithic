@@ -1,21 +1,16 @@
 package ltd.highsoft.frameworks.domain.core;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoSettings;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 
+@MockitoSettings
 public class DomainExceptionTest {
 
     private @Mock MessageResolver messageResolver;
-
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-    }
 
     @Test
     void should_not_be_checked_exception() {
