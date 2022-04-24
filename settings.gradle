@@ -1,11 +1,16 @@
 rootProject.name = 'monolithic'
 
+def includeModule(File path, String prefix = "") {
+    include path.name
+    def descriptor = project(":${path.name}")
+    descriptor.projectDir = path
+    descriptor.name = (prefix + descriptor.name)
+}
+
 file("modules").eachDir {
-    include it.name
-    project(":${it.name}").projectDir = it
+    includeModule(it)
 }
 
 file("frameworks").eachDir {
-    include it.name
-    project(":${it.name}").projectDir = it
+    includeModule(it, "frameworks.")
 }

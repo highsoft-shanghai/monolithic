@@ -1,7 +1,7 @@
 apply from: "$rootDir/gradle/config/scripts/web.gradle"
 
 dependencies {
-    testImplementation project(":test.web")
+    testImplementation project(":frameworks.test.web")
     testImplementation libs.test.testcontainers.junit.jupiter
 }
 
