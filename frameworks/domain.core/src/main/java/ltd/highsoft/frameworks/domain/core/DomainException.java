@@ -1,5 +1,7 @@
 package ltd.highsoft.frameworks.domain.core;
 
+import java.util.Locale;
+
 public class DomainException extends RuntimeException {
 
     private final Object[] data;
@@ -15,6 +17,10 @@ public class DomainException extends RuntimeException {
 
     public String format(MessageResolver resolver) {
         return resolver.resolve(getMessage(), data);
+    }
+
+    public String format(MessageResolver resolver, Locale locale) {
+        return resolver.resolve(getMessage(), locale, data);
     }
 
 }
