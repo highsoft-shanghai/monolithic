@@ -7,20 +7,27 @@ import org.junit.platform.commons.util.ReflectionUtils;
 import org.testcontainers.shaded.org.apache.commons.lang3.ArrayUtils;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Stream;
 
 public class TestContainersInitializerExtension implements BeforeAllCallback {
 
-    private static List<TestContainer<?>> containers;
+    private static final Map<Class<?>, TestContainer<?>> CONTAINERS = new ConcurrentHashMap<>();
 
     @Override
     public void beforeAll(ExtensionContext context) {
-        if (containers != null) return;
         Optional<WithTestContainers> annotation = AnnotationUtils.findAnnotation(context.getRequiredTestClass(), WithTestContainers.class);
         List<Class<?>> containerClasses = List.of(annotation.map(WithTestContainers::containers).orElse(ArrayUtils.EMPTY_CLASS_ARRAY));
-        containers = containerClasses.stream().map(ReflectionUtils::newInstance).map(x -> (TestContainer<?>) x).collect(Collectors.toList());
-        containers.stream().parallel().forEach(TestContainer::start);
+        Stream<Class<?>> newContainerClasses = containerClasses.stream().filter(x -> !CONTAINERS.containsKey(x));
+        newContainerClasses.parallel().forEach(this::startContainer);
+    }
+
+    private void startContainer(Class<?> containerClass) {
+        TestContainer<?> container = (TestContainer<?>) ReflectionUtils.newInstance(containerClass);
+        container.start();
+        CONTAINERS.put(containerClass, container);
     }
 
 }
