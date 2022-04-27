@@ -6,10 +6,12 @@ public class AccessTokenOwner {
 
     private final Identity userAccount;
     private final Identity user;
+    private final Identity tenant;
 
-    public AccessTokenOwner(Identity userAccount, Identity user) {
+    public AccessTokenOwner(Identity userAccount, Identity user, Identity tenant) {
         this.userAccount = userAccount;
         this.user = user;
+        this.tenant = tenant;
     }
 
     public Identity userAccount() {
@@ -18,6 +20,10 @@ public class AccessTokenOwner {
 
     public Identity user() {
         return user;
+    }
+
+    public Identity tenant() {
+        return tenant;
     }
 
 }
