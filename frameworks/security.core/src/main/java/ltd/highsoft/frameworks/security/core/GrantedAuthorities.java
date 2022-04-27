@@ -39,7 +39,7 @@ public final class GrantedAuthorities {
         return authorities;
     }
 
-    public boolean match(RequiredAuthorities requiredAuthorities) {
+    private boolean match(RequiredAuthorities requiredAuthorities) {
         if (isSpecialRole()) return true;
         if (requiredAuthorities.requireAnonymous()) return true;
         if (requiredAuthorities.requireAuthenticatedOnly() && !isAnonymous()) return true;

@@ -12,9 +12,6 @@ public class AuthenticatedPrincipal implements Principal {
 
     @Override
     public void authorize(RequiredAuthorities requiredAuthorities) {
-        if (grantedAuthorities.match(requiredAuthorities)) return;
-        if (grantedAuthorities.isAnonymous()) throw new AuthenticationException("error.bad-credential");
-        throw new AuthorizationException("error.access-denied", requiredAuthorities, grantedAuthorities);
     }
 
     @Override
