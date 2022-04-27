@@ -39,4 +39,9 @@ public class RequiredAuthoritiesTest {
         assertThat(RequiredAuthorities.of(Authorities.AUTHENTICATED, Authorities.ANONYMOUS, "f1").requireAuthenticatedOnly()).isFalse();
     }
 
+    @Test
+    void should_be_able_to_compare_to_others_by_contents() {
+        assertThat(RequiredAuthorities.of("f1", "f2")).isEqualTo(RequiredAuthorities.of("f1", "f2"));
+    }
+
 }

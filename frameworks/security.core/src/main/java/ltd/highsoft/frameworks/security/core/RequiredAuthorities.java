@@ -1,10 +1,11 @@
 package ltd.highsoft.frameworks.security.core;
 
-import lombok.ToString;
+import lombok.*;
 
 import java.util.Set;
 
 @ToString
+@EqualsAndHashCode
 public class RequiredAuthorities {
 
     public static final RequiredAuthorities ANONYMOUS = RequiredAuthorities.of(Authorities.ANONYMOUS);
