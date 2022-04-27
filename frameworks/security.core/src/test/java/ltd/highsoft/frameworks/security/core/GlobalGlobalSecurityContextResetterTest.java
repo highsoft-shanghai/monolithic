@@ -15,7 +15,7 @@ public class GlobalGlobalSecurityContextResetterTest {
     @Test
     void should_be_able_to_reset_to_defaults() {
         GlobalSecurityContextResetter.clear();
-        assertThat(GlobalSecurityContext.principal()).isEqualTo(Principal.ANONYMOUS);
+        assertThat(GlobalSecurityContext.principal()).isEqualTo(SecurityContext.ANONYMOUS);
     }
 
 }

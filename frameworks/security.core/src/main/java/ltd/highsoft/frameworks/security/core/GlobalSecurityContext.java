@@ -6,18 +6,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class GlobalSecurityContext {
 
-    private static final ThreadLocal<Principal> PRINCIPAL = new ThreadLocal<>();
+    private static final ThreadLocal<SecurityContext> PRINCIPAL = new ThreadLocal<>();
 
-    public static Principal principal() {
+    public static SecurityContext principal() {
         return PRINCIPAL.get();
     }
 
-    static void reset(Principal principal) {
-        PRINCIPAL.set(principal);
+    static void reset(SecurityContext context) {
+        PRINCIPAL.set(context);
     }
 
     static void reset() {
-        PRINCIPAL.set(Principal.ANONYMOUS);
+        PRINCIPAL.set(SecurityContext.ANONYMOUS);
     }
 
 }

@@ -4,6 +4,7 @@ import static ltd.highsoft.frameworks.domain.core.GlobalIdGenerator.nextId;
 
 public final class AccessToken {
 
+    public static final AccessToken ANONYMOUS = new AccessToken("anonymous", AccessTokenOwner.ANONYMOUS, GrantedAuthorities.ANONYMOUS);
     private final String id;
     private final AccessTokenOwner owner;
     private final GrantedAuthorities grantedAuthorities;

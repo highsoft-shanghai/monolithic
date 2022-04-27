@@ -9,17 +9,12 @@ public class ContextLoader {
     }
 
     public void load(String tokenId) {
-        accessTokenProvider.get(tokenId).ifPresentOrElse(this::loadFromAccessToken, this::loadAnonymous);
+        loadFromAccessToken(accessTokenProvider.get(tokenId).orElse(AccessToken.ANONYMOUS));
     }
 
     private void loadFromAccessToken(AccessToken token) {
 //        GlobalUserContextResetter.reset(token);
 //        GlobalSecurityContextResetter.reset(token);
-    }
-
-    private void loadAnonymous() {
-//        GlobalUserContextResetter.reset(UserContext.ANONYMOUS);
-//        GlobalSecurityContextResetter.reset(Principal.ANONYMOUS);
     }
 
     public void clear() {

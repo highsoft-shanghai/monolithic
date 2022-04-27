@@ -7,6 +7,8 @@ import ltd.highsoft.frameworks.domain.core.Identity;
 @EqualsAndHashCode
 public class AccessTokenOwner {
 
+    public static final Identity ANONYMOUS_IDENTITY = new Identity("anonymous", "Anonymous");
+    public static final AccessTokenOwner ANONYMOUS = new AccessTokenOwner(ANONYMOUS_IDENTITY, ANONYMOUS_IDENTITY, ANONYMOUS_IDENTITY);
     private final Identity userAccount;
     private final Identity user;
     private final Identity tenant;
