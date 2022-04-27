@@ -29,14 +29,14 @@ class GrantedAuthoritiesTest {
     }
 
     @Test
-    void should_allow_accesses_which_only_require_anonymous() {
+    void should_allow_accesses_which_just_require_anonymous() {
         assertDoesNotThrow(() -> GrantedAuthorities.of("f1", "f2").authorize(RequiredAuthorities.ANONYMOUS));
         assertDoesNotThrow(() -> GrantedAuthorities.of().authorize(RequiredAuthorities.ANONYMOUS));
     }
 
     @Test
-    void should_match_authenticated_only_required_authorities() {
-        assertThat(GrantedAuthorities.of("f1").match(RequiredAuthorities.AUTHENTICATED)).isTrue();
+    void should_allow_accesses_which_just_require_authenticated() {
+        assertDoesNotThrow(() -> GrantedAuthorities.of("f1", "f2").authorize(RequiredAuthorities.AUTHENTICATED));
     }
 
     @Test
