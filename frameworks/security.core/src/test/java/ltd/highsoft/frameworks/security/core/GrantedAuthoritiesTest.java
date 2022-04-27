@@ -40,11 +40,6 @@ class GrantedAuthoritiesTest {
     }
 
     @Test
-    void should_deny_accesses_which_require_more_than_anonymous_when_it_is_anonymous() {
-        assertThatThrownBy(() -> GrantedAuthorities.ANONYMOUS.authorize(RequiredAuthorities.AUTHENTICATED)).isInstanceOf(AuthorizationException.class);
-    }
-
-    @Test
     void should_allow_any_accesses_when_it_contains_admin_authority() {
         assertDoesNotThrow(() -> GrantedAuthorities.of(Authorities.ADMIN).authorize(RequiredAuthorities.of("any-access")));
     }
@@ -52,6 +47,13 @@ class GrantedAuthoritiesTest {
     @Test
     void should_allow_any_accesses_when_it_contains_system_authority() {
         assertDoesNotThrow(() -> GrantedAuthorities.of(Authorities.SYSTEM).authorize(RequiredAuthorities.of("any-access")));
+    }
+
+    @Test
+    void should_deny_accesses_which_require_more_than_anonymous_if_it_is_anonymous() {
+        Throwable throwable = catchThrowable(() -> GrantedAuthorities.ANONYMOUS.authorize(RequiredAuthorities.of("f3")));
+        assertThat(throwable).isInstanceOf(AuthenticationException.class);
+        assertThat(throwable).hasMessage("error.authentication-required");
     }
 
 }

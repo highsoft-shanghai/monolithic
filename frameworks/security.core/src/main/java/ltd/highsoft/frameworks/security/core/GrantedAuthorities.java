@@ -1,8 +1,7 @@
 package ltd.highsoft.frameworks.security.core;
 
 import com.google.common.collect.Sets;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.Set;
 
@@ -10,7 +9,6 @@ import java.util.Set;
 @EqualsAndHashCode
 public final class GrantedAuthorities {
 
-    public static final GrantedAuthorities EMPTY = new GrantedAuthorities();
     public static final GrantedAuthorities ANONYMOUS = GrantedAuthorities.of(Authorities.ANONYMOUS);
     public static final GrantedAuthorities SYSTEM = GrantedAuthorities.of(Authorities.SYSTEM);
     private final Set<String> authorities;
@@ -33,6 +31,7 @@ public final class GrantedAuthorities {
 
     public void authorize(RequiredAuthorities requiredAuthorities) {
         if (match(requiredAuthorities)) return;
+        if (isAnonymous()) throw new AuthenticationException("error.authentication-required");
         throw new AuthorizationException("error.access-denied", requiredAuthorities, this);
     }
 
