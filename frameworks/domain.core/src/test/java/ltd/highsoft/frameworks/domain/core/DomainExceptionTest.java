@@ -19,7 +19,7 @@ public class DomainExceptionTest {
 
     @Test
     void should_be_able_to_carry_message() {
-        assertThat(new DomainException("error-code")).hasMessage("error-code");
+        assertThat(new DomainException("error-code", "a", "b")).hasMessage("error-code: [a, b]");
     }
 
     @Test
@@ -46,6 +46,7 @@ public class DomainExceptionTest {
         assertThat(new DomainException(new RuntimeException())).hasCauseInstanceOf(RuntimeException.class);
         assertThat(new DomainException("error-code", new RuntimeException())).hasCauseInstanceOf(RuntimeException.class);
         assertThat(new DomainException("error-code", new RuntimeException(), "a", "b")).hasCauseInstanceOf(RuntimeException.class);
+        assertThat(new DomainException("error-code", new RuntimeException(), "a", "b")).hasMessage("error-code: [a, b]");
     }
 
 }
