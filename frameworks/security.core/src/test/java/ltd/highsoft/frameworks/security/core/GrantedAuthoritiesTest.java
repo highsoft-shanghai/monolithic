@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class GrantedAuthoritiesTest {
 
@@ -15,9 +16,9 @@ class GrantedAuthoritiesTest {
     }
 
     @Test
-    void should_match_required_authorities_when_any_of_its_authorities_matched() {
-        assertThat(GrantedAuthorities.of("f1", "f2").match(RequiredAuthorities.of("f2"))).isTrue();
-        assertThat(GrantedAuthorities.of("f1", "f2").match(RequiredAuthorities.of("f1"))).isTrue();
+    void should_allow_authorized_accesses() {
+        assertDoesNotThrow(() -> GrantedAuthorities.of("f1", "f2").authorize(RequiredAuthorities.of("f2")));
+        assertDoesNotThrow(() -> GrantedAuthorities.of("f1", "f2").authorize(RequiredAuthorities.of("f1")));
     }
 
     @Test

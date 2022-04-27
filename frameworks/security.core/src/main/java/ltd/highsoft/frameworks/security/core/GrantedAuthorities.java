@@ -31,6 +31,9 @@ public final class GrantedAuthorities {
         this.authorities = authorities;
     }
 
+    public void authorize(RequiredAuthorities requiredAuthorities) {
+    }
+
     public Set<String> asSet() {
         return authorities;
     }
