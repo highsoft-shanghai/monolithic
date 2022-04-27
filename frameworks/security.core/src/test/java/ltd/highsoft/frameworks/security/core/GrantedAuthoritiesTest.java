@@ -50,8 +50,8 @@ class GrantedAuthoritiesTest {
     }
 
     @Test
-    void should_match_anything_when_it_contains_system_authority() {
-        assertThat(GrantedAuthorities.of(Authorities.SYSTEM).match(RequiredAuthorities.of("any"))).isTrue();
+    void should_allow_any_accesses_when_it_contains_system_authority() {
+        assertDoesNotThrow(() -> GrantedAuthorities.of(Authorities.SYSTEM).authorize(RequiredAuthorities.of("any-access")));
     }
 
 }
