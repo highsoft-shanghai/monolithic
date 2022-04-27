@@ -26,4 +26,9 @@ class AccessTokenOwnerTest {
         assertThat(new AccessTokenOwner(ACCOUNT_OF_JOHN, JOHN, HIGHSOFT).tenant()).isEqualTo(HIGHSOFT);
     }
 
+    @Test
+    void should_be_able_to_compare_to_others_by_contents() {
+        assertThat(new AccessTokenOwner(ACCOUNT_OF_JOHN, JOHN, HIGHSOFT)).isEqualTo(new AccessTokenOwner(ACCOUNT_OF_JOHN, JOHN, HIGHSOFT));
+    }
+
 }

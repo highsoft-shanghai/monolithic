@@ -1,7 +1,10 @@
 package ltd.highsoft.frameworks.security.core;
 
+import lombok.*;
 import ltd.highsoft.frameworks.domain.core.Identity;
 
+@ToString
+@EqualsAndHashCode
 public class AccessTokenOwner {
 
     private final Identity userAccount;
