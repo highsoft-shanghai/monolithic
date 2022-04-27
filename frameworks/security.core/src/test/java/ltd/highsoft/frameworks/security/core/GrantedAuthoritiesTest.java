@@ -45,8 +45,8 @@ class GrantedAuthoritiesTest {
     }
 
     @Test
-    void should_match_anything_when_it_contains_admin_authority() {
-        assertThat(GrantedAuthorities.of(Authorities.ADMIN).match(RequiredAuthorities.of("any"))).isTrue();
+    void should_allow_any_accesses_when_it_contains_admin_authority() {
+        assertDoesNotThrow(() -> GrantedAuthorities.of(Authorities.ADMIN).authorize(RequiredAuthorities.of("any-access")));
     }
 
     @Test
