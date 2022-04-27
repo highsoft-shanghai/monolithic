@@ -6,16 +6,16 @@ public final class AccessToken {
 
     private final String id;
     private final AccessTokenOwner owner;
-    private final GrantedAuthorities authorities;
+    private final GrantedAuthorities grantedAuthorities;
 
     public static AccessToken create(AccessTokenOwner owner, GrantedAuthorities authorities) {
         return new AccessToken(nextId(), owner, authorities);
     }
 
-    private AccessToken(String id, AccessTokenOwner owner, GrantedAuthorities authorities) {
+    private AccessToken(String id, AccessTokenOwner owner, GrantedAuthorities grantedAuthorities) {
         this.id = id;
         this.owner = owner;
-        this.authorities = authorities;
+        this.grantedAuthorities = grantedAuthorities;
     }
 
     public String id() {
@@ -27,6 +27,8 @@ public final class AccessToken {
     }
 
     public void authorize(RequiredAuthorities requiredAuthorities) {
+        if (grantedAuthorities.match(requiredAuthorities)) return;
+        throw new AuthorizationException("error.access-denied", requiredAuthorities, grantedAuthorities);
     }
 
 }
