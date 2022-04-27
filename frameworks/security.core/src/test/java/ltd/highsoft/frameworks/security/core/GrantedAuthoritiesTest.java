@@ -40,8 +40,8 @@ class GrantedAuthoritiesTest {
     }
 
     @Test
-    void should_not_match_authenticated_only_required_authorities_when_it_is_anonymous() {
-        assertThat(GrantedAuthorities.ANONYMOUS.match(RequiredAuthorities.AUTHENTICATED)).isFalse();
+    void should_deny_accesses_which_require_more_than_anonymous_when_it_is_anonymous() {
+        assertThatThrownBy(() -> GrantedAuthorities.ANONYMOUS.authorize(RequiredAuthorities.AUTHENTICATED)).isInstanceOf(AuthorizationException.class);
     }
 
     @Test
