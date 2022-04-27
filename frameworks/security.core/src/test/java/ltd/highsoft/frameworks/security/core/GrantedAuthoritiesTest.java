@@ -29,15 +29,9 @@ class GrantedAuthoritiesTest {
     }
 
     @Test
-    void should_not_match_required_authorities_when_non_of_authorities_matched() {
-        assertThat(GrantedAuthorities.of("f1", "f2").match(RequiredAuthorities.of("f3"))).isFalse();
-        assertThat(GrantedAuthorities.of().match(RequiredAuthorities.of("f3"))).isFalse();
-    }
-
-    @Test
-    void should_match_required_authorities_which_are_anonymous() {
-        assertThat(GrantedAuthorities.of("f1").match(RequiredAuthorities.ANONYMOUS)).isTrue();
-        assertThat(GrantedAuthorities.of("").match(RequiredAuthorities.ANONYMOUS)).isTrue();
+    void should_allow_accesses_which_only_require_anonymous() {
+        assertDoesNotThrow(() -> GrantedAuthorities.of("f1", "f2").authorize(RequiredAuthorities.ANONYMOUS));
+        assertDoesNotThrow(() -> GrantedAuthorities.of().authorize(RequiredAuthorities.ANONYMOUS));
     }
 
     @Test

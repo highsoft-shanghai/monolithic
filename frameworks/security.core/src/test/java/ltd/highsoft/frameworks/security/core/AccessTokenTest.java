@@ -3,8 +3,6 @@ package ltd.highsoft.frameworks.security.core;
 import ltd.highsoft.frameworks.domain.core.*;
 import org.junit.jupiter.api.*;
 
-import java.nio.file.AccessDeniedException;
-
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
