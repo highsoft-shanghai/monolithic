@@ -16,7 +16,6 @@ public class DomainException extends RuntimeException {
     }
 
     public DomainException(String code, Object... data) {
-        super(MESSAGE_RESOLVER.resolve(code, data));
         this.code = code;
         this.data = data;
     }
@@ -28,9 +27,14 @@ public class DomainException extends RuntimeException {
     }
 
     public DomainException(String code, Throwable cause, Object... data) {
-        super(MESSAGE_RESOLVER.resolve(code, data), cause);
+        super(cause);
         this.code = code;
         this.data = data;
+    }
+
+    @Override
+    public String getMessage() {
+        return MESSAGE_RESOLVER.resolve(code, data);
     }
 
     public String format(MessageResolver resolver) {
