@@ -27,8 +27,7 @@ public final class AccessToken {
     }
 
     public void authorize(RequiredAuthorities requiredAuthorities) {
-        if (grantedAuthorities.match(requiredAuthorities)) return;
-        throw new AuthorizationException("error.access-denied", requiredAuthorities, grantedAuthorities);
+        grantedAuthorities.authorize(requiredAuthorities);
     }
 
 }

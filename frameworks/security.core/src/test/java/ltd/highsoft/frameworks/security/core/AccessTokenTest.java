@@ -4,7 +4,6 @@ import ltd.highsoft.frameworks.domain.core.*;
 import org.junit.jupiter.api.*;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class AccessTokenTest {
 
@@ -29,15 +28,8 @@ class AccessTokenTest {
     }
 
     @Test
-    void should_allow_authorized_accesses() {
-        assertDoesNotThrow(() -> AccessToken.create(owner, authorities).authorize(RequiredAuthorities.of("f1")));
-    }
-
-    @Test
     void should_deny_unauthorized_access() {
-        Throwable throwable = catchThrowable(() -> AccessToken.create(owner, authorities).authorize(RequiredAuthorities.of("unauthorized-id")));
-        assertThat(throwable).isInstanceOf(AuthorizationException.class);
-        assertThat(throwable).hasMessage("error.access-denied");
+        assertThatThrownBy(() -> AccessToken.create(owner, authorities).authorize(RequiredAuthorities.of("unauthorized-id"))).isInstanceOf(AuthorizationException.class);
     }
 
 }
