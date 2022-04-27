@@ -13,4 +13,9 @@ class IdentityTest {
         assertThat(identity.name()).isEqualTo("John");
     }
 
+    @Test
+    void should_be_able_to_compare_others_by_content() {
+        assertThat(new Identity("john", "John")).isEqualTo(new Identity("john", "John"));
+    }
+
 }
