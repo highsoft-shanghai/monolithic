@@ -13,7 +13,7 @@ class AccessTokenTest {
     @BeforeEach
     void setUp() {
         GlobalIdGeneratorResetter.reset(new FixedIdGenerator("fixed-id"));
-        owner = new AccessTokenOwner();
+        owner = new AccessTokenOwner(new Identity("kite@highsoft", "Kite"), new Identity("kite", "Kite"));
         authorities = GrantedAuthorities.of("f1", "f2");
     }
 
