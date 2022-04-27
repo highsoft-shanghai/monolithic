@@ -32,6 +32,8 @@ public final class GrantedAuthorities {
     }
 
     public void authorize(RequiredAuthorities requiredAuthorities) {
+        if (match(requiredAuthorities)) return;
+        throw new AuthorizationException("error.access-denied", requiredAuthorities, this);
     }
 
     public Set<String> asSet() {

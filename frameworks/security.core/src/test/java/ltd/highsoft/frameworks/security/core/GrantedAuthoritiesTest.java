@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Set;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class GrantedAuthoritiesTest {
@@ -19,6 +19,13 @@ class GrantedAuthoritiesTest {
     void should_allow_authorized_accesses() {
         assertDoesNotThrow(() -> GrantedAuthorities.of("f1", "f2").authorize(RequiredAuthorities.of("f2")));
         assertDoesNotThrow(() -> GrantedAuthorities.of("f1", "f2").authorize(RequiredAuthorities.of("f1")));
+    }
+
+    @Test
+    void should_deny_unauthorized_accesses() {
+        Throwable throwable = catchThrowable(() -> GrantedAuthorities.of("f1", "f2").authorize(RequiredAuthorities.of("f3")));
+        assertThat(throwable).isInstanceOf(AuthorizationException.class);
+        assertThat(throwable).hasMessage("error.access-denied");
     }
 
     @Test
