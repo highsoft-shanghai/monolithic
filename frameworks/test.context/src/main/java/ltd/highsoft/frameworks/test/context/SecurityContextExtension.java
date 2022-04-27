@@ -1,5 +1,9 @@
-package ltd.highsoft.frameworks.security.core;
+package ltd.highsoft.frameworks.test.context;
 
+import ltd.highsoft.frameworks.security.core.GrantedAuthorities;
+import ltd.highsoft.frameworks.security.core.GrantedDataAuthorities;
+import ltd.highsoft.frameworks.security.core.Principal;
+import ltd.highsoft.frameworks.security.core.GlobalSecurityContextResetter;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;

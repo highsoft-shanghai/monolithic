@@ -12,6 +12,8 @@ repositories {
 dependencies {
     compileOnly libs.general.lombok
     annotationProcessor libs.general.lombok
+    implementation libs.general.guava
+    implementation libs.general.commons.lang3
     testImplementation libs.test.junit.jupiter
     testImplementation libs.test.junit.jupiter.engine
     testImplementation libs.test.assertj.core

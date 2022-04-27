@@ -4,7 +4,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class SecurityContext {
+public class GlobalSecurityContext {
 
     private static final ThreadLocal<Principal> PRINCIPAL = new ThreadLocal<>();
 

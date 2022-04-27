@@ -1,4 +1,4 @@
 dependencies {
+    api project(':frameworks.context.core')
     api project(':frameworks.domain.core')
-    implementation libs.general.guava
 }

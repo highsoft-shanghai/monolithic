@@ -7,7 +7,7 @@ public class GrantedDataAuthorities {
 
     public static final GrantedDataAuthorities EMPTY = GrantedDataAuthorities.of();
     public static final GrantedDataAuthorities SYSTEM = GrantedDataAuthorities.of();
-    private final List<DataAuthority> policies;
+    private final List<DataAuthority> authorities;
 
     public static GrantedDataAuthorities of(DataAuthority... policies) {
         return new GrantedDataAuthorities(List.of(policies));
@@ -17,12 +17,12 @@ public class GrantedDataAuthorities {
         return new GrantedDataAuthorities(policies);
     }
 
-    public GrantedDataAuthorities(List<DataAuthority> policies) {
-        this.policies = policies;
+    public GrantedDataAuthorities(List<DataAuthority> authorities) {
+        this.authorities = authorities;
     }
 
     public List<DataAuthority> asList() {
-        return Collections.unmodifiableList(policies);
+        return Collections.unmodifiableList(authorities);
     }
 
 }
