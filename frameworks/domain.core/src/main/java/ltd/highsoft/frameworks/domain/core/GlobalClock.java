@@ -1,12 +1,8 @@
 package ltd.highsoft.frameworks.domain.core;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import java.time.Clock;
-import java.time.Instant;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.*;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class GlobalClock {
@@ -26,7 +22,7 @@ public class GlobalClock {
     }
 
     static void fixedAt(Instant instant) {
-        CLOCK.set(Clock.fixed(instant, zone()));
+        CLOCK.set(Clock.fixed(instant, ZoneId.of("Asia/Shanghai")));
     }
 
     static void reset() {
