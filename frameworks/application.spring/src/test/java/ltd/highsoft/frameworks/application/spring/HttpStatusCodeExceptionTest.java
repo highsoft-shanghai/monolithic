@@ -28,6 +28,11 @@ public class HttpStatusCodeExceptionTest {
         when().post("/test/trigger-authentication_exception").then().statusCode(401).body("message", is("error.bad-credential"));
     }
 
+    @Test
+    void should_translate_authorization_exception_to_http_403() {
+        when().post("/test/trigger-authorization_exception").then().statusCode(403).body("message", is("error.access-denied"));
+    }
+
     private RequestSpecification when() {
         return given().port(port).when();
     }

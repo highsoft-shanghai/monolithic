@@ -25,4 +25,9 @@ public class TestExceptionController {
         throw new AuthenticationException("error.bad-credential");
     }
 
+    @PostMapping("trigger-authorization_exception")
+    public void triggerAuthorizationException() {
+        throw new AuthorizationException("error.access-denied", RequiredAuthorities.of("f1"), GrantedAuthorities.of("f2"));
+    }
+
 }
