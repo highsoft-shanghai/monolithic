@@ -15,11 +15,15 @@ public class GlobalClock {
     }
 
     public static ZonedDateTime localNow() {
-        return CLOCK.get().instant().atZone(clock().getZone());
+        return ZonedDateTime.now(CLOCK.get());
     }
 
     public static ZoneId zone() {
         return clock().getZone();
+    }
+
+    static void reset(Clock clock) {
+        CLOCK.set(clock);
     }
 
     static void fixedAt(Instant instant) {

@@ -2,9 +2,7 @@ package ltd.highsoft.frameworks.domain.core;
 
 import org.junit.jupiter.api.Test;
 
-import java.time.Instant;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.time.temporal.ChronoUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,6 +20,13 @@ public class GlobalClockTest {
         GlobalClockResetter.fixAt(Instant.parse("2019-12-31T16:00:00Z"));
         assertThat(GlobalClock.localNow()).isEqualTo(ZonedDateTime.parse("2020-01-01T00:00:00+08:00[Asia/Shanghai]"));
         assertThat(GlobalClock.zone()).isEqualTo(ZoneId.of("Asia/Shanghai"));
+    }
+
+    @Test
+    void should_be_able_to_reset_new_clock() {
+        GlobalClockResetter.reset(Clock.fixed(Instant.parse("2019-12-31T16:00:00Z"), ZoneOffset.ofHours(2)));
+        assertThat(GlobalClock.localNow().toString()).isEqualTo("2019-12-31T18:00+02:00");
+        assertThat(GlobalClock.zone()).isEqualTo(ZoneId.of("+02:00"));
     }
 
     @Test
