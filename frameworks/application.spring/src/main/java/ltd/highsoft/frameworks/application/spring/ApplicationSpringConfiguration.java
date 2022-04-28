@@ -18,6 +18,7 @@ public class ApplicationSpringConfiguration {
     public ExceptionTranslator exceptionTranslator() {
         ExceptionTranslator translator = new ExceptionTranslator();
         translator.map(AggregateNotFoundException.class, Http404Exception::new);
+        translator.map(IllegalArgumentException.class, Http400Exception::new);
         return translator;
     }
 
