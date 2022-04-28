@@ -2,7 +2,7 @@ package ltd.highsoft.frameworks.application.spring;
 
 import ltd.highsoft.frameworks.application.core.UseCase;
 import ltd.highsoft.frameworks.domain.core.AggregateNotFoundException;
-import ltd.highsoft.frameworks.security.core.Authorities;
+import ltd.highsoft.frameworks.security.core.*;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,6 +18,11 @@ public class TestExceptionController {
     @PostMapping("trigger-illegal_argument_exception")
     public void triggerIllegalArgumentException() {
         throw new IllegalArgumentException("error.bad-input");
+    }
+
+    @PostMapping("trigger-authentication_exception")
+    public void triggerAuthenticationException() {
+        throw new AuthenticationException("error.bad-credential");
     }
 
 }

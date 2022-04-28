@@ -23,6 +23,11 @@ public class HttpStatusCodeExceptionTest {
         when().post("/test/trigger-illegal_argument_exception").then().statusCode(400).body("message", is("error.bad-input"));
     }
 
+    @Test
+    void should_translate_authentication_exception_to_http_401() {
+        when().post("/test/trigger-authentication_exception").then().statusCode(401).body("message", is("error.bad-credential"));
+    }
+
     private RequestSpecification when() {
         return given().port(port).when();
     }
