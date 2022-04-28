@@ -2,7 +2,6 @@ package ltd.highsoft.frameworks.security.core;
 
 import com.google.common.collect.Sets;
 import lombok.EqualsAndHashCode;
-import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.Set;
 import java.util.stream.Collectors;

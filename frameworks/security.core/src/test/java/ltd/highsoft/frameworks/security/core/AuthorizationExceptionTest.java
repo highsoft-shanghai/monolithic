@@ -11,7 +11,7 @@ class AuthorizationExceptionTest {
     void should_provide_clear_error_info() {
         AuthorizationException exception = new AuthorizationException("error.access-denied", RequiredAuthorities.of("f2"), GrantedAuthorities.of("f1"));
         assertThat(exception).isInstanceOf(DomainException.class);
-        assertThat(exception).hasMessage("error.access-denied: [RequiredAuthorities(authorities=[f2]), GrantedAuthorities(authorities=[f1])]");
+        assertThat(exception).hasMessage("error.access-denied: [RequiredAuthorities(f2), GrantedAuthorities(f1)]");
     }
 
 }
