@@ -2,6 +2,7 @@ package ltd.highsoft.frameworks.application.spring;
 
 import ltd.highsoft.frameworks.application.core.ApplicationException;
 import ltd.highsoft.frameworks.domain.core.*;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoSettings;
@@ -26,6 +27,12 @@ class ExceptionFormatterTest {
         given(messageResolver.resolve("test")).willReturn("message from resolver");
         ExceptionFormatter formatter = new ExceptionFormatter(messageResolver);
         assertThat(formatter.format(new RuntimeException("test"))).isEqualTo("message from resolver");
+    }
+
+    @Test
+    void should_be_able_to_format_null() {
+        ExceptionFormatter formatter = new ExceptionFormatter(messageResolver);
+        assertThat(formatter.format(null)).isEqualTo(StringUtils.EMPTY);
     }
 
 }

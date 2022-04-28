@@ -5,7 +5,7 @@ import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.annotation.Resource;
-import java.util.Map;
+import java.util.*;
 
 import static org.springframework.boot.web.error.ErrorAttributeOptions.Include.MESSAGE;
 
@@ -16,8 +16,7 @@ public class ApplicationErrorAttributes extends DefaultErrorAttributes {
     @Override
     public Map<String, Object> getErrorAttributes(WebRequest request, ErrorAttributeOptions options) {
         Map<String, Object> error = super.getErrorAttributes(request, ErrorAttributeOptions.of(MESSAGE));
-        Throwable throwable = getError(request);
-        error.put("message", throwable == null ? "" : exceptionFormatter.format(throwable));
+        error.put("message", exceptionFormatter.format(getError(request)));
         return error;
     }
 
