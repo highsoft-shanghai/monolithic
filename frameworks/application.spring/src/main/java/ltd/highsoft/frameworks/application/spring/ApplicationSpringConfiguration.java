@@ -1,8 +1,10 @@
 package ltd.highsoft.frameworks.application.spring;
 
-import ltd.highsoft.frameworks.domain.core.AggregateNotFoundException;
-import ltd.highsoft.frameworks.security.core.*;
+import ltd.highsoft.frameworks.domain.core.*;
+import ltd.highsoft.frameworks.security.core.ContextLoader;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.servlet.error.ErrorAttributes;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.*;
 
 import java.util.Optional;
@@ -17,6 +19,16 @@ public class ApplicationSpringConfiguration {
         ExceptionTranslator translator = new ExceptionTranslator();
         translator.map(AggregateNotFoundException.class, Http404Exception::new);
         return translator;
+    }
+
+    @Bean
+    public MessageResolver messageResolver(MessageSource messageSource) {
+        return new SpringMessageResolver(messageSource);
+    }
+
+    @Bean
+    public ErrorAttributes errorAttributes() {
+        return new ApplicationErrorAttributes();
     }
 
     @Bean
