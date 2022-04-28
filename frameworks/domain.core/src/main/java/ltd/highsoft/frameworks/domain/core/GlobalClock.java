@@ -7,6 +7,7 @@ import java.time.*;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class GlobalClock {
 
+    public static final ZoneId DEFAULT_TIME_ZONE = ZoneId.of("Asia/Shanghai");
     private static final ThreadLocal<Clock> CLOCK = new ThreadLocal<>();
 
     public static Instant now() {
@@ -22,11 +23,11 @@ public class GlobalClock {
     }
 
     static void fixedAt(Instant instant) {
-        CLOCK.set(Clock.fixed(instant, ZoneId.of("Asia/Shanghai")));
+        CLOCK.set(Clock.fixed(instant, DEFAULT_TIME_ZONE));
     }
 
     static void reset() {
-        CLOCK.set(Clock.system(zone()));
+        CLOCK.set(Clock.system(DEFAULT_TIME_ZONE));
     }
 
     private static Clock clock() {
