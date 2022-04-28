@@ -25,7 +25,7 @@ class GrantedAuthoritiesTest {
     void should_deny_unauthorized_accesses() {
         Throwable throwable = catchThrowable(() -> GrantedAuthorities.of("f1", "f2").authorize(RequiredAuthorities.of("f3")));
         assertThat(throwable).isInstanceOf(AuthorizationException.class);
-        assertThat(throwable).hasMessage("error.access-denied: [RequiredAuthorities(authorities=[f3]), GrantedAuthorities(authorities=[f2, f1])]");
+        assertThat(throwable).hasMessage("error.access-denied: [RequiredAuthorities(f3), GrantedAuthorities(f1, f2)]");
     }
 
     @Test

@@ -1,11 +1,12 @@
 package ltd.highsoft.frameworks.security.core;
 
 import com.google.common.collect.Sets;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
-@ToString
 @EqualsAndHashCode
 public final class GrantedAuthorities {
 
@@ -39,6 +40,15 @@ public final class GrantedAuthorities {
         return authorities;
     }
 
+    public boolean isAnonymous() {
+        return authorities.contains(Authorities.ANONYMOUS);
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "(" + authorities.stream().sorted().collect(Collectors.joining(", ")) + ")";
+    }
+
     private boolean match(RequiredAuthorities requiredAuthorities) {
         if (isSpecialRole()) return true;
         if (requiredAuthorities.requireAnonymous()) return true;
@@ -48,10 +58,6 @@ public final class GrantedAuthorities {
 
     private boolean isSpecialRole() {
         return authorities.contains(Authorities.ADMIN) || authorities.contains(Authorities.SYSTEM);
-    }
-
-    public boolean isAnonymous() {
-        return authorities.contains(Authorities.ANONYMOUS);
     }
 
 }

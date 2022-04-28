@@ -1,10 +1,10 @@
 package ltd.highsoft.frameworks.security.core;
 
-import lombok.*;
+import lombok.EqualsAndHashCode;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
-@ToString
 @EqualsAndHashCode
 public class RequiredAuthorities {
 
@@ -30,6 +30,11 @@ public class RequiredAuthorities {
 
     public boolean requireAuthenticatedOnly() {
         return (authorities.isEmpty() || authorities.contains(Authorities.AUTHENTICATED)) && !requireAnonymous();
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "(" + authorities.stream().sorted().collect(Collectors.joining(", ")) + ")";
     }
 
 }
