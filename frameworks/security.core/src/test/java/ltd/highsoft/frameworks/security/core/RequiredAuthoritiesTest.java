@@ -44,4 +44,9 @@ public class RequiredAuthoritiesTest {
         assertThat(RequiredAuthorities.of("f1", "f2")).isEqualTo(RequiredAuthorities.of("f1", "f2"));
     }
 
+    @Test
+    void should_be_able_to_format_as_simple_string() {
+        assertThat(RequiredAuthorities.of("f2", "f1", "f8", "f0").toString()).isEqualTo("RequiredAuthorities(f0, f1, f2, f8)");
+    }
+
 }
