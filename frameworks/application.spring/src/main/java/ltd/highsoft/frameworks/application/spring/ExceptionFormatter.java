@@ -1,6 +1,7 @@
 package ltd.highsoft.frameworks.application.spring;
 
-import ltd.highsoft.frameworks.domain.core.*;
+import ltd.highsoft.frameworks.application.core.ApplicationException;
+import ltd.highsoft.frameworks.domain.core.MessageResolver;
 
 public class ExceptionFormatter {
 
@@ -11,8 +12,8 @@ public class ExceptionFormatter {
     }
 
     public String format(Throwable throwable) {
-        if (!(throwable instanceof DomainException)) return messageResolver.resolve(throwable.getMessage());
-        return ((DomainException) throwable).format(messageResolver);
+        if (!(throwable instanceof ApplicationException)) return messageResolver.resolve(throwable.getMessage());
+        return ((ApplicationException) throwable).format(messageResolver);
     }
 
 }
