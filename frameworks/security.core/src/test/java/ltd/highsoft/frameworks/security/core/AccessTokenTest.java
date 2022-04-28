@@ -23,8 +23,13 @@ class AccessTokenTest {
     }
 
     @Test
+    void should_be_able_to_carry_granted_authorities() {
+        assertThat(AccessToken.create(owner, authorities).grantedAuthorities()).isEqualTo(authorities);
+    }
+
+    @Test
     void should_be_able_to_generate_id() {
-        assertThat(AccessToken.create(owner, authorities).id()).isEqualTo("fixed-id");
+        assertThat(AccessToken.create(owner, authorities).token()).isEqualTo("fixed-id");
     }
 
     @Test

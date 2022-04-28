@@ -1,11 +1,7 @@
 package ltd.highsoft.frameworks.test.context;
 
-import ltd.highsoft.frameworks.security.core.GrantedAuthorities;
-import ltd.highsoft.frameworks.security.core.SecurityContext;
-import ltd.highsoft.frameworks.security.core.GlobalSecurityContextResetter;
-import org.junit.jupiter.api.extension.AfterEachCallback;
-import org.junit.jupiter.api.extension.BeforeEachCallback;
-import org.junit.jupiter.api.extension.ExtensionContext;
+import ltd.highsoft.frameworks.security.core.*;
+import org.junit.jupiter.api.extension.*;
 import org.junit.platform.commons.util.AnnotationUtils;
 
 import java.util.Optional;
@@ -15,7 +11,7 @@ public class SecurityContextExtension implements BeforeEachCallback, AfterEachCa
     @Override
     public void beforeEach(ExtensionContext context) {
         Optional<WithSecurityContext> annotation = AnnotationUtils.findAnnotation(context.getRequiredTestClass(), WithSecurityContext.class);
-        annotation.ifPresent(x -> GlobalSecurityContextResetter.reset(SecurityContext.create(GrantedAuthorities.of(x.grantedAuthorities()))));
+        annotation.ifPresent(x -> GlobalSecurityContextResetter.reset(new SimpleSecurityContext(GrantedAuthorities.of(x.grantedAuthorities()))));
     }
 
     @Override

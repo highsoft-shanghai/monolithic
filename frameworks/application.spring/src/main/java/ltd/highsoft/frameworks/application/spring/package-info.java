@@ -1,3 +1,6 @@
+/**
+ * Package info.
+ */
 @NonNullApi
 package ltd.highsoft.frameworks.application.spring;
 

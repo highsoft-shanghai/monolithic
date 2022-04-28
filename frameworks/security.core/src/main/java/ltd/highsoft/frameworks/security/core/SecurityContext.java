@@ -7,6 +7,8 @@ public interface SecurityContext {
 
     void authorize(RequiredAuthorities requiredAuthorities);
 
+    String token();
+
     GrantedAuthorities grantedAuthorities();
 
 }

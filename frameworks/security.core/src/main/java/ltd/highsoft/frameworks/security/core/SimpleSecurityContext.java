@@ -14,6 +14,11 @@ public class SimpleSecurityContext implements SecurityContext {
     }
 
     @Override
+    public String token() {
+        return "simple";
+    }
+
+    @Override
     public GrantedAuthorities grantedAuthorities() {
         return grantedAuthorities;
     }

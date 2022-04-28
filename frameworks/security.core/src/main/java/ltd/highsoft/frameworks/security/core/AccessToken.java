@@ -2,7 +2,7 @@ package ltd.highsoft.frameworks.security.core;
 
 import static ltd.highsoft.frameworks.domain.core.GlobalIdGenerator.nextId;
 
-public final class AccessToken {
+public final class AccessToken implements SecurityContext {
 
     public static final AccessToken ANONYMOUS = new AccessToken("anonymous", AccessTokenOwner.ANONYMOUS, GrantedAuthorities.ANONYMOUS);
     private final String id;
@@ -19,7 +19,8 @@ public final class AccessToken {
         this.grantedAuthorities = grantedAuthorities;
     }
 
-    public String id() {
+    @Override
+    public String token() {
         return id;
     }
 
@@ -27,8 +28,14 @@ public final class AccessToken {
         return owner;
     }
 
+    @Override
     public void authorize(RequiredAuthorities requiredAuthorities) {
         grantedAuthorities.authorize(requiredAuthorities);
+    }
+
+    @Override
+    public GrantedAuthorities grantedAuthorities() {
+        return grantedAuthorities;
     }
 
 }

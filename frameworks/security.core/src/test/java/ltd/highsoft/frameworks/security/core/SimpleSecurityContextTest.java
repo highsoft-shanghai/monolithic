@@ -8,7 +8,9 @@ class SimpleSecurityContextTest {
 
     @Test
     void should_be_able_to_hold_granted_authorities() {
-        assertThat(new SimpleSecurityContext(GrantedAuthorities.ANONYMOUS).grantedAuthorities()).isEqualTo(GrantedAuthorities.ANONYMOUS);
+        SimpleSecurityContext context = new SimpleSecurityContext(GrantedAuthorities.ANONYMOUS);
+        assertThat(context.grantedAuthorities()).isEqualTo(GrantedAuthorities.ANONYMOUS);
+        assertThat(context.token()).isEqualTo("simple");
     }
 
     @Test

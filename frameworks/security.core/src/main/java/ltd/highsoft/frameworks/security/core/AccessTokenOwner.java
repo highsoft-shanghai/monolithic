@@ -1,11 +1,12 @@
 package ltd.highsoft.frameworks.security.core;
 
 import lombok.*;
+import ltd.highsoft.frameworks.context.core.UserContext;
 import ltd.highsoft.frameworks.domain.core.Identity;
 
 @ToString
 @EqualsAndHashCode
-public class AccessTokenOwner {
+public class AccessTokenOwner implements UserContext {
 
     public static final Identity ANONYMOUS_IDENTITY = new Identity("anonymous", "Anonymous");
     public static final AccessTokenOwner ANONYMOUS = new AccessTokenOwner(ANONYMOUS_IDENTITY, ANONYMOUS_IDENTITY, ANONYMOUS_IDENTITY);

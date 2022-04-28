@@ -1,5 +1,7 @@
 package ltd.highsoft.frameworks.security.core;
 
+import ltd.highsoft.frameworks.context.core.GlobalUserContextResetter;
+
 public class ContextLoader {
 
     private final AccessTokenProvider accessTokenProvider;
@@ -13,13 +15,13 @@ public class ContextLoader {
     }
 
     private void loadFromAccessToken(AccessToken token) {
-//        GlobalUserContextResetter.reset(token);
-//        GlobalSecurityContextResetter.reset(token);
+        GlobalUserContextResetter.reset(token.owner());
+        GlobalSecurityContextResetter.reset(token);
     }
 
     public void clear() {
-//        GlobalUserContextResetter.clear();
-//        GlobalSecurityContextResetter.clear();
+        GlobalUserContextResetter.clear();
+        GlobalSecurityContextResetter.clear();
     }
 
 }
