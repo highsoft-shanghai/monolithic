@@ -1,6 +1,6 @@
 package ltd.highsoft.frameworks.application.spring;
 
-import ltd.highsoft.frameworks.domain.core.*;
+import ltd.highsoft.frameworks.domain.core.AggregateNotFoundException;
 import ltd.highsoft.frameworks.security.core.ContextLoader;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
@@ -22,8 +22,8 @@ public class ApplicationSpringConfiguration {
     }
 
     @Bean
-    public MessageResolver messageResolver(MessageSource messageSource) {
-        return new SpringMessageResolver(messageSource);
+    public ExceptionFormatter exceptionFormatter(MessageSource messageSource) {
+        return new ExceptionFormatter(new SpringMessageResolver(messageSource));
     }
 
     @Bean

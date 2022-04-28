@@ -1,27 +1,19 @@
 package ltd.highsoft.frameworks.application.core;
 
 import ltd.highsoft.frameworks.domain.core.DomainException;
-import ltd.highsoft.frameworks.domain.core.MessageResolver;
 
-public class ApplicationException extends RuntimeException {
+public class ApplicationException extends DomainException {
 
-    public ApplicationException(String message) {
-        super(message);
+    public ApplicationException(String code, Throwable cause, Object... data) {
+        super(code, cause, data);
+    }
+
+    public ApplicationException(String code, Object... data) {
+        super(code, data);
     }
 
     public ApplicationException(Throwable cause) {
         super(cause);
-    }
-
-    public String format(MessageResolver messageResolver) {
-        if (getCause() instanceof DomainException) return ((DomainException) getCause()).format(messageResolver);
-        return messageResolver.resolve(getMessage());
-    }
-
-    @Override
-    public String getMessage() {
-        if (getCause() != null) return getCause().getMessage();
-        return super.getMessage();
     }
 
 }

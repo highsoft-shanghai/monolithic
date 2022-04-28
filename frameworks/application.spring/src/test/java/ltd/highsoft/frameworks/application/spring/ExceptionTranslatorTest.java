@@ -25,7 +25,7 @@ class ExceptionTranslatorTest {
     }
 
     @Test
-    void should_be_able_to_translate_exceptions_to_applications_for_unregistered_exception_types() {
+    void should_be_able_to_translate_exceptions_to_application_exceptions_for_unregistered_exception_types() {
         Throwable throwable = translator.translate(new IllegalStateException("abc"));
         assertThat(throwable).isInstanceOf(ApplicationException.class);
         assertThat(throwable).hasMessage("abc");
