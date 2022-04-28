@@ -25,7 +25,7 @@ class ExceptionFormatterTest {
     void should_be_able_to_format_non_application_exceptions() {
         given(messageResolver.resolve("test")).willReturn("message from resolver");
         ExceptionFormatter formatter = new ExceptionFormatter(messageResolver);
-        assertThat(formatter.format(new ApplicationException("test"))).isEqualTo("message from resolver");
+        assertThat(formatter.format(new RuntimeException("test"))).isEqualTo("message from resolver");
     }
 
 }
