@@ -56,4 +56,9 @@ class GrantedAuthoritiesTest {
         assertThat(throwable).hasMessage("error.authentication-required");
     }
 
+    @Test
+    void should_be_able_to_format_as_simple_string() {
+        assertThat(GrantedAuthorities.of("f1", "f2", "f8", "f0").toString()).isEqualTo("GrantedAuthorities(f0, f1, f2, f8)");
+    }
+
 }
