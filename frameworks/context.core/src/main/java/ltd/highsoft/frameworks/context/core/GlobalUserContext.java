@@ -12,6 +12,18 @@ public final class GlobalUserContext {
         return context().userAccount();
     }
 
+    public static String currentUserAccountId() {
+        return currentUserAccount().id();
+    }
+
+    public static Identity currentUser() {
+        return context().user();
+    }
+
+    public static String currentUserId() {
+        return currentUser().id();
+    }
+
     static void reset(UserContext context) {
         CONTEXT.set(context);
     }
