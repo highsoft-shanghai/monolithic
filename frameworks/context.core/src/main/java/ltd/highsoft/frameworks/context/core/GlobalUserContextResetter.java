@@ -1,6 +1,9 @@
 package ltd.highsoft.frameworks.context.core;
 
-public class GlobalUserContextResetter {
+import lombok.*;
+
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public final class GlobalUserContextResetter {
 
     public static void reset(UserContext context) {
         GlobalUserContext.reset(context);
