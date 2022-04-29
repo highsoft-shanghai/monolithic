@@ -16,6 +16,7 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 public class UseCaseAspectTest {
 
     private @Resource TriggerExceptionUseCase triggerExceptionUseCase;
+    private @Resource TestUseCase testUseCase;
 
     @Test
     void should_be_able_to_translate_exceptions() {
@@ -28,6 +29,11 @@ public class UseCaseAspectTest {
         Throwable throwable = catchThrowable(() -> triggerExceptionUseCase.execute(new AggregateNotFoundException("error-code")));
         assertThat(throwable).isInstanceOf(ApplicationException.class);
         assertThat(throwable).hasMessage("error-code");
+    }
+
+    @Test
+    void should_delegate_execution_to_use_cases() {
+        assertThat(testUseCase.execute("test")).isEqualTo("executed with 'test'");
     }
 
 }
