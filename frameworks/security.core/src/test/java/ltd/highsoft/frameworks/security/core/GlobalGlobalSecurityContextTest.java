@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @WithSecurityContext(grantedAuthorities = {"f1", "f2"})
-public class GlobalGlobalSecurityContextResetterTest {
+public class GlobalGlobalSecurityContextTest {
 
     @Test
     void should_be_able_to_reset_security_context() {
