@@ -7,6 +7,7 @@ public class GlobalUserContextResetter {
     }
 
     public static void clear() {
+        GlobalUserContext.reset(UserContext.ANONYMOUS);
     }
 
 }

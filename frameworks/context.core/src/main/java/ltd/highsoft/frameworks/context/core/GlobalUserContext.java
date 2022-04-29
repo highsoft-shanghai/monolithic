@@ -32,6 +32,10 @@ public final class GlobalUserContext {
         return currentTenant().id();
     }
 
+    public static UserContext userContext() {
+        return context();
+    }
+
     static void reset(UserContext context) {
         CONTEXT.set(context);
     }

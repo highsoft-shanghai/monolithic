@@ -34,6 +34,12 @@ class GlobalUserContextTest {
         assertThat(GlobalUserContext.currentTenantId()).isEqualTo(HIGHSOFT.id());
     }
 
+    @Test
+    void should_be_able_to_clear() {
+        GlobalUserContextResetter.clear();
+        assertThat(GlobalUserContext.userContext()).isEqualTo(UserContext.ANONYMOUS);
+    }
+
     @AfterEach
     void tearDown() {
         GlobalUserContextResetter.clear();
