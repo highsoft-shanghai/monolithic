@@ -28,6 +28,12 @@ class GlobalUserContextTest {
         assertThat(GlobalUserContext.currentUserId()).isEqualTo(JOHN.id());
     }
 
+    @Test
+    void should_be_able_to_hold_current_tenant() {
+        assertThat(GlobalUserContext.currentTenant()).isEqualTo(HIGHSOFT);
+        assertThat(GlobalUserContext.currentTenantId()).isEqualTo(HIGHSOFT.id());
+    }
+
     @AfterEach
     void tearDown() {
         GlobalUserContextResetter.clear();

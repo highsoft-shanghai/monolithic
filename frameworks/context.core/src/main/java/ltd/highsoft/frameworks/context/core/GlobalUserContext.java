@@ -24,6 +24,14 @@ public final class GlobalUserContext {
         return currentUser().id();
     }
 
+    public static Identity currentTenant() {
+        return context().tenant();
+    }
+
+    public static String currentTenantId() {
+        return currentTenant().id();
+    }
+
     static void reset(UserContext context) {
         CONTEXT.set(context);
     }
