@@ -4,7 +4,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class GlobalSecurityContextResetter {
+public final class GlobalSecurityContextResetter {
 
     public static void reset(SecurityContext context) {
         GlobalSecurityContext.reset(context);

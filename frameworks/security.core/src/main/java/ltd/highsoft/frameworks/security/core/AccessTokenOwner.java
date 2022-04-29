@@ -20,14 +20,17 @@ public class AccessTokenOwner implements UserContext {
         this.tenant = tenant;
     }
 
+    @Override
     public Identity userAccount() {
         return userAccount;
     }
 
+    @Override
     public Identity user() {
         return user;
     }
 
+    @Override
     public Identity tenant() {
         return tenant;
     }
