@@ -1,21 +1,22 @@
-## SCAFFOLD FOR MONOLITHIC PROJECTS
+# 单体应用脚手架
 
-### USEFUL COMMANDS
+## 常用命令
+为方便日常开发，项目预置了部分常用脚本，可以帮助项目成员快速完成一些常见的任务。
 
-#### STATIC CODE CHECK
-If we want to quickly check code format and styles for the whole project, below command will help:
+### 静态代码检查
+良好的编码风格和编码格式是高质量软件的基础，时刻注意编码格式和风格是推荐的优秀实践。如需快速获得编码风格的问题反馈，请使用以下命令：
 ```bash
 ./scripts/check-static
 ```
 
-#### OVERALL CHECK
-Before pushing commits to CI, we must keep our software workable and the code clean, so, quality checks are required. To perform all quality checks, like 
-unit tests, integration tests, test coverage check and reports, just run this command:
+### 本地CI检查
+为了持续集成，项目提供了必要的基础设施，质量门禁便是其中之一。质量门禁提供了静态代码检查、单元测试、集成测试、测试覆盖率等各项质量检查项，以帮助团队守住质量继续，为持续集成提供必要的基础。
+**开发每次推送代码至代码库前务必在本地执行质量门禁检查**，并且在代码被推送至代码仓库后，构建服务器也会触发质量门禁。本地执行质量检测直接执行一下命令：
 ```bash
 ./scripts/check-all
 ```
 
-#### REFERENCE DOCUMENTATION
+### REFERENCE DOCUMENTATION
 
 For further reference, please consider the following sections:
 
@@ -34,7 +35,7 @@ For further reference, please consider the following sections:
 * [Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/2.6.7/reference/htmlsingle/#production-ready)
 * [Testcontainers](https://www.testcontainers.org/)
 
-#### GUIDES
+### GUIDES
 
 The following guides illustrate how to use some features concretely:
 
@@ -45,7 +46,7 @@ The following guides illustrate how to use some features concretely:
 * [Accessing Data with MongoDB](https://spring.io/guides/gs/accessing-data-mongodb/)
 * [Building a RESTful Web Service with Spring Boot Actuator](https://spring.io/guides/gs/actuator-service/)
 
-#### ADDITIONAL LINKS
+### ADDITIONAL LINKS
 
 These additional references should also help you:
 
