@@ -9,7 +9,8 @@ If we want to quickly check code format and styles for the whole project, below 
 ```
 
 #### OVERALL CHECK
-Before pushing commits to CI, we must keep our software workable and keep the code clean. To run all tests, check test coverage, generate test reports and generate coverage reports for root project and all subprojects, please run this command:
+Before pushing commits to CI, we must keep our software workable and the code clean, so, quality checks are required. To perform all quality checks, like 
+unit tests, integration tests, test coverage check and reports, just run this command:
 ```bash
 ./scripts/check-all
 ```
