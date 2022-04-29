@@ -2,6 +2,7 @@ package ltd.highsoft.frameworks.test.web;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.response.*;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInfo;
@@ -25,6 +26,10 @@ public class RestTest {
     @BeforeEach
     void setupTestInfo(TestInfo testInfo) {
         this.testInfo = testInfo;
+    }
+
+    protected ValidatableResponse get(String path) {
+        return given().when().get(path).then();
     }
 
     protected RequestSpecification given() {
