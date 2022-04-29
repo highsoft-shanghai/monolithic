@@ -1,0 +1,6 @@
+apply from: "$rootDir/gradle/config/scripts/web.gradle"
+
+dependencies {
+    implementation project(":iam.application")
+    testImplementation project(":frameworks.test.web")
+}
