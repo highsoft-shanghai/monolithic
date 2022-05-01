@@ -1,13 +1,18 @@
 package ltd.highsoft.frameworks.persistence.spring;
 
-import ltd.highsoft.frameworks.domain.core.Pagination;
-import org.springframework.data.domain.Pageable;
+import ltd.highsoft.frameworks.domain.core.*;
+import ltd.highsoft.frameworks.domain.core.Sort;
+import org.springframework.data.domain.*;
 
 public class SpringPagination implements Pagination {
 
     private final Pageable impl;
 
-    public SpringPagination(Pageable pageable) {
+    public static Pagination of(PageRequest impl) {
+        return new SpringPagination(impl);
+    }
+
+    protected SpringPagination(Pageable pageable) {
         this.impl = pageable;
     }
 
@@ -19,6 +24,11 @@ public class SpringPagination implements Pagination {
     @Override
     public int pageSize() {
         return impl.getPageSize();
+    }
+
+    @Override
+    public Sort sort() {
+        return SpringSort.of(impl.getSort());
     }
 
 }

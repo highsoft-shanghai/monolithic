@@ -6,4 +6,6 @@ public interface Pagination {
 
     int pageSize();
 
+    Sort sort();
+
 }
