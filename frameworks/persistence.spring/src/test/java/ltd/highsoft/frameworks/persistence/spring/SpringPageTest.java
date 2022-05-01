@@ -37,4 +37,9 @@ class SpringPageTest {
         assertThat(page.size()).isEqualTo(5);
     }
 
+    @Test
+    void should_be_able_to_carry_total_number_of_elements() {
+        assertThat(page.numberOfTotalElements()).isEqualTo(30);
+    }
+
 }
