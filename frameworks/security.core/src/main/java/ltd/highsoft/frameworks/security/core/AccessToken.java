@@ -13,15 +13,14 @@ public final class AccessToken implements SecurityContext {
         return new AccessToken(nextId(), owner, authorities);
     }
 
+    public static AccessToken restore(String id, AccessTokenOwner owner, GrantedAuthorities authorities) {
+        return new AccessToken(id, owner, authorities);
+    }
+
     private AccessToken(String id, AccessTokenOwner owner, GrantedAuthorities grantedAuthorities) {
         this.id = id;
         this.owner = owner;
         this.grantedAuthorities = grantedAuthorities;
-    }
-
-    @Override
-    public String token() {
-        return id;
     }
 
     public AccessTokenOwner owner() {
@@ -31,6 +30,11 @@ public final class AccessToken implements SecurityContext {
     @Override
     public void authorize(RequiredAuthorities requiredAuthorities) {
         grantedAuthorities.authorize(requiredAuthorities);
+    }
+
+    @Override
+    public String token() {
+        return id;
     }
 
     @Override
