@@ -148,7 +148,7 @@ public class MongoRepositoryTest extends MongoTest {
     void should_be_able_to_count_aggregates_from_database() {
         mongoTemplate.save(new MongoTestAggregate(new TestAggregate("1", "hello")));
         mongoTemplate.save(new MongoTestAggregate(new TestAggregate("2", "hello2")));
-        assertThat(mongoTemplate.count(new Query(), MongoTestAggregate.class)).isEqualTo(2);
+        assertThat(repository.count(query(where("name").regex("hello")))).isEqualTo(2);
     }
 
     @Test
