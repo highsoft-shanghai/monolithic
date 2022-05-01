@@ -21,6 +21,8 @@ public interface Page<T> {
 
     boolean last();
 
+    Sort sort();
+
     <U> Page<U> map(Function<? super T, ? extends U> converter);
 
 }

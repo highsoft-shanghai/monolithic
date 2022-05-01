@@ -64,4 +64,10 @@ class SpringPageTest {
         assertThat(page.map(x -> x + x).content()).containsExactly("aa", "bb");
     }
 
+    @Test
+    void should_be_able_to_carry_sort() {
+        Page<String> page = SpringPage.from(new PageImpl<>(List.of("b", "a"), PageRequest.of(0, 2, Sort.by(Sort.Order.desc("f1"), Sort.Order.asc("f2"))), 30));
+        assertThat(page.sort()).isEqualTo(SpringSort.of(Sort.by(Sort.Order.desc("f1"), Sort.Order.asc("f2"))));
+    }
+
 }

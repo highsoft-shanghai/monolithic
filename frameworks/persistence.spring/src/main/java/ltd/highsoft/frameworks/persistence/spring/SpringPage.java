@@ -1,6 +1,6 @@
 package ltd.highsoft.frameworks.persistence.spring;
 
-import ltd.highsoft.frameworks.domain.core.Page;
+import ltd.highsoft.frameworks.domain.core.*;
 
 import java.util.List;
 import java.util.function.Function;
@@ -55,6 +55,11 @@ public class SpringPage<T> implements Page<T> {
     @Override
     public boolean last() {
         return impl.isLast();
+    }
+
+    @Override
+    public Sort sort() {
+        return SpringSort.of(impl.getSort());
     }
 
     @Override
