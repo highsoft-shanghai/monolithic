@@ -73,8 +73,8 @@ public class MongoRepository<D, A> {
     }
 
     public Page<A> list(Query query, Pageable pageable) {
-        List<D> ds = mongoTemplate.find(Query.of(query).with(pageable), aggregateClass);
-        return SpringPage.from(PageableExecutionUtils.getPage(ds, pageable, () -> mongoTemplate.count(query, aggregateClass)).map(asDomain));
+        List<D> aggregates = mongoTemplate.find(Query.of(query).with(pageable), aggregateClass);
+        return SpringPage.from(PageableExecutionUtils.getPage(aggregates, pageable, () -> mongoTemplate.count(query, aggregateClass)).map(asDomain));
     }
 
     public Stream<A> stream(Query query) {

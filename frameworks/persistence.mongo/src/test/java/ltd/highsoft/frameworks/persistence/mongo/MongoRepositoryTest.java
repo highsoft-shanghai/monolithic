@@ -131,9 +131,9 @@ public class MongoRepositoryTest extends MongoTest {
         mongoTemplate.save(new MongoTestAggregate(new TestAggregate("1", "hello3")));
         mongoTemplate.save(new MongoTestAggregate(new TestAggregate("2", "hello1")));
         mongoTemplate.save(new MongoTestAggregate(new TestAggregate("3", "hello2")));
-        Page<TestAggregate> found = repository.list(query(where("name").regex("hello")), PageRequest.of(1, 2, by("name").descending()));
+        Page<TestAggregate> found = repository.list(query(where("name").regex("hello")), PageRequest.of(1, 1, by("name").descending()));
         assertThat(found.content()).hasSize(1);
-        assertThat(found.content()).containsExactly(new TestAggregate("2", "hello1"));
+        assertThat(found.content()).containsExactly(new TestAggregate("3", "hello2"));
     }
 
     @Test
