@@ -23,11 +23,6 @@ public class SpringPage<T> implements Page<T> {
     }
 
     @Override
-    public long numberOfTotalElements() {
-        return impl.getTotalElements();
-    }
-
-    @Override
     public int size() {
         return impl.getSize();
     }
@@ -40,6 +35,16 @@ public class SpringPage<T> implements Page<T> {
     @Override
     public int numberOfElements() {
         return impl.getNumberOfElements();
+    }
+
+    @Override
+    public int numberOfTotalPages() {
+        return impl.getTotalPages();
+    }
+
+    @Override
+    public long numberOfTotalElements() {
+        return impl.getTotalElements();
     }
 
     @Override

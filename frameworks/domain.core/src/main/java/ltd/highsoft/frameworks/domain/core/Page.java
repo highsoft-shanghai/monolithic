@@ -7,13 +7,15 @@ public interface Page<T> {
 
     List<T> content();
 
-    long numberOfTotalElements();
-
     int size();
 
     int number();
 
     int numberOfElements();
+
+    int numberOfTotalPages();
+
+    long numberOfTotalElements();
 
     <U> Page<U> map(Function<? super T, ? extends U> converter);
 
