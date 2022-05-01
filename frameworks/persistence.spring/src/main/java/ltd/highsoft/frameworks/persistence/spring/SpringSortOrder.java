@@ -18,4 +18,9 @@ public class SpringSortOrder implements SortOrder {
         this.impl = impl;
     }
 
+    @Override
+    public String property() {
+        return impl.getProperty();
+    }
+
 }
