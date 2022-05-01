@@ -48,14 +48,14 @@ class SpringPageTest {
 
     @Test
     void should_be_able_to_indicate_first_page_reached() {
-        Page<String> page = SpringPage.from(new PageImpl<>(List.of("a", "b"), Pageable.ofSize(5), 30));
-        assertThat(page.first()).isTrue();
+        assertThat(SpringPage.from(new PageImpl<>(List.of("a", "b"), Pageable.ofSize(5), 30)).first()).isTrue();
+        assertThat(SpringPage.from(new PageImpl<>(List.of("a", "b"), Pageable.ofSize(5).next(), 30)).first()).isFalse();
     }
 
     @Test
     void should_be_able_to_indicate_last_page_reached() {
-        Page<String> page = SpringPage.from(new PageImpl<>(List.of("a", "b"), Pageable.ofSize(5).next(), 2));
-        assertThat(page.last()).isTrue();
+        assertThat(SpringPage.from(new PageImpl<>(List.of("a", "b"), Pageable.ofSize(2).next(), 2)).last()).isTrue();
+        assertThat(SpringPage.from(new PageImpl<>(List.of("a", "b"), Pageable.ofSize(2), 4)).last()).isFalse();
     }
 
     @Test
