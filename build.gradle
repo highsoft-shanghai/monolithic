@@ -16,3 +16,4 @@ dependencies {
     testImplementation project(":frameworks.test.mongo")
     testImplementation project(":frameworks.test.postgres")
 }
+
