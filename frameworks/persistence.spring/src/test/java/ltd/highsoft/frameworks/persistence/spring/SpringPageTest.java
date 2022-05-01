@@ -14,7 +14,7 @@ class SpringPageTest {
 
     @BeforeEach
     void setUp() {
-        page = SpringPage.from(new PageImpl<>(List.of("a", "b"), Pageable.ofSize(5), 30));
+        page = SpringPage.from(new PageImpl<>(List.of("a", "b"), Pageable.ofSize(5).next().next(), 30));
     }
 
     @Test
@@ -25,6 +25,11 @@ class SpringPageTest {
     @Test
     void should_be_able_to_carry_number_of_elements() {
         assertThat(page.numberOfElements()).isEqualTo(2);
+    }
+
+    @Test
+    void should_be_able_to_carry_page_number() {
+        assertThat(page.number()).isEqualTo(2);
     }
 
 }
