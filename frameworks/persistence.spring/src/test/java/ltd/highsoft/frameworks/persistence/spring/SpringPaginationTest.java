@@ -14,4 +14,10 @@ class SpringPaginationTest {
         assertThat(pagination.pageNumber()).isEqualTo(3);
     }
 
+    @Test
+    void should_be_able_to_carry_page_size() {
+        Pagination pagination = SpringPagination.of(PageRequest.of(3, 10));
+        assertThat(pagination.pageSize()).isEqualTo(10);
+    }
+
 }
