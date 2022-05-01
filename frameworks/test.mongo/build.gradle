@@ -1,5 +1,6 @@
 dependencies {
     api project(":frameworks.test.container")
     implementation libs.test.testcontainers.mongodb
-    testImplementation libs.persistence.mongodb
+    implementation libs.test.junit.jupiter
+    implementation libs.persistence.mongodb
 }
