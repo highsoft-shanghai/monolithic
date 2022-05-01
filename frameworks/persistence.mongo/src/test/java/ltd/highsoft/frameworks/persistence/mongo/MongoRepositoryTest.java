@@ -78,6 +78,12 @@ public class MongoRepositoryTest extends MongoTest {
     }
 
     @Test
+    void should_be_able_to_get_optional_aggregates_from_database_by_queries() {
+        mongoTemplate.save(new MongoTestAggregate(new TestAggregate("1", "hello")));
+        assertThat(repository.getOptional(query(where("id").is("1")))).isEqualTo(Optional.of(new TestAggregate("1", "hello")));
+    }
+
+    @Test
     void should_be_able_to_remove_aggregates_from_database() {
         mongoTemplate.save(new MongoTestAggregate(new TestAggregate("1", "hello")));
         repository.remove("1");
