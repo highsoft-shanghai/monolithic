@@ -42,4 +42,9 @@ class SpringPageTest {
         assertThat(page.numberOfTotalElements()).isEqualTo(30);
     }
 
+    @Test
+    void should_be_able_to_map_to_others() {
+        assertThat(page.map(x -> x + x).content()).containsExactly("aa", "bb");
+    }
+
 }
