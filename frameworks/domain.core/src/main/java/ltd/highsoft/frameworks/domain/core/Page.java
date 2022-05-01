@@ -17,6 +17,10 @@ public interface Page<T> {
 
     long numberOfTotalElements();
 
+    boolean first();
+
+    boolean last();
+
     <U> Page<U> map(Function<? super T, ? extends U> converter);
 
 }

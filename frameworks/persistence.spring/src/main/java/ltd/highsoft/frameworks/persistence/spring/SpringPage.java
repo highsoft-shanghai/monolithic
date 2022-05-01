@@ -48,6 +48,16 @@ public class SpringPage<T> implements Page<T> {
     }
 
     @Override
+    public boolean first() {
+        return impl.isFirst();
+    }
+
+    @Override
+    public boolean last() {
+        return impl.isLast();
+    }
+
+    @Override
     public <U> Page<U> map(Function<? super T, ? extends U> converter) {
         return new SpringPage<>(impl.map(converter));
     }
