@@ -84,6 +84,11 @@ public class MongoRepositoryTest extends MongoTest {
     }
 
     @Test
+    void should_be_able_to_get_optional_aggregates_from_database_by_queries_when_aggregate_not_exist() {
+        assertThat(repository.getOptional(query(where("id").is("not-exist")))).isEqualTo(Optional.empty());
+    }
+
+    @Test
     void should_be_able_to_remove_aggregates_from_database() {
         mongoTemplate.save(new MongoTestAggregate(new TestAggregate("1", "hello")));
         repository.remove("1");
