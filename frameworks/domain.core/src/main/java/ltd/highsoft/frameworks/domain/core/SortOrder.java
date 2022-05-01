@@ -4,4 +4,6 @@ public interface SortOrder {
 
     String property();
 
+    SortDirection direction();
+
 }

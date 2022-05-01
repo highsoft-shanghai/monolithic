@@ -1,7 +1,7 @@
 package ltd.highsoft.frameworks.persistence.spring;
 
 import lombok.*;
-import ltd.highsoft.frameworks.domain.core.SortOrder;
+import ltd.highsoft.frameworks.domain.core.*;
 import org.springframework.data.domain.Sort;
 
 @ToString
@@ -21,6 +21,16 @@ public class SpringSortOrder implements SortOrder {
     @Override
     public String property() {
         return impl.getProperty();
+    }
+
+    @Override
+    public SortDirection direction() {
+        return asSortDirection(impl.getDirection());
+    }
+
+    private SortDirection asSortDirection(Sort.Direction direction) {
+        if (Sort.Direction.DESC.equals(direction)) return SortDirection.DESC;
+        return SortDirection.ASC;
     }
 
 }

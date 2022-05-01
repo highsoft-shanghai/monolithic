@@ -1,6 +1,6 @@
 package ltd.highsoft.frameworks.persistence.spring;
 
-import ltd.highsoft.frameworks.domain.core.SortOrder;
+import ltd.highsoft.frameworks.domain.core.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.Sort;
 
@@ -10,8 +10,13 @@ class SpringSortOrderTest {
 
     @Test
     void should_be_able_to_carry_sort_field_name() {
-        SortOrder order = SpringSortOrder.of(Sort.Order.asc("a"));
-        assertThat(order.property()).isEqualTo("a");
+        assertThat(SpringSortOrder.of(Sort.Order.asc("a")).property()).isEqualTo("a");
+    }
+
+    @Test
+    void should_be_able_to_carry_sort_direction() {
+        assertThat(SpringSortOrder.of(Sort.Order.desc("a")).direction()).isEqualTo(SortDirection.DESC);
+        assertThat(SpringSortOrder.of(Sort.Order.asc("b")).direction()).isEqualTo(SortDirection.ASC);
     }
 
 }
