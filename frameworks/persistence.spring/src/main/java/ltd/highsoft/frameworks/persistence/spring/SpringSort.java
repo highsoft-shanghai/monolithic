@@ -3,7 +3,8 @@ package ltd.highsoft.frameworks.persistence.spring;
 import lombok.*;
 import ltd.highsoft.frameworks.domain.core.*;
 
-import java.util.Iterator;
+import java.util.*;
+import java.util.stream.*;
 
 @ToString
 @EqualsAndHashCode
@@ -22,6 +23,11 @@ public class SpringSort implements Sort {
     @Override
     public Iterator<SortOrder> iterator() {
         return SpringSortOrderIterator.of(impl.iterator());
+    }
+
+    @Override
+    public List<SortOrder> orders() {
+        return StreamSupport.stream(spliterator(), false).collect(Collectors.toList());
     }
 
 }
