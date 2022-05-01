@@ -1,0 +1,10 @@
+stages:
+  - Build project and run integration tests
+  - deploy
+  - produce
+
+build-and-test:
+  stage: Build project and run integration tests
+  script:
+  # TODO : Need a build script, prepare to add it.
+    - ./scripts/check-all
