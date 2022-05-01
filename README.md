@@ -17,6 +17,10 @@
 ```bash
 ./scripts/check-all
 ```
+如果计算机资源充足（多核CPU、大内存、SSD），可使用并行检查缩短反馈时间：
+```bash
+./scripts/check-all-parallel
+```
 
 ## 项目文档
 关于项目的详细说明，请参考相关文档：
