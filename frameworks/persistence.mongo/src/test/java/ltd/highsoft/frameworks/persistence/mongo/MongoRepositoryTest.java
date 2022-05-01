@@ -8,7 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
 
-import java.util.List;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.springframework.data.domain.Sort.by;
@@ -64,6 +64,12 @@ public class MongoRepositoryTest extends MongoTest {
         Throwable throwable = catchThrowable(() -> repository.get(query(where("id").is("not-existed-id"))));
         assertThat(throwable).isInstanceOf(AggregateNotFoundException.class);
         assertThat(throwable).hasMessage("error.aggregate-not-found: [MongoTestAggregate, Query: { \"id\" : \"not-existed-id\"}, Fields: {}, Sort: {}]");
+    }
+
+    @Test
+    void should_be_able_to_get_optional_aggregates_from_database() {
+        mongoTemplate.save(new MongoTestAggregate(new TestAggregate("1", "hello")));
+        assertThat(repository.getOptional("1")).isEqualTo(Optional.of(new TestAggregate("1", "hello")));
     }
 
     @Test

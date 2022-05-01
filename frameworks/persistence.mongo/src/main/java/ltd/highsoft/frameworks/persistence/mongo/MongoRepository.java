@@ -36,6 +36,14 @@ public class MongoRepository<D, A> {
         return asDomain.apply(ensureExistence(mongoTemplate.findOne(query, aggregateClass), query::toString));
     }
 
+    public Optional<A> getOptional(String id) {
+        return Optional.ofNullable(mongoTemplate.findById(id, aggregateClass)).map(asDomain);
+    }
+
+    public Optional<A> getOptional(Query query) {
+        return Optional.ofNullable(mongoTemplate.findOne(query, aggregateClass)).map(asDomain);
+    }
+
     public void put(A aggregate) {
         mongoTemplate.save(asData.apply(aggregate));
     }
@@ -50,14 +58,6 @@ public class MongoRepository<D, A> {
 
     public void remove(Collection<String> ids) {
         mongoTemplate.remove(query(where("id").in(ids)), aggregateClass);
-    }
-
-    public Optional<A> find(String id) {
-        return Optional.ofNullable(mongoTemplate.findById(id, aggregateClass)).map(asDomain);
-    }
-
-    public Optional<A> find(Query query) {
-        return Optional.ofNullable(mongoTemplate.findOne(query, aggregateClass)).map(asDomain);
     }
 
     public void removeAll() {
