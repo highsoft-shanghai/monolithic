@@ -16,4 +16,10 @@ class SpringPageTest {
         assertThat(page.content()).containsExactly("a", "b");
     }
 
+    @Test
+    void should_be_able_to_carry_number_of_elements() {
+        Page<String> page = SpringPage.from(new PageImpl<>(List.of("a", "b"), Pageable.ofSize(5), 30));
+        assertThat(page.numberOfElements()).isEqualTo(2);
+    }
+
 }
