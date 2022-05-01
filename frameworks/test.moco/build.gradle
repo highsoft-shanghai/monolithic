@@ -1,0 +1,5 @@
+dependencies {
+    api project(":frameworks.test.container")
+    implementation libs.test.mock
+    implementation libs.test.testcontainers.junit.jupiter
+}

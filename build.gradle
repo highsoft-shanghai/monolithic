@@ -16,4 +16,5 @@ dependencies {
     runtimeOnly libs.persistence.postgresql
     testImplementation project(":frameworks.test.mongo")
     testImplementation project(":frameworks.test.postgres")
+    testImplementation project(":frameworks.test.moco")
 }

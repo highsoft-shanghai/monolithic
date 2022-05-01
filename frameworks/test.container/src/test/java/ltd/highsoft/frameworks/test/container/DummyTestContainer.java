@@ -5,6 +5,7 @@ import org.testcontainers.lifecycle.Startable;
 public class DummyTestContainer extends TestContainer<Startable> {
 
     static int numberOfStarts;
+    static int numberOfDestroy;
     static int numberOfEnvironmentSetups;
 
     @Override
@@ -17,6 +18,7 @@ public class DummyTestContainer extends TestContainer<Startable> {
 
             @Override
             public void stop() {
+                numberOfDestroy += 1;
             }
         };
     }
