@@ -8,6 +8,7 @@ dependencies {
     implementation project(":frameworks.application.core")
     implementation project(":frameworks.security.core")
     implementation project(":frameworks.application.spring")
+    implementation project(":iam.gateways")
     implementation libs.spring.boot.data.jpa
     implementation libs.spring.boot.data.mongodb
     implementation libs.spring.boot.quartz
@@ -16,4 +17,3 @@ dependencies {
     testImplementation project(":frameworks.test.mongo")
     testImplementation project(":frameworks.test.postgres")
 }
-
