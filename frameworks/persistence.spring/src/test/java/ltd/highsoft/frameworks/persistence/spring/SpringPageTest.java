@@ -32,4 +32,9 @@ class SpringPageTest {
         assertThat(page.number()).isEqualTo(2);
     }
 
+    @Test
+    void should_be_able_to_carry_page_size() {
+        assertThat(page.size()).isEqualTo(5);
+    }
+
 }
