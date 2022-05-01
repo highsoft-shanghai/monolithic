@@ -34,7 +34,7 @@ public class MongoRepositoryTest extends MongoTest {
     }
 
     @Test
-    void should_be_able_to_put_aggregates_batch_to_database() {
+    void should_be_able_to_put_batch_of_aggregates_to_database() {
         repository.putAll(List.of(new TestAggregate("1", "hello"), new TestAggregate("2", "hello2")));
         assertThat(mongoTemplate.findById("1", MongoTestAggregate.class)).isEqualTo(new MongoTestAggregate(new TestAggregate("1", "hello")));
         assertThat(mongoTemplate.findById("2", MongoTestAggregate.class)).isEqualTo(new MongoTestAggregate(new TestAggregate("2", "hello2")));
