@@ -1,12 +1,12 @@
 package ltd.highsoft.frameworks.application.spring;
 
-import ltd.highsoft.frameworks.security.core.ContextLoader;
+import ltd.highsoft.frameworks.security.core.*;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.*;
 
-import java.util.*;
+import java.util.List;
 
 @Configuration
 @EnableConfigurationProperties
@@ -31,8 +31,8 @@ public class ApplicationSpringConfiguration {
     }
 
     @Bean
-    public ContextLoader contextLoader() {
-        return new ContextLoader(id -> Optional.empty()); // TODO: implement it
+    public ContextLoader contextLoader(AccessTokenProvider accessTokenProvider) {
+        return new ContextLoader(accessTokenProvider);
     }
 
 }
