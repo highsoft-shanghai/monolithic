@@ -10,7 +10,7 @@ public class GlobalSecurityContextExtensionTest {
 
     @Test
     void should_be_able_to_reset_security_context() {
-        assertThat(GlobalSecurityContext.principal().grantedAuthorities().asSet()).containsExactlyInAnyOrder("f1", "f2");
+        assertThat(GlobalSecurityContext.securityContext().grantedAuthorities().asSet()).containsExactlyInAnyOrder("f1", "f2");
     }
 
 }

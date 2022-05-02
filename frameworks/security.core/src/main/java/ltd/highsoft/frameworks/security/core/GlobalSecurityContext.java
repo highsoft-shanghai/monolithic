@@ -8,7 +8,7 @@ public class GlobalSecurityContext {
 
     private static final ThreadLocal<SecurityContext> PRINCIPAL = new ThreadLocal<>();
 
-    public static SecurityContext principal() {
+    public static SecurityContext securityContext() {
         return PRINCIPAL.get();
     }
 

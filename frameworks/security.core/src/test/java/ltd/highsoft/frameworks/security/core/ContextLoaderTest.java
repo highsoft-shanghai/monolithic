@@ -32,14 +32,14 @@ class ContextLoaderTest {
         given(accessTokenProvider.get("token-id")).willReturn(Optional.of(ACCESS_TOKEN));
         loader.load("token-id");
         assertThat(GlobalUserContext.userContext()).isEqualTo(ACCESS_TOKEN_OWNER);
-        assertThat(GlobalSecurityContext.principal()).isEqualTo(ACCESS_TOKEN);
+        assertThat(GlobalSecurityContext.securityContext()).isEqualTo(ACCESS_TOKEN);
     }
 
     @Test
     void should_load_anonymous_context_when_no_token_id_provided() {
         loader.load("");
         assertThat(GlobalUserContext.userContext()).isEqualTo(UserContext.ANONYMOUS);
-        assertThat(GlobalSecurityContext.principal()).isEqualTo(SecurityContext.ANONYMOUS);
+        assertThat(GlobalSecurityContext.securityContext()).isEqualTo(SecurityContext.ANONYMOUS);
     }
 
     @AfterEach
