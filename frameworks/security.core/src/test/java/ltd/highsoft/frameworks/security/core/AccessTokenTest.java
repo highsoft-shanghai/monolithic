@@ -1,10 +1,12 @@
 package ltd.highsoft.frameworks.security.core;
 
-import ltd.highsoft.frameworks.domain.core.*;
+import ltd.highsoft.frameworks.domain.core.Identity;
+import ltd.highsoft.frameworks.test.context.WithFixedGlobalIdGenerator;
 import org.junit.jupiter.api.*;
 
 import static org.assertj.core.api.Assertions.*;
 
+@WithFixedGlobalIdGenerator("fixed-id")
 class AccessTokenTest {
 
     private AccessTokenOwner owner;
@@ -12,7 +14,6 @@ class AccessTokenTest {
 
     @BeforeEach
     void setUp() {
-        GlobalIdGeneratorResetter.reset(new FixedIdGenerator("fixed-id"));
         owner = new AccessTokenOwner(new Identity("kite@highsoft", "Kite"), new Identity("kite", "Kite"), new Identity("highsoft", "Highsoft"));
         authorities = GrantedAuthorities.of("f1", "f2");
     }

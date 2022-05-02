@@ -11,7 +11,7 @@ public class GlobalIdGeneratorExtension implements BeforeEachCallback, AfterEach
     @Override
     public void beforeEach(ExtensionContext context) {
         Optional<WithFixedGlobalIdGenerator> annotation = AnnotationUtils.findAnnotation(context.getRequiredTestClass(), WithFixedGlobalIdGenerator.class);
-        annotation.ifPresent(x -> GlobalIdGeneratorResetter.reset(new FixedIdGenerator(x.id())));
+        annotation.ifPresent(x -> GlobalIdGeneratorResetter.reset(new FixedIdGenerator(x.value())));
     }
 
     @Override
