@@ -12,11 +12,9 @@ public class ContextLoader {
     }
 
     public void load(String tokenId) {
-        if (StringUtils.isNotBlank(tokenId)) {
-            loadFromAccessToken(accessTokenProvider.get(tokenId).orElse(AccessToken.ANONYMOUS));
-        } else {
-            clear();
-        }
+        clear();
+        if (StringUtils.isBlank(tokenId)) return;
+        loadFromAccessToken(accessTokenProvider.get(tokenId).orElse(AccessToken.ANONYMOUS));
     }
 
     private void loadFromAccessToken(AccessToken token) {
