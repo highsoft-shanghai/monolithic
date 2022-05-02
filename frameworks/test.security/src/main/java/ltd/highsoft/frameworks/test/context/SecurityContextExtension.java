@@ -11,7 +11,7 @@ public class SecurityContextExtension implements BeforeEachCallback, AfterEachCa
     @Override
     public void beforeEach(ExtensionContext context) {
         Optional<WithSecurityContext> annotation = AnnotationUtils.findAnnotation(context.getRequiredTestClass(), WithSecurityContext.class);
-        annotation.ifPresent(x -> GlobalSecurityContextResetter.reset(new SimpleSecurityContext(GrantedAuthorities.of(x.grantedAuthorities()))));
+        annotation.ifPresent(x -> GlobalSecurityContextResetter.reset(new SimpleSecurityContext("simple", GrantedAuthorities.of(x.grantedAuthorities()))));
     }
 
     @Override

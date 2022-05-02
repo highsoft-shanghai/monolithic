@@ -8,14 +8,14 @@ class SimpleSecurityContextTest {
 
     @Test
     void should_be_able_to_hold_granted_authorities() {
-        SimpleSecurityContext context = new SimpleSecurityContext(GrantedAuthorities.ANONYMOUS);
-        assertThat(context.grantedAuthorities()).isEqualTo(GrantedAuthorities.ANONYMOUS);
+        SimpleSecurityContext context = new SimpleSecurityContext("simple", GrantedAuthorities.ANONYMOUS);
         assertThat(context.token()).isEqualTo("simple");
+        assertThat(context.grantedAuthorities()).isEqualTo(GrantedAuthorities.ANONYMOUS);
     }
 
     @Test
     void should_delegate_authorization_to_underlying_granted_authorities() {
-        SimpleSecurityContext context = new SimpleSecurityContext(GrantedAuthorities.ANONYMOUS);
+        SimpleSecurityContext context = new SimpleSecurityContext("simple", GrantedAuthorities.ANONYMOUS);
         assertThatThrownBy(() -> context.authorize(RequiredAuthorities.AUTHENTICATED)).isInstanceOf(AuthenticationException.class);
     }
 
