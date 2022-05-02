@@ -1,6 +1,7 @@
 package ltd.highsoft.frameworks.security.core;
 
 import ltd.highsoft.frameworks.context.core.GlobalUserContextResetter;
+import org.apache.commons.lang3.StringUtils;
 
 public class ContextLoader {
 
@@ -11,7 +12,11 @@ public class ContextLoader {
     }
 
     public void load(String tokenId) {
-        loadFromAccessToken(accessTokenProvider.get(tokenId).orElse(AccessToken.ANONYMOUS));
+        if (StringUtils.isNotBlank(tokenId)) {
+            loadFromAccessToken(accessTokenProvider.get(tokenId).orElse(AccessToken.ANONYMOUS));
+        } else {
+            clear();
+        }
     }
 
     private void loadFromAccessToken(AccessToken token) {

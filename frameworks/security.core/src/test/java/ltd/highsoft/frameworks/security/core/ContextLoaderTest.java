@@ -1,6 +1,6 @@
 package ltd.highsoft.frameworks.security.core;
 
-import ltd.highsoft.frameworks.context.core.GlobalUserContext;
+import ltd.highsoft.frameworks.context.core.*;
 import ltd.highsoft.frameworks.domain.core.Identity;
 import org.junit.jupiter.api.*;
 import org.mockito.Mock;
@@ -33,6 +33,13 @@ class ContextLoaderTest {
         loader.load("token-id");
         assertThat(GlobalUserContext.userContext()).isEqualTo(ACCESS_TOKEN_OWNER);
         assertThat(GlobalSecurityContext.principal()).isEqualTo(ACCESS_TOKEN);
+    }
+
+    @Test
+    void should_load_anonymous_context_when_no_token_id_provided() {
+        loader.load("");
+        assertThat(GlobalUserContext.userContext()).isEqualTo(UserContext.ANONYMOUS);
+        assertThat(GlobalSecurityContext.principal()).isEqualTo(SecurityContext.ANONYMOUS);
     }
 
     @AfterEach
