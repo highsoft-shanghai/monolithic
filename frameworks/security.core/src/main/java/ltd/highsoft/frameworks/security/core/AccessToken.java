@@ -28,11 +28,6 @@ public final class AccessToken implements SecurityContext {
     }
 
     @Override
-    public void authorize(RequiredAuthorities requiredAuthorities) {
-        grantedAuthorities.authorize(requiredAuthorities);
-    }
-
-    @Override
     public String token() {
         return id;
     }
