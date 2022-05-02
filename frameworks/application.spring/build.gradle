@@ -8,5 +8,5 @@ dependencies {
     implementation libs.spring.boot.aop
     testImplementation libs.test.spring.boot.test
     testImplementation libs.test.spring.restdocs.restassured
-    testImplementation project(":frameworks.test.context")
+    testImplementation project(":frameworks.test.security")
 }
