@@ -9,7 +9,7 @@ public class InvalidSecurityContext implements SecurityContext {
 
     @Override
     public GrantedAuthorities grantedAuthorities() {
-        return null;
+        throw new AuthenticationException("error.bad-token");
     }
 
     @Override
