@@ -1,7 +1,10 @@
 package ltd.highsoft.frameworks.context.core;
 
+import lombok.*;
 import ltd.highsoft.frameworks.domain.core.Identity;
 
+@ToString
+@EqualsAndHashCode
 public class SimpleUserContext implements UserContext {
 
     private final Identity userAccount;

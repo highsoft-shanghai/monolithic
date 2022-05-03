@@ -2,7 +2,8 @@ package ltd.highsoft.monolithic.iam.gateways.persistence;
 
 import lombok.*;
 import ltd.highsoft.frameworks.domain.core.Identity;
-import ltd.highsoft.frameworks.security.core.*;
+import ltd.highsoft.frameworks.security.core.GrantedAuthorities;
+import ltd.highsoft.monolithic.iam.domain.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.*;
 

@@ -5,21 +5,24 @@ import org.apache.commons.lang3.StringUtils;
 
 public class ContextLoader {
 
-    private final AccessTokenProvider accessTokenProvider;
+    private final ContextProvider contextProvider;
 
-    public ContextLoader(AccessTokenProvider accessTokenProvider) {
-        this.accessTokenProvider = accessTokenProvider;
+    public ContextLoader(ContextProvider contextProvider) {
+        this.contextProvider = contextProvider;
     }
 
     public void load(String tokenId) {
         clear();
         if (StringUtils.isBlank(tokenId)) return;
-        loadFromAccessToken(accessTokenProvider.get(tokenId).orElse(AccessToken.ANONYMOUS));
+        contextProvider.get(tokenId).ifPresentOrElse(this::load, this::invalidate);
     }
 
-    private void loadFromAccessToken(AccessToken token) {
-        GlobalUserContextResetter.reset(token.owner());
-        GlobalSecurityContextResetter.reset(token);
+    private void invalidate() {
+    }
+
+    private void load(Context context) {
+        GlobalUserContextResetter.reset(context.userContext());
+        GlobalSecurityContextResetter.reset(context.securityContext());
     }
 
     public void clear() {

@@ -1,8 +1,7 @@
 package ltd.highsoft.monolithic.iam.gateways.persistence;
 
 import ltd.highsoft.frameworks.persistence.mongo.MongoRepository;
-import ltd.highsoft.frameworks.security.core.AccessToken;
-import ltd.highsoft.monolithic.iam.domain.AccessTokenRepository;
+import ltd.highsoft.monolithic.iam.domain.*;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Component;
 

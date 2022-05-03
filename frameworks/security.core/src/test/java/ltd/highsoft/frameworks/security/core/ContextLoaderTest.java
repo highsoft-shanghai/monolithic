@@ -14,25 +14,26 @@ import static org.mockito.BDDMockito.given;
 @MockitoSettings
 class ContextLoaderTest {
 
-    public static final Identity USER_ACCOUNT_OF_TESTER = new Identity("tester@highsoft", "Tester");
-    public static final Identity USER_OF_TESTER = new Identity("tester", "Tester");
-    public static final Identity TENANT_OF_HIGHSOFT = new Identity("highsoft", "Highsoft");
-    public static final AccessTokenOwner ACCESS_TOKEN_OWNER = new AccessTokenOwner(USER_ACCOUNT_OF_TESTER, USER_OF_TESTER, TENANT_OF_HIGHSOFT);
-    private static final AccessToken ACCESS_TOKEN = AccessToken.restore("token-id", ACCESS_TOKEN_OWNER, GrantedAuthorities.of("f1", "f2"));
-    private @Mock AccessTokenProvider accessTokenProvider;
+    private static final Identity USER_ACCOUNT_OF_TESTER = new Identity("tester@highsoft", "Tester");
+    private static final Identity USER_OF_TESTER = new Identity("tester", "Tester");
+    private static final Identity TENANT_OF_HIGHSOFT = new Identity("highsoft", "Highsoft");
+    private static final UserContext USER_CONTEXT = new SimpleUserContext(USER_ACCOUNT_OF_TESTER, USER_OF_TESTER, TENANT_OF_HIGHSOFT);
+    private static final SecurityContext SECURITY_CONTEXT = new SimpleSecurityContext("token-id", GrantedAuthorities.of("f1", "f2"));
+    private static final Context CONTEXT = new SimpleContext(USER_CONTEXT, SECURITY_CONTEXT);
+    private @Mock ContextProvider contextProvider;
     private ContextLoader loader;
 
     @BeforeEach
     void setUp() {
-        loader = new ContextLoader(accessTokenProvider);
+        loader = new ContextLoader(contextProvider);
     }
 
     @Test
     void should_be_able_to_load_context_from_access_tokens() {
-        given(accessTokenProvider.get("token-id")).willReturn(Optional.of(ACCESS_TOKEN));
+        given(contextProvider.get("token-id")).willReturn(Optional.of(CONTEXT));
         loader.load("token-id");
-        assertThat(GlobalUserContext.userContext()).isEqualTo(ACCESS_TOKEN_OWNER);
-        assertThat(GlobalSecurityContext.securityContext()).isEqualTo(ACCESS_TOKEN);
+        assertThat(GlobalUserContext.userContext()).isEqualTo(USER_CONTEXT);
+        assertThat(GlobalSecurityContext.securityContext()).isEqualTo(SECURITY_CONTEXT);
     }
 
     @Test

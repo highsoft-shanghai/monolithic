@@ -1,4 +1,4 @@
-package ltd.highsoft.frameworks.security.core;
+package ltd.highsoft.monolithic.iam.domain;
 
 import ltd.highsoft.frameworks.domain.core.Identity;
 import org.junit.jupiter.api.Test;

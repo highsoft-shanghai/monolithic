@@ -1,7 +1,7 @@
 package ltd.highsoft.frameworks.application.spring;
 
 import io.restassured.specification.RequestSpecification;
-import ltd.highsoft.frameworks.security.core.AccessTokenProvider;
+import ltd.highsoft.frameworks.security.core.ContextProvider;
 import org.junit.jupiter.api.*;
 import org.mockito.BDDMockito;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,11 +18,11 @@ import static org.mockito.ArgumentMatchers.any;
 public class HttpStatusCodeExceptionTest {
 
     private @LocalServerPort int port;
-    private @MockBean AccessTokenProvider accessTokenProvider;
+    private @MockBean ContextProvider contextProvider;
 
     @BeforeEach
     void setUp() {
-        BDDMockito.given(accessTokenProvider.get(any())).willReturn(Optional.empty());
+        BDDMockito.given(contextProvider.get(any())).willReturn(Optional.empty());
     }
 
     @Test

@@ -31,8 +31,8 @@ public class ApplicationSpringConfiguration {
     }
 
     @Bean
-    public ContextLoader contextLoader(AccessTokenProvider accessTokenProvider) {
-        return new ContextLoader(accessTokenProvider);
+    public ContextLoader contextLoader(ContextProvider contextProvider) {
+        return new ContextLoader(contextProvider);
     }
 
 }

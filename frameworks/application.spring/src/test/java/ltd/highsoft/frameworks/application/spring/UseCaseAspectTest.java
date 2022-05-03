@@ -2,7 +2,7 @@ package ltd.highsoft.frameworks.application.spring;
 
 import ltd.highsoft.frameworks.application.core.ApplicationException;
 import ltd.highsoft.frameworks.domain.core.AggregateNotFoundException;
-import ltd.highsoft.frameworks.security.core.AccessTokenProvider;
+import ltd.highsoft.frameworks.security.core.ContextProvider;
 import ltd.highsoft.frameworks.test.context.WithSecurityContext;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,11 +21,11 @@ public class UseCaseAspectTest {
 
     private @Resource TriggerExceptionUseCase triggerExceptionUseCase;
     private @Resource TestUseCase testUseCase;
-    private @MockBean AccessTokenProvider accessTokenProvider;
+    private @MockBean ContextProvider contextProvider;
 
     @BeforeEach
     void setUp() {
-        given(accessTokenProvider.get(any())).willReturn(Optional.empty());
+        given(contextProvider.get(any())).willReturn(Optional.empty());
     }
 
     @Test

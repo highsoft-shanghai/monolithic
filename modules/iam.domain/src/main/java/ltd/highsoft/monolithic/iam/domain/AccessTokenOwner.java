@@ -1,14 +1,13 @@
-package ltd.highsoft.frameworks.security.core;
+package ltd.highsoft.monolithic.iam.domain;
 
 import lombok.*;
-import ltd.highsoft.frameworks.context.core.UserContext;
+import ltd.highsoft.frameworks.context.core.*;
 import ltd.highsoft.frameworks.domain.core.Identity;
 
 @ToString
 @EqualsAndHashCode
-public class AccessTokenOwner implements UserContext {
+public class AccessTokenOwner {
 
-    public static final AccessTokenOwner ANONYMOUS = new AccessTokenOwner(ANONYMOUS_IDENTITY, ANONYMOUS_IDENTITY, ANONYMOUS_IDENTITY);
     private final Identity userAccount;
     private final Identity user;
     private final Identity tenant;
@@ -19,19 +18,20 @@ public class AccessTokenOwner implements UserContext {
         this.tenant = tenant;
     }
 
-    @Override
     public Identity userAccount() {
         return userAccount;
     }
 
-    @Override
     public Identity user() {
         return user;
     }
 
-    @Override
     public Identity tenant() {
         return tenant;
+    }
+
+    public UserContext asUserContext() {
+        return new SimpleUserContext(userAccount(), user(), tenant());
     }
 
 }

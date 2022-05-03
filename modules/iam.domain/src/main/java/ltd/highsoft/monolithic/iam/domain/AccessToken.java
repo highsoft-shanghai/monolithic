@@ -1,10 +1,12 @@
-package ltd.highsoft.frameworks.security.core;
+package ltd.highsoft.monolithic.iam.domain;
+
+import ltd.highsoft.frameworks.context.core.UserContext;
+import ltd.highsoft.frameworks.security.core.*;
 
 import static ltd.highsoft.frameworks.domain.core.GlobalIdGenerator.nextId;
 
-public final class AccessToken implements SecurityContext {
+public final class AccessToken implements Context {
 
-    public static final AccessToken ANONYMOUS = new AccessToken("anonymous", AccessTokenOwner.ANONYMOUS, GrantedAuthorities.ANONYMOUS);
     private final String id;
     private final AccessTokenOwner owner;
     private final GrantedAuthorities grantedAuthorities;
@@ -27,14 +29,22 @@ public final class AccessToken implements SecurityContext {
         return owner;
     }
 
-    @Override
     public String token() {
         return id;
     }
 
-    @Override
     public GrantedAuthorities grantedAuthorities() {
         return grantedAuthorities;
+    }
+
+    @Override
+    public UserContext userContext() {
+        return owner().asUserContext();
+    }
+
+    @Override
+    public SecurityContext securityContext() {
+        return new SimpleSecurityContext(token(), grantedAuthorities());
     }
 
 }
