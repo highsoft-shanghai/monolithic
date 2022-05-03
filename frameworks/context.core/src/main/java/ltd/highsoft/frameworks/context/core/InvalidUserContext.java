@@ -6,17 +6,17 @@ public class InvalidUserContext implements UserContext {
 
     @Override
     public Identity userAccount() {
-        throw new AuthenticationException("error.bad-token");
+        throw new BadAccessTokenException();
     }
 
     @Override
     public Identity user() {
-        throw new AuthenticationException("error.bad-token");
+        throw new BadAccessTokenException();
     }
 
     @Override
     public Identity tenant() {
-        return null;
+        throw new BadAccessTokenException();
     }
 
     @Override
