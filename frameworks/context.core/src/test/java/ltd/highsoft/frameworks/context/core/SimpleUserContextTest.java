@@ -21,4 +21,9 @@ class SimpleUserContextTest {
         assertThat(new SimpleUserContext(USER_ACCOUNT, USER, TENANT).userAccount()).isEqualTo(USER_ACCOUNT);
     }
 
+    @Test
+    void should_be_able_to_hold_user() {
+        assertThat(new SimpleUserContext(USER_ACCOUNT, USER, TENANT).user()).isEqualTo(USER);
+    }
+
 }
