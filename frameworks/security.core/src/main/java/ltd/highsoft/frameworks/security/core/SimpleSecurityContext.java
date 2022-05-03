@@ -26,7 +26,7 @@ public class SimpleSecurityContext implements SecurityContext {
 
     @Override
     public boolean valid() {
-        return false;
+        return true;
     }
 
 }

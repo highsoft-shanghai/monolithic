@@ -7,6 +7,11 @@ import static org.assertj.core.api.Assertions.*;
 class SimpleSecurityContextTest {
 
     @Test
+    void should_answer_yes_when_test_for_validity() {
+        assertThat(new InvalidSecurityContext().valid()).isTrue();
+    }
+
+    @Test
     void should_be_able_to_hold_granted_authorities() {
         SimpleSecurityContext context = new SimpleSecurityContext("simple", GrantedAuthorities.ANONYMOUS);
         assertThat(context.token()).isEqualTo("simple");
