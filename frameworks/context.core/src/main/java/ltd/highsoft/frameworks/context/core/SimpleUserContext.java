@@ -34,7 +34,7 @@ public class SimpleUserContext implements UserContext {
 
     @Override
     public boolean valid() {
-        return false;
+        return true;
     }
 
 }
