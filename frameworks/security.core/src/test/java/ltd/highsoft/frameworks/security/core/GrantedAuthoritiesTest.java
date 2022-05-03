@@ -1,5 +1,6 @@
 package ltd.highsoft.frameworks.security.core;
 
+import ltd.highsoft.frameworks.domain.core.AuthenticationException;
 import org.junit.jupiter.api.Test;
 
 import java.util.Set;

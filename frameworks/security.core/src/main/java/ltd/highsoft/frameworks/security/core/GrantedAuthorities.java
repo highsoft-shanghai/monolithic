@@ -2,6 +2,7 @@ package ltd.highsoft.frameworks.security.core;
 
 import com.google.common.collect.Sets;
 import lombok.EqualsAndHashCode;
+import ltd.highsoft.frameworks.domain.core.AuthenticationException;
 
 import java.util.Set;
 import java.util.stream.Collectors;

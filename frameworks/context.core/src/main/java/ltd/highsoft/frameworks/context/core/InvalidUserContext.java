@@ -1,12 +1,12 @@
 package ltd.highsoft.frameworks.context.core;
 
-import ltd.highsoft.frameworks.domain.core.Identity;
+import ltd.highsoft.frameworks.domain.core.*;
 
 public class InvalidUserContext implements UserContext {
 
     @Override
     public Identity userAccount() {
-        return null;
+        throw new AuthenticationException("error.bad-token");
     }
 
     @Override

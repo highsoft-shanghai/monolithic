@@ -1,5 +1,7 @@
 package ltd.highsoft.frameworks.security.core;
 
+import ltd.highsoft.frameworks.domain.core.AuthenticationException;
+
 public class InvalidSecurityContext implements SecurityContext {
 
     @Override

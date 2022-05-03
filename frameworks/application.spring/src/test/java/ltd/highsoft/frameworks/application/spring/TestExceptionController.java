@@ -1,7 +1,7 @@
 package ltd.highsoft.frameworks.application.spring;
 
 import ltd.highsoft.frameworks.application.core.UseCase;
-import ltd.highsoft.frameworks.domain.core.AggregateNotFoundException;
+import ltd.highsoft.frameworks.domain.core.*;
 import ltd.highsoft.frameworks.security.core.*;
 import org.springframework.web.bind.annotation.*;
 

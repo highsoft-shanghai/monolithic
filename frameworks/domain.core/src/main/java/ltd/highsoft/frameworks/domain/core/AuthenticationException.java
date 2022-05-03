@@ -1,6 +1,4 @@
-package ltd.highsoft.frameworks.security.core;
-
-import ltd.highsoft.frameworks.domain.core.DomainException;
+package ltd.highsoft.frameworks.domain.core;
 
 public class AuthenticationException extends DomainException {
 
