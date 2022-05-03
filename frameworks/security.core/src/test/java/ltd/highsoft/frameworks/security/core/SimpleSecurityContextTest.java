@@ -9,7 +9,7 @@ class SimpleSecurityContextTest {
 
     @Test
     void should_answer_yes_when_test_for_validity() {
-        assertThat(new InvalidSecurityContext().valid()).isTrue();
+        assertThat(new SimpleSecurityContext("simple", GrantedAuthorities.ANONYMOUS).valid()).isTrue();
     }
 
     @Test

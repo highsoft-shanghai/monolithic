@@ -16,7 +16,7 @@ public class InvalidSecurityContext implements SecurityContext {
 
     @Override
     public boolean valid() {
-        return true;
+        return false;
     }
 
 }
