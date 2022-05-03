@@ -13,11 +13,19 @@ public class ContextLoader {
 
     public void load(String tokenId) {
         clear();
-        if (StringUtils.isBlank(tokenId)) return;
-        load(contextProvider.get(tokenId).orElse(Context.INVALID));
+        if (missing(tokenId)) return;
+        reset(loadContext(tokenId));
     }
 
-    private void load(Context context) {
+    private boolean missing(String tokenId) {
+        return StringUtils.isBlank(tokenId);
+    }
+
+    private Context loadContext(String tokenId) {
+        return contextProvider.get(tokenId).orElse(Context.INVALID);
+    }
+
+    private void reset(Context context) {
         GlobalUserContextResetter.reset(context.userContext());
         GlobalSecurityContextResetter.reset(context.securityContext());
     }
