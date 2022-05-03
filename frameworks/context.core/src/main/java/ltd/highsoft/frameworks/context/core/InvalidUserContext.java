@@ -11,7 +11,7 @@ public class InvalidUserContext implements UserContext {
 
     @Override
     public Identity user() {
-        return null;
+        throw new AuthenticationException("error.bad-token");
     }
 
     @Override

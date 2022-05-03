@@ -17,4 +17,9 @@ class InvalidUserContextTest {
         assertThatThrownBy(() -> new InvalidUserContext().userAccount()).isInstanceOf(AuthenticationException.class).hasMessage("error.bad-token");
     }
 
+    @Test
+    void should_report_error_when_try_to_get_user() {
+        assertThatThrownBy(() -> new InvalidUserContext().user()).isInstanceOf(AuthenticationException.class).hasMessage("error.bad-token");
+    }
+
 }
