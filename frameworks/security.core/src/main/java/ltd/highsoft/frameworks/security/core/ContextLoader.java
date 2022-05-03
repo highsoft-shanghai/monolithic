@@ -14,10 +14,7 @@ public class ContextLoader {
     public void load(String tokenId) {
         clear();
         if (StringUtils.isBlank(tokenId)) return;
-        contextProvider.get(tokenId).ifPresentOrElse(this::load, this::invalidate);
-    }
-
-    private void invalidate() {
+        load(contextProvider.get(tokenId).orElse(Context.INVALID));
     }
 
     private void load(Context context) {

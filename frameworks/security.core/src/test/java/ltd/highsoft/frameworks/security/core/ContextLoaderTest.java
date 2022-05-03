@@ -43,6 +43,13 @@ class ContextLoaderTest {
         assertThat(GlobalSecurityContext.securityContext()).isEqualTo(SecurityContext.ANONYMOUS);
     }
 
+    @Test
+    void should_load_invalid_context_when_token_id_is_invalid() {
+        loader.load("a-invalid-token-id");
+        assertThat(GlobalUserContext.userContext()).isEqualTo(UserContext.INVALID);
+        assertThat(GlobalSecurityContext.securityContext()).isEqualTo(SecurityContext.INVALID);
+    }
+
     @AfterEach
     void tearDown() {
         loader.clear();
