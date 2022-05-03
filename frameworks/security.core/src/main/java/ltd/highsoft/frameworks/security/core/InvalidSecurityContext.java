@@ -4,7 +4,7 @@ public class InvalidSecurityContext implements SecurityContext {
 
     @Override
     public String token() {
-        return null;
+        throw new AuthenticationException("error.bad-token");
     }
 
     @Override
