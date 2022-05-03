@@ -32,4 +32,9 @@ public class SimpleUserContext implements UserContext {
         return tenant;
     }
 
+    @Override
+    public boolean valid() {
+        return false;
+    }
+
 }

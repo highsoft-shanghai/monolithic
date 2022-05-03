@@ -24,4 +24,9 @@ public class SimpleSecurityContext implements SecurityContext {
         return grantedAuthorities;
     }
 
+    @Override
+    public boolean valid() {
+        return false;
+    }
+
 }
