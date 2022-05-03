@@ -91,7 +91,7 @@ public class MongoRepository<D, A> {
 
     private D ensureExistence(D aggregate, Supplier<String> queryString) {
         if (aggregate != null) return aggregate;
-        throw new AggregateNotFoundException("error.aggregate-not-found", aggregateClass.getSimpleName(), queryString.get());
+        throw new AggregateNotFoundException(aggregateClass.getSimpleName(), queryString.get());
     }
 
 }

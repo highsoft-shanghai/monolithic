@@ -36,7 +36,7 @@ public class UseCaseAspectTest {
 
     @Test
     void should_be_able_to_translate_aggregate_not_found_exceptions() {
-        Throwable throwable = catchThrowable(() -> triggerExceptionUseCase.execute(new AggregateNotFoundException("error-code")));
+        Throwable throwable = catchThrowable(() -> triggerExceptionUseCase.execute(new AggregateNotFoundException()));
         assertThat(throwable).isInstanceOf(ApplicationException.class);
         assertThat(throwable).hasMessage("error-code");
     }

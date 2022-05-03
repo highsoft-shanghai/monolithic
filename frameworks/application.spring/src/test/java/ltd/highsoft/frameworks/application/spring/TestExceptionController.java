@@ -12,7 +12,7 @@ public class TestExceptionController {
 
     @PostMapping("trigger-aggregate-not-found-exception")
     public void triggerAggregateNotFoundException() {
-        throw new AggregateNotFoundException("error.aggregate-not-found");
+        throw new AggregateNotFoundException();
     }
 
     @PostMapping("trigger-illegal_argument_exception")
