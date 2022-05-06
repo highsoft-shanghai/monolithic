@@ -3,8 +3,7 @@ package ltd.highsoft.frameworks.application.spring;
 import ltd.highsoft.frameworks.application.core.UseCase;
 import ltd.highsoft.frameworks.security.core.Authorizer;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;

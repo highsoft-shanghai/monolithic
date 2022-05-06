@@ -1,7 +1,6 @@
 package ltd.highsoft.frameworks.domain.core;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -21,7 +20,7 @@ public class UuidBasedIdGeneratorTest {
 
     @Test
     public void should_generate_non_duplicated_identities() {
-        String id = idGenerator.nextId();
+        var id = idGenerator.nextId();
         assertThat(id).isNotEqualTo(idGenerator.nextId());
     }
 
@@ -33,7 +32,7 @@ public class UuidBasedIdGeneratorTest {
 
     @Test
     public void should_generate_non_duplicated_readable_identities() {
-        String id = idGenerator.nextReadableId();
+        var id = idGenerator.nextReadableId();
         assertThat(idGenerator.nextReadableId()).isNotEqualTo(id);
     }
 

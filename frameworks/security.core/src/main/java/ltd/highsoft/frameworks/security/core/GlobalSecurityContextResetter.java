@@ -1,7 +1,6 @@
 package ltd.highsoft.frameworks.security.core;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class GlobalSecurityContextResetter {

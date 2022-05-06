@@ -1,7 +1,6 @@
 package ltd.highsoft.frameworks.domain.core;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.*;
 

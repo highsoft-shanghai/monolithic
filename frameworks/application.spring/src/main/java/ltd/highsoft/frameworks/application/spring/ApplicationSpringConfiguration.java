@@ -15,7 +15,7 @@ public class ApplicationSpringConfiguration {
 
     @Bean
     public ExceptionTranslator exceptionTranslator(List<ExceptionTranslatorConfigurer> configurers) {
-        ExceptionTranslator translator = new ExceptionTranslator();
+        var translator = new ExceptionTranslator();
         configurers.forEach(configure -> configure.config(translator));
         return translator;
     }

@@ -1,6 +1,6 @@
 package ltd.highsoft.frameworks.persistence.spring;
 
-import ltd.highsoft.frameworks.domain.core.*;
+import ltd.highsoft.frameworks.domain.core.SortDirection;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.Sort;
 

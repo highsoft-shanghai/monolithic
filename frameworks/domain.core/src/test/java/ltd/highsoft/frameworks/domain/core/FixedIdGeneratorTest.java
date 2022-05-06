@@ -10,7 +10,7 @@ class FixedIdGeneratorTest {
 
     @Test
     void should_generate_fixed_ids() {
-        IdGenerator idGenerator = new FixedIdGenerator(FIXED);
+        var idGenerator = new FixedIdGenerator(FIXED);
         assertThat(idGenerator.nextId()).isEqualTo(FIXED);
         assertThat(idGenerator.nextReadableId()).isEqualTo(FIXED);
     }

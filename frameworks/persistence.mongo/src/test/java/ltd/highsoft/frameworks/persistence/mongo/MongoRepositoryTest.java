@@ -1,6 +1,6 @@
 package ltd.highsoft.frameworks.persistence.mongo;
 
-import ltd.highsoft.frameworks.domain.core.*;
+import ltd.highsoft.frameworks.domain.core.AggregateNotFoundException;
 import ltd.highsoft.frameworks.test.container.WithTestContainers;
 import ltd.highsoft.frameworks.test.mongo.*;
 import org.junit.jupiter.api.*;
@@ -48,7 +48,7 @@ public class MongoRepositoryTest extends MongoTest {
 
     @Test
     void should_failed_to_get_aggregate_from_database_when_aggregate_not_found() {
-        Throwable throwable = catchThrowable(() -> repository.get("not-existed-id"));
+        var throwable = catchThrowable(() -> repository.get("not-existed-id"));
         assertThat(throwable).isInstanceOf(AggregateNotFoundException.class);
         assertThat(throwable).hasMessage("error.aggregate-not-found: [MongoTestAggregate, not-existed-id]");
     }
@@ -61,7 +61,7 @@ public class MongoRepositoryTest extends MongoTest {
 
     @Test
     void should_failed_to_get_aggregate_from_database_by_query_when_aggregate_not_found() {
-        Throwable throwable = catchThrowable(() -> repository.get(query(where("id").is("not-existed-id"))));
+        var throwable = catchThrowable(() -> repository.get(query(where("id").is("not-existed-id"))));
         assertThat(throwable).isInstanceOf(AggregateNotFoundException.class);
         assertThat(throwable).hasMessage("error.aggregate-not-found: [MongoTestAggregate, Query: { \"id\" : \"not-existed-id\"}, Fields: {}, Sort: {}]");
     }
@@ -131,7 +131,7 @@ public class MongoRepositoryTest extends MongoTest {
         mongoTemplate.save(new MongoTestAggregate(new TestAggregate("1", "hello3")));
         mongoTemplate.save(new MongoTestAggregate(new TestAggregate("2", "hello1")));
         mongoTemplate.save(new MongoTestAggregate(new TestAggregate("3", "hello2")));
-        Page<TestAggregate> found = repository.list(query(where("name").regex("hello")), PageRequest.of(1, 1, by("name").descending()));
+        var found = repository.list(query(where("name").regex("hello")), PageRequest.of(1, 1, by("name").descending()));
         assertThat(found.content()).hasSize(1);
         assertThat(found.content()).containsExactly(new TestAggregate("3", "hello2"));
     }

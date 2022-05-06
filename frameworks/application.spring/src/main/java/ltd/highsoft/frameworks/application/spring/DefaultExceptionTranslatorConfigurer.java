@@ -1,7 +1,7 @@
 package ltd.highsoft.frameworks.application.spring;
 
 import ltd.highsoft.frameworks.domain.core.*;
-import ltd.highsoft.frameworks.security.core.*;
+import ltd.highsoft.frameworks.security.core.AuthorizationException;
 import org.springframework.stereotype.Component;
 
 @Component

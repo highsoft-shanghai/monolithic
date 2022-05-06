@@ -2,8 +2,7 @@ package ltd.highsoft.frameworks.domain.core;
 
 import com.fasterxml.uuid.Generators;
 
-import java.time.Instant;
-import java.time.ZoneOffset;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
@@ -23,7 +22,7 @@ public class UuidBasedIdGenerator implements IdGenerator {
 
     @Override
     public String nextReadableId() {
-        UUID uuid = Generators.timeBasedGenerator().generate();
+        var uuid = Generators.timeBasedGenerator().generate();
         return formatUuidTimestamp(uuid.timestamp());
     }
 

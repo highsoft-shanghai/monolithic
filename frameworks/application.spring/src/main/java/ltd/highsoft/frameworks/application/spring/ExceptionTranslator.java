@@ -2,8 +2,7 @@ package ltd.highsoft.frameworks.application.spring;
 
 import ltd.highsoft.frameworks.application.core.ApplicationException;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 
 public class ExceptionTranslator {

@@ -9,7 +9,7 @@ class SpringSortTest {
 
     @Test
     void should_be_able_to_carry_sort_orders() {
-        ltd.highsoft.frameworks.domain.core.Sort sort = SpringSort.of(Sort.by(Sort.Order.desc("a"), Sort.Order.asc("b")));
+        var sort = SpringSort.of(Sort.by(Sort.Order.desc("a"), Sort.Order.asc("b")));
         assertThat(sort.orders()).containsExactly(SpringSortOrder.of(Sort.Order.desc("a")), SpringSortOrder.of(Sort.Order.asc("b")));
     }
 

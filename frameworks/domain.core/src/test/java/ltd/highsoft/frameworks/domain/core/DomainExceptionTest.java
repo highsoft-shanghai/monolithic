@@ -30,14 +30,14 @@ public class DomainExceptionTest {
     @Test
     void should_be_able_to_format_as_message() {
         given(messageResolver.resolve("error.a-test-message-code")).willReturn("Error message from resolver");
-        DomainException exception = new DomainException("error.a-test-message-code");
+        var exception = new DomainException("error.a-test-message-code");
         assertThat(exception.format(messageResolver)).isEqualTo("Error message from resolver");
     }
 
     @Test
     void should_be_able_to_format_as_message_with_data() {
         given(messageResolver.resolve("error.a-test-message-code", "seg1", "seg2")).willReturn("Error message from resolver");
-        DomainException exception = new DomainException("error.a-test-message-code", "seg1", "seg2");
+        var exception = new DomainException("error.a-test-message-code", "seg1", "seg2");
         assertThat(exception.format(messageResolver)).isEqualTo("Error message from resolver");
     }
 

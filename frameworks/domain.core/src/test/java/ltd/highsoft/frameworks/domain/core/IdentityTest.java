@@ -8,7 +8,7 @@ class IdentityTest {
 
     @Test
     void should_be_able_to_hold_id_and_name() {
-        Identity identity = new Identity("john", "John");
+        var identity = new Identity("john", "John");
         assertThat(identity.id()).isEqualTo("john");
         assertThat(identity.name()).isEqualTo("John");
     }

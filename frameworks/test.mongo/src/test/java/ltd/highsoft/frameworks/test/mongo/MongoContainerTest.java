@@ -3,9 +3,7 @@ package ltd.highsoft.frameworks.test.mongo;
 import com.mongodb.client.*;
 import ltd.highsoft.frameworks.test.container.WithTestContainers;
 import org.bson.Document;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.Map;
 
@@ -20,14 +18,14 @@ class MongoContainerTest {
     @BeforeEach
     void setUp() {
         mongoClient = MongoClients.create(System.getProperty("spring.data.mongodb.uri"));
-        MongoDatabase database = mongoClient.getDatabase("test");
+        var database = mongoClient.getDatabase("test");
         collection = database.getCollection("test");
     }
 
     @Test
     void should_launch_mongodb_test_container() {
         collection.insertOne(new Document(Map.of("_id", "test.mongo", "name", "John")));
-        MongoCursor<Document> cursor = collection.find().cursor();
+        var cursor = collection.find().cursor();
         assertThat(cursor).isNotNull();
         assertThat(cursor.hasNext()).isTrue();
         assertThat(cursor.next()).isEqualTo(new Document(Map.of("_id", "test.mongo", "name", "John")));

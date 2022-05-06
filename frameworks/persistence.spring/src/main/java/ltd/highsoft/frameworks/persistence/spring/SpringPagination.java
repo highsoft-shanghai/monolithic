@@ -1,7 +1,7 @@
 package ltd.highsoft.frameworks.persistence.spring;
 
-import ltd.highsoft.frameworks.domain.core.*;
 import ltd.highsoft.frameworks.domain.core.Sort;
+import ltd.highsoft.frameworks.domain.core.*;
 import org.springframework.data.domain.*;
 
 public class SpringPagination implements Pagination {

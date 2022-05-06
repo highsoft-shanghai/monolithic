@@ -9,7 +9,7 @@ class AuthorizerTest {
 
     @Test
     void should_be_able_to_authorize_requests_against_security_context() {
-        Authorizer authorizer = new Authorizer();
+        var authorizer = new Authorizer();
         assertDoesNotThrow(() -> authorizer.authorize("f1", "f2"));
     }
 
