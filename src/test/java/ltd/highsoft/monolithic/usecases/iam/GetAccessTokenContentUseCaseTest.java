@@ -14,7 +14,7 @@ public class GetAccessTokenContentUseCaseTest extends IntegrationTest {
     void should_be_able_to_get_content_of_current_access_token() {
         var response = get("/access-tokens/current");
         response.statusCode(is(200));
-        response.body("accessToken", is("test-access-token"));
+        response.body("accessToken", is("tester-access-token"));
     }
 
 }
