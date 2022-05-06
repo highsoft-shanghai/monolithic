@@ -8,7 +8,7 @@ public class AccessTokenController {
 
     @GetMapping("current")
     public AccessTokenContent getContent() {
-        return new AccessTokenContent("1");
+        return new AccessTokenContent("test-access-token");
     }
 
 }
