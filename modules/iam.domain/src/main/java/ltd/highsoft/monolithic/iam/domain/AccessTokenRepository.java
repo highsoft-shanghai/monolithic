@@ -6,4 +6,6 @@ public interface AccessTokenRepository {
 
     Optional<AccessToken> optionalAccessTokenFor(String id);
 
+    void save(AccessToken accessToken);
+
 }

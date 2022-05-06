@@ -1,7 +1,7 @@
 apply from: "$rootDir/gradle/config/scripts/web.gradle"
 
 dependencies {
-    implementation project(":iam.application")
+    api project(":iam.application")
     implementation project(":frameworks.persistence.mongo")
     implementation libs.spring.boot.data.mongodb
     testImplementation project(":frameworks.test.mongo")

@@ -3,6 +3,8 @@ package ltd.highsoft.frameworks.security.core;
 import ltd.highsoft.frameworks.context.core.GlobalUserContextResetter;
 import org.apache.commons.lang3.StringUtils;
 
+import javax.annotation.Nullable;
+
 public class ContextLoader {
 
     private final ContextProvider contextProvider;
@@ -11,7 +13,7 @@ public class ContextLoader {
         this.contextProvider = contextProvider;
     }
 
-    public void load(String tokenId) {
+    public void load(@Nullable String tokenId) {
         clear();
         if (missing(tokenId)) return;
         reset(loadContext(tokenId));

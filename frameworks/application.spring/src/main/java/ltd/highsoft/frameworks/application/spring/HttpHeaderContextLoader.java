@@ -13,7 +13,7 @@ public class HttpHeaderContextLoader implements AutoCloseable {
     }
 
     public void load(HttpServletRequest request) {
-        contextLoader.load(request.getHeader("Authorization"));
+        contextLoader.load(new BearerToken(request.getHeader("Authorization")).value());
     }
 
     @Override

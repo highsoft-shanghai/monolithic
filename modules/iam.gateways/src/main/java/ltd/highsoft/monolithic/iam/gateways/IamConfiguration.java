@@ -8,7 +8,7 @@ import org.springframework.context.annotation.*;
 public class IamConfiguration {
 
     @Bean
-    public ContextProvider accessTokenProvider(AccessTokenRepository accessTokenRepository) {
+    public ContextProvider contextProvider(AccessTokenRepository accessTokenRepository) {
         return new AccessTokenContextProvider(accessTokenRepository);
     }
 

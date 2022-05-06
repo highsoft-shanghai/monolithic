@@ -32,7 +32,11 @@ public class RestTest {
     }
 
     protected RequestSpecification given() {
-        return RestAssured.given(spec).port(port).accept(ContentType.JSON).contentType(ContentType.JSON).filter(document(documentKey()));
+        return givenAuth(RestAssured.given(spec)).port(port).accept(ContentType.JSON).contentType(ContentType.JSON).filter(document(documentKey()));
+    }
+
+    private RequestSpecification givenAuth(RequestSpecification requestSpecification) {
+        return GlobalTestContext.accessToken().map(x -> requestSpecification.auth().oauth2(x)).orElse(requestSpecification);
     }
 
     private String documentKey() {

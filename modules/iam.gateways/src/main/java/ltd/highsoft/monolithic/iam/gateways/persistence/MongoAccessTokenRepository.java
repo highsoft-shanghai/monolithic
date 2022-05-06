@@ -21,4 +21,9 @@ public class MongoAccessTokenRepository implements AccessTokenRepository {
         return repository.getOptional(id);
     }
 
+    @Override
+    public void save(AccessToken accessToken) {
+        repository.put(accessToken);
+    }
+
 }
