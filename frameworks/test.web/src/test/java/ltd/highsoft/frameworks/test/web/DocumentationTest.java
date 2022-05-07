@@ -16,6 +16,14 @@ import static org.springframework.restdocs.restassured3.RestAssuredRestDocumenta
 public class DocumentationTest extends IntegrationTest {
 
     @Test
+    void should_be_able_to_generate_document_header() {
+        var response = get("/web-test/api-header/{id}", variables(Map.of("id", "5")), document("api-header",
+            apiHeader(true)
+        ));
+        response.statusCode(is(200));
+    }
+
+    @Test
     void should_be_able_to_document_path_variables_and_constrained_fields() {
         var response = post("/web-test/document-constrained-fields/{id}", variables(Map.of("id", "5")), Map.of("name", "John"), document("constrained-fields",
             requestFields(

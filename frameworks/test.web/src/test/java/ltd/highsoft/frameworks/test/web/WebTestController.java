@@ -13,6 +13,11 @@ public class WebTestController {
         return Map.of("name", "John");
     }
 
+    @GetMapping("api-header/{id}")
+    public Object documentApiHeader(@PathVariable String id) {
+        return Map.of("id", id);
+    }
+
     @PostMapping("document-constrained-fields/{id}")
     public Object documentConstrainedFields(@PathVariable String id) {
         return Map.of("id", id);

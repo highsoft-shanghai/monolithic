@@ -33,6 +33,10 @@ public class RestTest {
         return given(filter).params(parameters.asMap()).when().get(path).then();
     }
 
+    protected ValidatableResponse get(String path, PathVariables variables, Filter filter) {
+        return given(filter).pathParams(variables.asMap()).when().get(path).then();
+    }
+
     protected ValidatableResponse post(String path, PathVariables variables, Object body, Filter filter) {
         return given(filter).pathParams(variables.asMap()).body(body).contentType(ContentType.JSON).when().post(path).then();
     }
