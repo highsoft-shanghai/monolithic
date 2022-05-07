@@ -1,5 +1,6 @@
 package ltd.highsoft.monolithic.iam.gateways.ohs;
 
+import ltd.highsoft.frameworks.domain.core.ValueSink;
 import ltd.highsoft.monolithic.iam.application.GetAccessTokenContentUseCase;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +14,8 @@ public class AccessTokenController {
     private @Resource GetAccessTokenContentUseCase getAccessTokenContentUseCase;
 
     @GetMapping("current")
-    public Optional<AccessTokenContent> getContent() {
-        return getAccessTokenContentUseCase.execute().map(AccessTokenContent::new);
+    public Optional<ValueSink> getContent() {
+        return getAccessTokenContentUseCase.execute();
     }
 
 }

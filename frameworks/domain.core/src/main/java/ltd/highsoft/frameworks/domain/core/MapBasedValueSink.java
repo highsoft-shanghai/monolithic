@@ -11,8 +11,13 @@ public class MapBasedValueSink implements ValueSink {
     }
 
     @Override
-    public void put(String id, String value) {
-        values.put(id, value);
+    public void put(String key, String value) {
+        values.put(key, value);
+    }
+
+    @Override
+    public void put(String key, Collection<String> value) {
+        values.put(key, value);
     }
 
     @Override

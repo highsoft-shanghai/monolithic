@@ -31,6 +31,7 @@ public class ApplicationSpringConfiguration {
     }
 
     @Bean
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     public ContextLoader contextLoader(ContextProvider contextProvider) {
         return new ContextLoader(contextProvider);
     }

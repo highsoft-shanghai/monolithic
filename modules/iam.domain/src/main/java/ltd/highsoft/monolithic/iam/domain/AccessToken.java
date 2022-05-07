@@ -1,6 +1,7 @@
 package ltd.highsoft.monolithic.iam.domain;
 
 import ltd.highsoft.frameworks.context.core.UserContext;
+import ltd.highsoft.frameworks.domain.core.ValueSink;
 import ltd.highsoft.frameworks.security.core.*;
 
 import static ltd.highsoft.frameworks.domain.core.GlobalIdGenerator.nextId;
@@ -45,6 +46,11 @@ public final class AccessToken implements Context {
     @Override
     public SecurityContext securityContext() {
         return new SimpleSecurityContext(token(), grantedAuthorities());
+    }
+
+    public void content(ValueSink sink) {
+        sink.put("accessToken", id);
+        sink.put("authorities", grantedAuthorities.asSet());
     }
 
 }
