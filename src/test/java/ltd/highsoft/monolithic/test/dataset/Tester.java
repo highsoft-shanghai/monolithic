@@ -11,6 +11,7 @@ public class Tester {
     public static final Identity TENANT = new Identity("highsoft", "Highsoft");
     public static final AccessTokenOwner ACCESS_TOKEN_OWNER = new AccessTokenOwner(USER_ACCOUNT, USER, TENANT);
     public static final String ACCESS_TOKEN_ID = "tester-access-token";
-    public static final AccessToken ACCESS_TOKEN = AccessToken.restore(ACCESS_TOKEN_ID, ACCESS_TOKEN_OWNER, GrantedAuthorities.of());
+    public static final GrantedAuthorities GRANTED_AUTHORITIES = GrantedAuthorities.of("feature-1", "feature-2");
+    public static final AccessToken ACCESS_TOKEN = AccessToken.restore(ACCESS_TOKEN_ID, ACCESS_TOKEN_OWNER, GRANTED_AUTHORITIES);
 
 }

@@ -5,7 +5,7 @@ import ltd.highsoft.frameworks.test.web.WithGrantedAuthorities;
 import ltd.highsoft.monolithic.IntegrationTest;
 import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 
 public class GetAccessTokenContentUseCaseTest extends IntegrationTest {
 
@@ -15,6 +15,7 @@ public class GetAccessTokenContentUseCaseTest extends IntegrationTest {
         var response = get("/access-tokens/current");
         response.statusCode(is(200));
         response.body("accessToken", is("tester-access-token"));
+        response.body("authorities", hasItems("feature-1", "feature-2"));
     }
 
 }
