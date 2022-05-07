@@ -17,9 +17,13 @@ public class DocumentationTest extends IntegrationTest {
 
     @Test
     void should_be_able_to_generate_document_header() {
-        var response = get("/web-test/api-header/{id}", variables(Map.of("id", "5")), document("api-header",
-            apiHeader(true)
-        ));
+        var response = get("/web-test/api-header/{id}", variables(Map.of("id", "5")), document("api-header", apiHeader(true)));
+        response.statusCode(is(200));
+    }
+
+    @Test
+    void should_be_able_to_generate_document_header_without_path_variables() {
+        var response = get("/web-test/api-header", document("api-header", apiHeader(false)));
         response.statusCode(is(200));
     }
 
