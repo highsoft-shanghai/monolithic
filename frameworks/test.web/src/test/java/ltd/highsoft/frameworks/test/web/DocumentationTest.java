@@ -2,6 +2,7 @@ package ltd.highsoft.frameworks.test.web;
 
 import org.junit.jupiter.api.Test;
 
+import java.nio.file.*;
 import java.util.Map;
 
 import static ltd.highsoft.frameworks.test.web.ApiDocUtils.*;
@@ -9,6 +10,7 @@ import static ltd.highsoft.frameworks.test.web.ConstrainedFields.constrainedFiel
 import static ltd.highsoft.frameworks.test.web.ConstrainedParameters.parameterWithConstraints;
 import static ltd.highsoft.frameworks.test.web.PathVariables.variables;
 import static ltd.highsoft.frameworks.test.web.RequestParameters.parameters;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.restassured3.RestAssuredRestDocumentation.document;
@@ -19,12 +21,14 @@ public class DocumentationTest extends IntegrationTest {
     void should_be_able_to_generate_document_header() {
         var response = get("/web-test/api-header/{id}", variables(Map.of("id", "5")), document("api-header", apiHeader(true)));
         response.statusCode(is(200));
+        assertThat(Files.exists(Path.of("build/generated-snippets/api-header/api-header.adoc"))).isTrue();
     }
 
     @Test
     void should_be_able_to_generate_document_header_without_path_variables() {
-        var response = get("/web-test/api-header", document("api-header", apiHeader(false)));
+        var response = get("/web-test/api-header", document("api-header-without-path-parameters", apiHeader(false)));
         response.statusCode(is(200));
+        assertThat(Files.exists(Path.of("build/generated-snippets/api-header-without-path-parameters/api-header.adoc"))).isTrue();
     }
 
     @Test
@@ -35,6 +39,7 @@ public class DocumentationTest extends IntegrationTest {
             ))
         );
         response.statusCode(is(200));
+        assertThat(Files.exists(Path.of("build/generated-snippets/constrained-fields/request-fields.adoc"))).isTrue();
     }
 
     @Test
@@ -46,6 +51,7 @@ public class DocumentationTest extends IntegrationTest {
             ))
         );
         response.statusCode(is(200));
+        assertThat(Files.exists(Path.of("build/generated-snippets/constrained-parameters/request-parameters.adoc"))).isTrue();
     }
 
     @Test
@@ -56,6 +62,7 @@ public class DocumentationTest extends IntegrationTest {
             ))
         );
         response.statusCode(is(200));
+        assertThat(Files.exists(Path.of("build/generated-snippets/paged-response/response-fields.adoc"))).isTrue();
     }
 
 }
