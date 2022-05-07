@@ -1,4 +1,4 @@
 dependencies {
     api project(":frameworks.domain.core")
-    implementation libs.spring.data.commons
+    api libs.spring.data.commons
 }

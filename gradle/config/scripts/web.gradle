@@ -30,5 +30,6 @@ tasks.named('test') {
 
 tasks.named('asciidoctor') {
     inputs.dir snippetsDir
+    attributes 'snippets': snippetsDir
     dependsOn test
 }
