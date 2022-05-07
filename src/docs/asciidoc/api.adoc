@@ -12,14 +12,7 @@ TODO
 
 === 访问令牌
 
-==== 获取访问令牌内容
-使用此
+==== 获取访问令牌的公开信息
+获取当前登录用户被授予的权限集合及其它上下文相关信息，通常用于前端根据用户权限控制用户界面元素状态。此接口会隐藏当前访问令牌的所有私密信息，仅返回可公开的部分信息。
 
-.请求示例
-include::{snippets}/access-tokens.current.get/http-request.adoc[]
-
-.响应内容
-include::{snippets}/access-tokens.current.get/response-fields.adoc[]
-
-.响应示例
-include::{snippets}/access-tokens.current.get/http-response.adoc[]
+include::{snippets}/access-tokens.current.get/api.adoc[]

@@ -73,7 +73,7 @@ public class RestTest {
     private Filter docFilter(Documentation doc) {
         if (doc == null) return EmptyFilter.INSTANCE;
         var authRequired = GlobalTestContext.accessToken().isPresent();
-        return document(doc.identifier(), ArrayUtils.add(doc.snippets(), apiHeader(authRequired)));
+        return document(doc.identifier(), ArrayUtils.addAll(doc.snippets(), apiHeader(authRequired), new ApiSnippet()));
     }
 
     private RestAssuredOperationPreprocessorsConfigurer documentationFilter() {

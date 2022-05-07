@@ -16,8 +16,8 @@ public class GetAccessTokenContentUseCaseTest extends IntegrationTest {
     @WithGrantedAuthorities(Authorities.AUTHENTICATED)
     void should_be_able_to_get_content_of_current_access_token() {
         var response = get("/access-tokens/current", doc("access-tokens.current.get",
-            pathParameters(
-            ),
+//            pathParameters(
+//            ),
             responseFields(
                 fieldWithPath("accessToken").description("访问令牌标识"),
                 fieldWithPath("authorities").description("授予的权限集合")

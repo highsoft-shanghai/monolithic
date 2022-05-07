@@ -23,6 +23,7 @@ public class DocumentationTest extends IntegrationTest {
         var response = get("/web-test/api-header/{id}", variables(Map.of("id", "5")), doc("api-header"));
         response.statusCode(is(200));
         assertThat(Files.exists(Path.of("build/generated-snippets/api-header/api-header.adoc"))).isTrue();
+        assertThat(Files.exists(Path.of("build/generated-snippets/api-header/api.adoc"))).isTrue();
     }
 
     @Test
