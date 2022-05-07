@@ -4,6 +4,7 @@ import ltd.highsoft.monolithic.iam.application.GetAccessTokenContentUseCase;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/access-tokens")
@@ -12,8 +13,8 @@ public class AccessTokenController {
     private @Resource GetAccessTokenContentUseCase getAccessTokenContentUseCase;
 
     @GetMapping("current")
-    public AccessTokenContent getContent() {
-        return new AccessTokenContent(getAccessTokenContentUseCase.execute());
+    public Optional<AccessTokenContent> getContent() {
+        return getAccessTokenContentUseCase.execute().map(AccessTokenContent::new);
     }
 
 }

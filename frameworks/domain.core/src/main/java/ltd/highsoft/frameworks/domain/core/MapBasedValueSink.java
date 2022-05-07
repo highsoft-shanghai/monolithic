@@ -15,4 +15,9 @@ public class MapBasedValueSink implements ValueSink {
         values.put(id, value);
     }
 
+    @Override
+    public Map<String, Object> toMap() {
+        return values;
+    }
+
 }
