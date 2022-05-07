@@ -3,10 +3,10 @@ package ltd.highsoft.frameworks.test.web;
 import org.springframework.restdocs.operation.Operation;
 import org.springframework.restdocs.snippet.TemplatedSnippet;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class ApiHeaderSnippet extends TemplatedSnippet {
+
     private final boolean authorizationRequired;
 
     protected ApiHeaderSnippet(boolean authorizationRequired) {
@@ -25,7 +25,7 @@ public class ApiHeaderSnippet extends TemplatedSnippet {
 
     private Object getUrlTemplate(Operation operation) {
         String key = "org.springframework.restdocs.urlTemplate";
-        Object value = operation.getAttributes().getOrDefault(key, null);
-        return (value == null) ? operation.getRequest().getUri().getPath() : value;
+        return operation.getAttributes().getOrDefault(key, operation.getRequest().getUri().getPath());
     }
+
 }
