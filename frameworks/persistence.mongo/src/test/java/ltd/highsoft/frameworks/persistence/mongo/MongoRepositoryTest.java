@@ -2,7 +2,8 @@ package ltd.highsoft.frameworks.persistence.mongo;
 
 import ltd.highsoft.frameworks.domain.core.AggregateNotFoundException;
 import ltd.highsoft.frameworks.test.container.WithTestContainers;
-import ltd.highsoft.frameworks.test.mongo.*;
+import ltd.highsoft.frameworks.test.mongo.MongoContainer;
+import ltd.highsoft.frameworks.test.persistence.*;
 import org.junit.jupiter.api.*;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -16,14 +17,14 @@ import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;
 
 @WithTestContainers(containers = MongoContainer.class)
-public class MongoRepositoryTest extends MongoTest {
+@PersistenceTest
+public class MongoRepositoryTest {
 
-    private MongoTemplate mongoTemplate;
+    private @Persistence MongoTemplate mongoTemplate;
     private MongoRepository<MongoTestAggregate, TestAggregate> repository;
 
     @BeforeEach
     void setUp() {
-        mongoTemplate = new MongoTemplate(mongoClient(), databaseName());
         repository = new MongoRepository<>(mongoTemplate, MongoTestAggregate.class, MongoTestAggregate::new, MongoTestAggregate::asDomain);
     }
 
