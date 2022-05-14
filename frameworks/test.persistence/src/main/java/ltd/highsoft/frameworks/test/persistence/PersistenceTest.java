@@ -8,4 +8,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @ExtendWith(PersistenceExtension.class)
 public @interface PersistenceTest {
+
+    Class<?>[] containers() default {};
+
 }

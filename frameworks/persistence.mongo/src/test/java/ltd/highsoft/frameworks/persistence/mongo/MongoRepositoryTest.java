@@ -1,7 +1,6 @@
 package ltd.highsoft.frameworks.persistence.mongo;
 
 import ltd.highsoft.frameworks.domain.core.AggregateNotFoundException;
-import ltd.highsoft.frameworks.test.container.WithTestContainers;
 import ltd.highsoft.frameworks.test.mongo.MongoContainer;
 import ltd.highsoft.frameworks.test.persistence.*;
 import org.junit.jupiter.api.*;
@@ -16,8 +15,7 @@ import static org.springframework.data.domain.Sort.by;
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;
 
-@WithTestContainers(containers = MongoContainer.class)
-@PersistenceTest
+@PersistenceTest(containers = MongoContainer.class)
 public class MongoRepositoryTest {
 
     private @Persistence MongoTemplate mongoTemplate;

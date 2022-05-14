@@ -1,14 +1,12 @@
 package ltd.highsoft.frameworks.test.persistence;
 
-import ltd.highsoft.frameworks.test.container.WithTestContainers;
 import ltd.highsoft.frameworks.test.mongo.MongoContainer;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@WithTestContainers(containers = MongoContainer.class)
-@PersistenceTest
+@PersistenceTest(containers = MongoContainer.class)
 public class PersistenceTestTest {
 
     private @Persistence MongoTemplate mongoTemplate;

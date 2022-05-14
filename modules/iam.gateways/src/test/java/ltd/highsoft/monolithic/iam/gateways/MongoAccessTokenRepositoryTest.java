@@ -2,7 +2,6 @@ package ltd.highsoft.monolithic.iam.gateways;
 
 import ltd.highsoft.frameworks.domain.core.Identity;
 import ltd.highsoft.frameworks.security.core.GrantedAuthorities;
-import ltd.highsoft.frameworks.test.container.WithTestContainers;
 import ltd.highsoft.frameworks.test.mongo.MongoContainer;
 import ltd.highsoft.frameworks.test.persistence.*;
 import ltd.highsoft.monolithic.iam.domain.*;
@@ -14,8 +13,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@WithTestContainers(containers = MongoContainer.class)
-@PersistenceTest
+@PersistenceTest(containers = MongoContainer.class)
 public class MongoAccessTokenRepositoryTest {
 
     private static final Identity KITE_AT_HIGHSOFT = new Identity("kite@highsoft", "Kite");
