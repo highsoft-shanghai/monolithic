@@ -6,7 +6,7 @@ public class TestContainersInitializerExtension implements BeforeAllCallback {
 
     @Override
     public void beforeAll(ExtensionContext context) {
-        new Containers().startContainer(context, WithTestContainers.class, WithTestContainers::containers);
+        new Containers<>(context, WithTestContainers.class, WithTestContainers::containers).startContainer();
     }
 
 }

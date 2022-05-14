@@ -9,7 +9,7 @@ public class PersistenceExtension implements BeforeEachCallback, BeforeAllCallba
 
     @Override
     public void beforeAll(ExtensionContext context) {
-        new Containers().startContainer(context, PersistenceTest.class, PersistenceTest::containers);
+        new Containers<>(context, PersistenceTest.class, PersistenceTest::containers).startContainer();
     }
 
     @Override
