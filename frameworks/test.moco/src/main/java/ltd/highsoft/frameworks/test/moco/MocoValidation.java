@@ -4,7 +4,11 @@ import com.github.dreamhead.moco.RequestHit;
 
 import static com.github.dreamhead.moco.MocoRequestHit.requestHit;
 
-public class MocoValidation {
+public final class MocoValidation {
+
+    private MocoValidation() {
+    }
+
     private static final RequestHit IMPL = requestHit();
 
     public static RequestHit hit() {
