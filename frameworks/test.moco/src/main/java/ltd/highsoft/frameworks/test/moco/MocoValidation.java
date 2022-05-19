@@ -1,0 +1,13 @@
+package ltd.highsoft.frameworks.test.moco;
+
+import com.github.dreamhead.moco.RequestHit;
+
+import static com.github.dreamhead.moco.MocoRequestHit.requestHit;
+
+public class MocoValidation {
+    private static final RequestHit IMPL = requestHit();
+
+    public static RequestHit hit() {
+        return IMPL;
+    }
+}

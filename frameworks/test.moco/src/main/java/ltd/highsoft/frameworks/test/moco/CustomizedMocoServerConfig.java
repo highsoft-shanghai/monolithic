@@ -3,6 +3,7 @@ package ltd.highsoft.frameworks.test.moco;
 import com.github.dreamhead.moco.HttpServer;
 
 import static com.github.dreamhead.moco.Moco.*;
+import static ltd.highsoft.frameworks.test.moco.MocoValidation.hit;
 
 public class CustomizedMocoServerConfig implements MocoServerConfig {
 
@@ -11,7 +12,7 @@ public class CustomizedMocoServerConfig implements MocoServerConfig {
 
     @Override
     public HttpServer configure() {
-        HttpServer server = httpServer(MOCO_PORT);
+        HttpServer server = httpServer(MOCO_PORT, hit());
         server.request(by(uri("/ping"))).response(text("pong"));
         return server;
     }
