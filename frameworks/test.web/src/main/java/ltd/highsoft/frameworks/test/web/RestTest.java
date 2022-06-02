@@ -52,16 +52,21 @@ public class RestTest {
         return givenAuth(RestAssured.given(spec)).port(port).accept(ContentType.JSON).contentType(ContentType.JSON).filter(docFilter(doc));
     }
 
-    private RequestSpecification givenAuth(RequestSpecification requestSpecification) {
-        return GlobalTestContext.accessToken().map(x -> requestSpecification.auth().oauth2(x)).orElse(requestSpecification);
-    }
-
     @BeforeEach
     void setupRestDoc(TestInfo info) {
         RequestSpecBuilder builder = new RequestSpecBuilder();
         GlobalTestContext.accessToken().ifPresent(x -> givenAuth(builder, x));
         this.spec = builder.addFilter(documentationFilter()).build();
         this.documentation.beforeTest(getClass(), info.getTestMethod().map(Method::getName).orElse(""));
+    }
+
+    @AfterEach
+    void tearDownRestDoc() {
+        this.documentation.afterTest();
+    }
+
+    private RequestSpecification givenAuth(RequestSpecification requestSpecification) {
+        return GlobalTestContext.accessToken().map(x -> requestSpecification.auth().oauth2(x)).orElse(requestSpecification);
     }
 
     private void givenAuth(RequestSpecBuilder builder, String token) {
@@ -78,11 +83,6 @@ public class RestTest {
 
     private RestAssuredOperationPreprocessorsConfigurer documentationFilter() {
         return documentationConfiguration(this.documentation).operationPreprocessors().withRequestDefaults(prettyPrint()).withResponseDefaults(prettyPrint());
-    }
-
-    @AfterEach
-    void tearDownRestDoc() {
-        this.documentation.afterTest();
     }
 
 }
