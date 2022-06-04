@@ -26,4 +26,9 @@ public class MongoAccessTokenRepository implements AccessTokenRepository {
         repository.put(accessToken);
     }
 
+    @Override
+    public void remove(AccessToken accessToken) {
+        repository.remove(accessToken.token());
+    }
+
 }

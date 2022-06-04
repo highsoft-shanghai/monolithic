@@ -1,6 +1,5 @@
 package ltd.highsoft.monolithic.usecases.iam;
 
-import ltd.highsoft.frameworks.security.core.Authorities;
 import ltd.highsoft.frameworks.test.web.*;
 import ltd.highsoft.monolithic.IntegrationTest;
 import org.junit.jupiter.api.Test;
@@ -12,11 +11,11 @@ import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 public class GetAccessTokenContentUseCaseTest extends IntegrationTest {
 
     @Test
-    @WithGrantedAuthorities(Authorities.AUTHENTICATED)
+    @WithGrantedAuthorities({"feature-1", "feature-2"})
     void should_be_able_to_get_content_of_current_access_token() {
         var response = get("/access-tokens/current", document());
         response.statusCode(is(200));
-        response.body("accessToken", is("tester-access-token"));
+        response.body("accessToken", is("tester-token-id"));
         response.body("authorities", hasItems("feature-1", "feature-2"));
     }
 

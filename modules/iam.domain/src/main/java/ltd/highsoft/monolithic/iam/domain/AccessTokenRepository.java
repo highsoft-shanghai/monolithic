@@ -8,4 +8,6 @@ public interface AccessTokenRepository {
 
     void save(AccessToken accessToken);
 
+    void remove(AccessToken accessToken);
+
 }

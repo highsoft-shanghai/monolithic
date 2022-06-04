@@ -2,21 +2,26 @@ package ltd.highsoft.frameworks.test.web;
 
 import ltd.highsoft.frameworks.security.core.GrantedAuthorities;
 import org.junit.jupiter.api.extension.*;
-import org.junit.platform.commons.util.AnnotationUtils;
+
+import java.util.Optional;
+
+import static org.junit.platform.commons.util.AnnotationUtils.findAnnotation;
 
 public class WithGrantedAuthoritiesExtension implements BeforeEachCallback, AfterEachCallback {
 
     @Override
     public void beforeEach(ExtensionContext context) {
-        var annotation = AnnotationUtils.findAnnotation(context.getRequiredTestClass(), WithGrantedAuthorities.class);
-        annotation.ifPresent(x -> GlobalTestContext.grantedAuthorities(GrantedAuthorities.of(x.value())));
-        GlobalTestContext.accessToken(GlobalTestContext.DEFAULT_TESTER_ACCESS_TOKEN);
+        annotation(context).ifPresent(x -> GlobalTestContext.setup(GrantedAuthorities.of(x.value())));
     }
 
     @Override
     public void afterEach(ExtensionContext context) {
-        GlobalTestContext.grantedAuthorities(null);
-        GlobalTestContext.accessToken(null);
+        GlobalTestContext.teardown();
+    }
+
+    private Optional<WithGrantedAuthorities> annotation(ExtensionContext context) {
+        var result = findAnnotation(context.getRequiredTestMethod(), WithGrantedAuthorities.class);
+        return result.isPresent() ? result : findAnnotation(context.getRequiredTestClass(), WithGrantedAuthorities.class);
     }
 
 }

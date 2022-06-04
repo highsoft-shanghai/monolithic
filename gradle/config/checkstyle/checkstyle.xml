@@ -67,7 +67,7 @@
     <module name="FileLength"/>
 
     <module name="LineLength">
-        <property name="max" value="160"/>
+        <property name="max" value="256"/>
     </module>
 
     <!-- Checks for whitespace                               -->

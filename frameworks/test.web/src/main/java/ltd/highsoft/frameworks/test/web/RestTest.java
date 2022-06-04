@@ -55,7 +55,7 @@ public class RestTest {
     @BeforeEach
     void setupRestDoc(TestInfo info) {
         RequestSpecBuilder builder = new RequestSpecBuilder();
-        GlobalTestContext.accessToken().ifPresent(x -> givenAuth(builder, x));
+        GlobalTestContext.token().ifPresent(x -> setupAuth(builder, x));
         this.spec = builder.addFilter(documentationFilter()).build();
         this.documentation.beforeTest(getClass(), info.getTestMethod().map(Method::getName).orElse(""));
     }
@@ -66,10 +66,10 @@ public class RestTest {
     }
 
     private RequestSpecification givenAuth(RequestSpecification requestSpecification) {
-        return GlobalTestContext.accessToken().map(x -> requestSpecification.auth().oauth2(x)).orElse(requestSpecification);
+        return GlobalTestContext.token().map(x -> requestSpecification.auth().oauth2(x)).orElse(requestSpecification);
     }
 
-    private void givenAuth(RequestSpecBuilder builder, String token) {
+    private void setupAuth(RequestSpecBuilder builder, String token) {
         var scheme = new PreemptiveOAuth2HeaderScheme();
         scheme.setAccessToken(token);
         builder.setAuth(scheme);
@@ -77,7 +77,7 @@ public class RestTest {
 
     private Filter docFilter(Documentation doc) {
         if (doc == null) return EmptyFilter.INSTANCE;
-        var authRequired = GlobalTestContext.accessToken().isPresent();
+        var authRequired = GlobalTestContext.token().isPresent();
         return document(doc.identifier(), ArrayUtils.addAll(doc.snippets(), apiHeader(authRequired), new ApiSnippet()));
     }
 

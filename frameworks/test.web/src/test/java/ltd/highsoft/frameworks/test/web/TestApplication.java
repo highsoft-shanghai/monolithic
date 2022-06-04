@@ -12,9 +12,4 @@ public class TestApplication {
         return new MockContextProvider();
     }
 
-    @Bean
-    public ContextProviderHolder contextProviderHolder(ContextProvider contextProvider) {
-        return new ContextProviderHolder(contextProvider);
-    }
-
 }

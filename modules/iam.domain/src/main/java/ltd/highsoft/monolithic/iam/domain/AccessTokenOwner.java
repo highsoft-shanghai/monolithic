@@ -18,6 +18,12 @@ public class AccessTokenOwner {
         this.tenant = tenant;
     }
 
+    public AccessTokenOwner(UserContext userContext) {
+        this.userAccount = userContext.userAccount();
+        this.user = userContext.user();
+        this.tenant = userContext.tenant();
+    }
+
     public Identity userAccount() {
         return userAccount;
     }

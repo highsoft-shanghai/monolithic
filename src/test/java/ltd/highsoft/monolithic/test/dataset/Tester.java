@@ -3,15 +3,28 @@ package ltd.highsoft.monolithic.test.dataset;
 import ltd.highsoft.frameworks.domain.core.Identity;
 import ltd.highsoft.frameworks.security.core.GrantedAuthorities;
 import ltd.highsoft.monolithic.iam.domain.*;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
+
+@Component
 public class Tester {
 
-    public static final Identity USER_ACCOUNT = new Identity("tester@highsoft", "Tester");
-    public static final Identity USER = new Identity("tester", "Tester");
-    public static final Identity TENANT = new Identity("highsoft", "Highsoft");
-    public static final AccessTokenOwner ACCESS_TOKEN_OWNER = new AccessTokenOwner(USER_ACCOUNT, USER, TENANT);
-    public static final String ACCESS_TOKEN_ID = "tester-access-token";
-    public static final GrantedAuthorities GRANTED_AUTHORITIES = GrantedAuthorities.of("feature-1", "feature-2");
-    public static final AccessToken ACCESS_TOKEN = AccessToken.restore(ACCESS_TOKEN_ID, ACCESS_TOKEN_OWNER, GRANTED_AUTHORITIES);
+    private final Identity userAccount = new Identity("tester@highsoft", "Tester");
+    private final Identity user = new Identity("tester", "Tester");
+    private final Identity tenant = new Identity("highsoft", "Highsoft");
+    private final AccessTokenOwner accessTokenOwner = new AccessTokenOwner(userAccount, user, tenant);
+    private final String accessTokenId = "tester-access-token";
+    private final GrantedAuthorities grantedAuthorities = GrantedAuthorities.of("feature-1", "feature-2");
+    private final AccessToken accessToken = AccessToken.restore(accessTokenId, accessTokenOwner, grantedAuthorities);
+    private @Resource AccessTokenRepository accessTokenRepository;
+
+    public void setup() {
+        accessTokenRepository.save(accessToken);
+    }
+
+    public void teardown() {
+        accessTokenRepository.remove(accessToken);
+    }
 
 }
