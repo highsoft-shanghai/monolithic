@@ -14,7 +14,7 @@ public final class YesNo {
 
     @Override
     public String toString() {
-        return "Yes";
+        return value ? "Yes" : "No";
     }
 
     private YesNo(boolean value) {

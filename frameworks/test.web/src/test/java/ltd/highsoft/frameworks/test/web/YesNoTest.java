@@ -11,4 +11,9 @@ class YesNoTest {
         assertThat(YesNo.of(true).toString()).isEqualTo("Yes");
     }
 
+    @Test
+    void should_format_false_as_no() {
+        assertThat(YesNo.of(false).toString()).isEqualTo("No");
+    }
+
 }
