@@ -18,6 +18,12 @@ public abstract class IntegrationTest extends RestTest {
     private @Resource AccessTokenRepository accessTokenRepository;
     private AccessToken accessToken;
 
+    protected void removeAccessToken() {
+        if (accessToken != null) {
+            accessTokenRepository.remove(accessToken);
+        }
+    }
+
     @BeforeEach
     void setupAccessToken() {
         GlobalTestContext.context().ifPresent(context -> {
@@ -28,9 +34,7 @@ public abstract class IntegrationTest extends RestTest {
 
     @AfterEach
     void teardownAccessToken() {
-        if (accessToken != null) {
-            accessTokenRepository.remove(accessToken);
-        }
+        removeAccessToken();
     }
 
 }
