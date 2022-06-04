@@ -5,15 +5,13 @@ import org.springframework.restdocs.snippet.TemplatedSnippet;
 
 import java.util.*;
 
-import static ltd.highsoft.frameworks.test.web.YesNo.format;
-
 public class ApiHeaderSnippet extends TemplatedSnippet {
 
-    private final boolean authorizationRequired;
+    private final YesNo authorizationRequired;
 
     protected ApiHeaderSnippet(boolean authorizationRequired) {
         super("api-header", null);
-        this.authorizationRequired = authorizationRequired;
+        this.authorizationRequired = YesNo.of(authorizationRequired);
     }
 
     @Override
@@ -21,7 +19,7 @@ public class ApiHeaderSnippet extends TemplatedSnippet {
         Map<String, Object> model = new HashMap<>();
         model.put("urlTemplate", getUrlTemplate(operation));
         model.put("httpMethod", operation.getRequest().getMethod());
-        model.put("authorizationRequired", format(authorizationRequired));
+        model.put("authorizationRequired", authorizationRequired.toString());
         return model;
     }
 
