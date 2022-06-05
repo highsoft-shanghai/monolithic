@@ -16,7 +16,7 @@ public class ErrorResponseTest extends IntegrationTest {
         removeAccessToken();
         var response = get("/access-tokens/current", document());
         response.statusCode(is(401));
-        response.body("message", is("error.bad-token"));
+        response.body("message", is("登录过期或登录失效，请重新登录"));
     }
 
     private Documentation document() {
