@@ -11,7 +11,7 @@ public class AggregateNotFoundException extends DomainException {
     }
 
     public AggregateNotFoundException(Throwable cause, Object... data) {
-        super(MESSAGE_CODE, cause, data);
+        super(cause, message(MESSAGE_CODE, data));
     }
 
 }

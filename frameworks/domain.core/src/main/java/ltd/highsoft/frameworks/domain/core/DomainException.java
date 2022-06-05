@@ -23,9 +23,9 @@ public class DomainException extends RuntimeException {
         this.message = message(ERROR_DOMAIN_ERROR);
     }
 
-    public DomainException(String code, Throwable cause, Object... data) {
+    public DomainException(Throwable cause, I18nMessage message) {
         super(cause);
-        this.message = message(code, data);
+        this.message = message;
     }
 
     @Override
