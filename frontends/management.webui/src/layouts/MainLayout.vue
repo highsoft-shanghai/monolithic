@@ -1,18 +1,22 @@
 <template>
-  <q-layout view="hHh lpR fFf">
-    <q-header elevated>
-      <q-toolbar>
-        <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer"/>
+  <q-layout view="hHh LpR fFf">
+    <q-header elevated class="non-selectable">
+      <q-toolbar class="q-pa-none q-pr-sm">
+        <q-btn stretch flat class="q-px-none" @click="toggleLeftDrawer">
+          <q-icon name="menu" size="16px" class="q-px-md q-mx-xs"/>
+        </q-btn>
+        <q-separator dark vertical inset/>
+        <q-icon name="troubleshoot" size="24px" class="q-ml-md"/>
         <q-toolbar-title>{{ $t('app.title') }}</q-toolbar-title>
         <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" side="left" show-if-above bordered>
-      <q-list>
-        <q-item-label header>Essential Links</q-item-label>
+    <q-drawer v-model="leftDrawerOpen" side="left" show-if-above class="shadow-3" :mini="miniMode" :mini-width="56">
+      <q-list padding class="non-selectable">
         <EssentialLink v-for="link in essentialLinks" :key="link.title" v-bind="link"/>
       </q-list>
+      <q-btn round outline color="secondary" size="xs" :icon="miniMode ? 'chevron_right' : 'chevron_left'" @click="toggleMiniMode" class="mini-toggle-button"/>
     </q-drawer>
 
     <q-page-container>
@@ -78,15 +82,31 @@ export default defineComponent({
   },
 
   setup() {
-    const leftDrawerOpen = ref(false)
+    const leftDrawerOpen = ref(false);
+    const miniMode = ref(false);
 
     return {
       essentialLinks: linksList,
       leftDrawerOpen,
-      toggleLeftDrawer() {
-        leftDrawerOpen.value = !leftDrawerOpen.value
+      miniMode,
+      toggleLeftDrawer: () => {
+        leftDrawerOpen.value = !leftDrawerOpen.value;
+      },
+      toggleMiniMode: () => {
+        miniMode.value = !miniMode.value;
+      },
+      goHome: () => {
+        console.log('go home');
       }
     }
   }
 });
 </script>
+
+<style lang="scss" scoped>
+.mini-toggle-button {
+  position: absolute;
+  bottom: map-get($space-md, 'y');
+  right: map-get($space-md, 'x');
+}
+</style>

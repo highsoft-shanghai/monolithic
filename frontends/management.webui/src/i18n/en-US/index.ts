@@ -1,3 +1,3 @@
 export default {
-  "app.title": "Scaffold for Management",
+  'app.title': "管理后台前端脚手架",
 };
