@@ -13,7 +13,7 @@ public class DefaultExceptionTranslatorConfigurer implements ExceptionTranslator
         translator.map(AuthenticationException.class, Http401Exception::new);
         translator.map(BadAccessTokenException.class, Http401Exception::new);
         translator.map(AuthorizationException.class, Http403Exception::new);
-        translator.map(IllegalArgumentException.class, Http400Exception::new);
+        translator.map(BadInputException.class, Http400Exception::new);
     }
 
 }

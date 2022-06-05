@@ -17,17 +17,17 @@ public class TestExceptionController {
         throw new AggregateNotFoundException();
     }
 
-    @PostMapping("trigger-illegal_argument_exception")
+    @PostMapping("trigger-bad-input-exception")
     public void triggerIllegalArgumentException() {
-        throw new IllegalArgumentException("error.bad-input");
+        throw new BadInputException(message("error.bad-input"));
     }
 
-    @PostMapping("trigger-authentication_exception")
+    @PostMapping("trigger-authentication-exception")
     public void triggerAuthenticationException() {
         throw new AuthenticationException(message("error.bad-credential"));
     }
 
-    @PostMapping("trigger-authorization_exception")
+    @PostMapping("trigger-authorization-exception")
     public void triggerAuthorizationException() {
         throw new AuthorizationException(message("error.access-denied", RequiredAuthorities.of("f1"), GrantedAuthorities.of("f2")));
     }

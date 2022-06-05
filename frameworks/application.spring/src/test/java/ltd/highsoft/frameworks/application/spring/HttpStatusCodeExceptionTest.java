@@ -31,18 +31,18 @@ public class HttpStatusCodeExceptionTest {
     }
 
     @Test
-    void should_translate_illegal_argument_exception_to_http_400() {
-        when().post("/test/trigger-illegal_argument_exception").then().statusCode(400).body("message", is("error.bad-input"));
+    void should_translate_bad_input_exception_to_http_400() {
+        when().post("/test/trigger-bad-input-exception").then().statusCode(400).body("message", is("error.bad-input"));
     }
 
     @Test
     void should_translate_authentication_exception_to_http_401() {
-        when().post("/test/trigger-authentication_exception").then().statusCode(401).body("message", is("error.bad-credential"));
+        when().post("/test/trigger-authentication-exception").then().statusCode(401).body("message", is("error.bad-credential"));
     }
 
     @Test
     void should_translate_authorization_exception_to_http_403() {
-        when().post("/test/trigger-authorization_exception").then().statusCode(403).body("message", is("error.access-denied"));
+        when().post("/test/trigger-authorization-exception").then().statusCode(403).body("message", is("error.access-denied"));
     }
 
     private RequestSpecification when() {
