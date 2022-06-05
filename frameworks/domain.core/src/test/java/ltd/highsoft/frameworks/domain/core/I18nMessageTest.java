@@ -20,4 +20,11 @@ public class I18nMessageTest {
         assertThat(message.format(messageResolver)).isEqualTo("message-from-message-resolver");
     }
 
+    @Test
+    void should_be_able_to_format_as_plan_text_with_data() {
+        var message = message("message-code", "a", "b");
+        given(messageResolver.resolve("message-code", "a", "b")).willReturn("message-with-data-from-message-resolver");
+        assertThat(message.format(messageResolver)).isEqualTo("message-with-data-from-message-resolver");
+    }
+
 }
