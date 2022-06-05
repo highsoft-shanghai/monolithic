@@ -7,6 +7,8 @@ import ltd.highsoft.frameworks.domain.core.AuthenticationException;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static ltd.highsoft.frameworks.domain.core.I18nMessage.message;
+
 @EqualsAndHashCode
 public final class GrantedAuthorities {
 
@@ -32,8 +34,8 @@ public final class GrantedAuthorities {
 
     public void authorize(RequiredAuthorities requiredAuthorities) {
         if (match(requiredAuthorities)) return;
-        if (isAnonymous()) throw new AuthenticationException("error.authentication-required");
-        throw new AuthorizationException("error.access-denied", requiredAuthorities, this);
+        if (isAnonymous()) throw new AuthenticationException(message("error.authentication-required"));
+        throw new AuthorizationException(message("error.access-denied", requiredAuthorities, this));
     }
 
     public Set<String> asSet() {

@@ -5,6 +5,8 @@ import ltd.highsoft.frameworks.domain.core.*;
 import ltd.highsoft.frameworks.security.core.*;
 import org.springframework.web.bind.annotation.*;
 
+import static ltd.highsoft.frameworks.domain.core.I18nMessage.message;
+
 @RestController
 @RequestMapping("/test")
 @UseCase(requiredAuthorities = Authorities.ANONYMOUS)
@@ -22,12 +24,12 @@ public class TestExceptionController {
 
     @PostMapping("trigger-authentication_exception")
     public void triggerAuthenticationException() {
-        throw new AuthenticationException("error.bad-credential");
+        throw new AuthenticationException(message("error.bad-credential"));
     }
 
     @PostMapping("trigger-authorization_exception")
     public void triggerAuthorizationException() {
-        throw new AuthorizationException("error.access-denied", RequiredAuthorities.of("f1"), GrantedAuthorities.of("f2"));
+        throw new AuthorizationException(message("error.access-denied", RequiredAuthorities.of("f1"), GrantedAuthorities.of("f2")));
     }
 
 }

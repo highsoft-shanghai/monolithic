@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoSettings;
 
+import java.util.List;
+
 import static ltd.highsoft.frameworks.domain.core.I18nMessage.message;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -25,6 +27,11 @@ public class I18nMessageTest {
         var message = message("message-code", "a", "b");
         given(messageResolver.resolve("message-code", "a", "b")).willReturn("message-with-data-from-message-resolver");
         assertThat(message.format(messageResolver)).isEqualTo("message-with-data-from-message-resolver");
+    }
+
+    @Test
+    void should_be_able_to_provide_data() {
+        assertThat(message("message-code", "a", "b").data()).isEqualTo(List.of("a", "b"));
     }
 
 }

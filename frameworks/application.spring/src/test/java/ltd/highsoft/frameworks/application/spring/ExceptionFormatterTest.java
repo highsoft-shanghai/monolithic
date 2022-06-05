@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoSettings;
 
+import static ltd.highsoft.frameworks.domain.core.I18nMessage.message;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 
@@ -19,7 +20,7 @@ class ExceptionFormatterTest {
     void should_be_able_to_format_application_exceptions() {
         given(messageResolver.resolve("test", 1, 2)).willReturn("message from resolver");
         var formatter = new ExceptionFormatter(messageResolver);
-        assertThat(formatter.format(new ApplicationException(new DomainException("test", 1, 2)))).isEqualTo("message from resolver");
+        assertThat(formatter.format(new ApplicationException(new DomainException(message("test", 1, 2))))).isEqualTo("message from resolver");
     }
 
     @Test

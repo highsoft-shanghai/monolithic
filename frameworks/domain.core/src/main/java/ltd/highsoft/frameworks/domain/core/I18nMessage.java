@@ -1,5 +1,7 @@
 package ltd.highsoft.frameworks.domain.core;
 
+import java.util.List;
+
 public final class I18nMessage {
 
     private final String code;
@@ -11,6 +13,10 @@ public final class I18nMessage {
 
     public String format(MessageResolver messageResolver) {
         return messageResolver.resolve(code, data);
+    }
+
+    public List<Object> data() {
+        return List.of(data);
     }
 
     private I18nMessage(String code, Object[] data) {

@@ -1,11 +1,11 @@
 package ltd.highsoft.frameworks.security.core;
 
-import ltd.highsoft.frameworks.domain.core.DomainException;
+import ltd.highsoft.frameworks.domain.core.*;
 
 public class AuthorizationException extends DomainException {
 
-    public AuthorizationException(String code, RequiredAuthorities requiredAuthorities, GrantedAuthorities grantedAuthorities) {
-        super(code, requiredAuthorities, grantedAuthorities);
+    public AuthorizationException(I18nMessage message) {
+        super(message);
     }
 
 }
