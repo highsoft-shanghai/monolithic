@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh LpR fFf">
-    <q-header elevated class="non-selectable">
+    <q-header class="non-selectable shadow-center-2">
       <q-toolbar class="q-pa-none q-pr-sm">
         <q-btn stretch flat class="q-px-none" @click="toggleLeftDrawer">
           <q-icon name="menu" size="16px" class="q-px-md q-mx-xs"/>
@@ -12,14 +12,14 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" side="left" show-if-above class="shadow-3" :mini="miniMode" :mini-width="56">
+    <q-drawer v-model="leftDrawerOpen" side="left" show-if-above class="shadow-1" :mini="miniMode" :mini-width="56">
       <q-list padding class="non-selectable">
         <EssentialLink v-for="link in essentialLinks" :key="link.title" v-bind="link"/>
       </q-list>
       <q-btn round outline color="secondary" size="xs" :icon="miniMode ? 'chevron_right' : 'chevron_left'" @click="toggleMiniMode" class="mini-toggle-button"/>
     </q-drawer>
 
-    <q-page-container>
+    <q-page-container class="bg-grey-2 fit">
       <router-view/>
     </q-page-container>
   </q-layout>

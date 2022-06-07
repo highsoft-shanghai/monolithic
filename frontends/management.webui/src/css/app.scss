@@ -1,1 +1,48 @@
-// app global css in SCSS form
+.shadow-center-1 {
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2), 0 0 1px rgba(0, 0, 0, 0.14), 0 0 0 -1px rgba(0, 0, 0, 0.12);
+}
+
+.shadow-center-2 {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), 0 0 2px rgba(0, 0, 0, 0.14), 0 0 0 -2px rgba(0, 0, 0, 0.12);
+}
+
+.shadow-light-2 {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.04), 0 0 2px rgba(0, 0, 0, 0.02), 0 0 0 -2px rgba(0, 0, 0, 0.02);
+}
+
+.page-title-bar {
+  min-height: 40px;
+}
+
+.page-content {
+  flex: 1 1 0;
+}
+
+.q-table th {
+  font-size: map-get($body2, 'size');
+  font-weight: bold;
+  padding: $space-y-base / 2.532 $space-y-base / 2 !important;
+}
+
+.q-table tr td {
+  font-size: map-get($body2, 'size');
+  padding: $space-y-base / 2.532 $space-y-base / 2 !important;
+}
+
+.search-input {
+  .q-field__control {
+    height: 28px;
+  }
+
+  .q-field__append {
+    height: 28px;
+  }
+
+  .q-field__prepend {
+    height: 28px;
+  }
+}
+
+html {
+  font-size: 14px;
+}

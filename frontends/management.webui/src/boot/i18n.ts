@@ -7,7 +7,7 @@ export default boot(({app}) => {
   app.use(createI18n({
     legacy: false,
     globalInjection: true,
-    locale: 'en-US',
+    locale: 'zh-CN',
     messages,
   }));
 });
