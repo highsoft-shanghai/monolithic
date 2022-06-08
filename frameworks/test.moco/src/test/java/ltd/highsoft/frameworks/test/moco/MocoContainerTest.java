@@ -1,11 +1,14 @@
 package ltd.highsoft.frameworks.test.moco;
 
 import ltd.highsoft.frameworks.test.container.WithTestContainers;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static com.github.dreamhead.moco.Moco.*;
+import static com.github.dreamhead.moco.Moco.by;
+import static com.github.dreamhead.moco.Moco.uri;
 import static com.github.dreamhead.moco.MocoRequestHit.times;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -16,7 +19,8 @@ public class MocoContainerTest {
 
     @BeforeEach
     void setUp() throws IOException {
-        connection = Connection.by("http://localhost:9999/ping");
+        String url = System.getProperty("test.moco.url");
+        connection = Connection.by(url + "/ping");
     }
 
     @Test
