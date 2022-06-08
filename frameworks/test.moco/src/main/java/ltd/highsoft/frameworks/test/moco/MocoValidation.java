@@ -14,4 +14,5 @@ public final class MocoValidation {
     public static RequestHit hit() {
         return IMPL;
     }
+
 }

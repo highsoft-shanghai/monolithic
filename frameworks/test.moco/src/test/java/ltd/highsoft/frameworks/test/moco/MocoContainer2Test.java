@@ -15,16 +15,16 @@ import static ltd.highsoft.frameworks.test.moco.MocoValidation.hit;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @WithTestContainers(containers = {MocoContainer.class})
-public class MocoContainerTest {
+public class MocoContainer2Test {
 
     private Connection connection;
 
     @BeforeEach
     void setUp() {
-        server().request(by(uri("/ping"))).response(text("pong"));
+        server().request(by(uri("/ping2"))).response(text("pong"));
         restart();
         String url = System.getProperty("test.moco.url");
-        connection = Connection.by(url + "/ping");
+        connection = Connection.by(url + "/ping2");
     }
 
     @Test
@@ -32,7 +32,7 @@ public class MocoContainerTest {
         connection.connect();
         assertEquals(connection.responseCode(), 200);
         assertEquals(connection.responseBody(), "pong");
-        hit().verify(by(uri("/ping")), times(1));
+        hit().verify(by(uri("/ping2")), times(1));
     }
 
     @AfterEach

@@ -1,17 +1,18 @@
 package ltd.highsoft.frameworks.test.moco;
 
 import com.github.dreamhead.moco.Runner;
-import lombok.Generated;
 import org.testcontainers.lifecycle.Startable;
 
 import static com.github.dreamhead.moco.Runner.runner;
+import static ltd.highsoft.frameworks.test.moco.MockServerInitialization.server;
 
 public class MocoTestContainer implements Startable {
 
-    private final Runner runner;
+    private Runner runner;
 
-    public MocoTestContainer(MocoServerConfig config) {
-        this.runner = runner(config.configure());
+    public MocoTestContainer() {
+        MockServerInitialization.resetRunner(this);
+        resetRunner();
     }
 
     @Override
@@ -20,9 +21,11 @@ public class MocoTestContainer implements Startable {
     }
 
     @Override
-    @Generated
     public void stop() {
         runner.stop();
     }
 
+    public void resetRunner() {
+        this.runner = runner(server());
+    }
 }
