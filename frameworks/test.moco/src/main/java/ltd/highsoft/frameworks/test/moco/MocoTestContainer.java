@@ -1,6 +1,7 @@
 package ltd.highsoft.frameworks.test.moco;
 
 import com.github.dreamhead.moco.Runner;
+import lombok.Generated;
 import org.testcontainers.lifecycle.Startable;
 
 import static com.github.dreamhead.moco.Runner.runner;
@@ -19,6 +20,7 @@ public class MocoTestContainer implements Startable {
     }
 
     @Override
+    @Generated
     public void stop() {
         runner.stop();
     }
