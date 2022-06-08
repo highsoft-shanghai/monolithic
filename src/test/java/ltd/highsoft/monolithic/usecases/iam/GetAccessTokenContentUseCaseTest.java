@@ -14,9 +14,7 @@ public class GetAccessTokenContentUseCaseTest extends IntegrationTest {
     @WithGrantedAuthorities({"feature-1", "feature-2"})
     void should_be_able_to_get_content_of_current_access_token() {
         var response = get("/access-tokens/current", document());
-        response.statusCode(is(200));
-        response.body("accessToken", is("tester-token-id"));
-        response.body("authorities", hasItems("feature-1", "feature-2"));
+        response.statusCode(is(200)).body("accessToken", is("tester-token-id")).body("authorities", hasItems("feature-1", "feature-2"));
     }
 
     private Documentation document() {
