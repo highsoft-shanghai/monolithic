@@ -7,7 +7,7 @@ import java.net.DatagramSocket;
 
 import static com.github.dreamhead.moco.Moco.httpServer;
 import static com.github.dreamhead.moco.Moco.log;
-import static ltd.highsoft.frameworks.test.moco.MocoValidation.hit;
+import static ltd.highsoft.frameworks.test.moco.MocoHit.hit;
 
 public final class Moco {
 
