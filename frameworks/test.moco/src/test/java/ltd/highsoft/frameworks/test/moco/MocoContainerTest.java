@@ -9,9 +9,6 @@ import java.io.IOException;
 
 import static com.github.dreamhead.moco.Moco.*;
 import static com.github.dreamhead.moco.MocoRequestHit.times;
-import static ltd.highsoft.frameworks.test.moco.MockServerInitialization.restart;
-import static ltd.highsoft.frameworks.test.moco.MockServerInitialization.server;
-import static ltd.highsoft.frameworks.test.moco.MocoValidation.hit;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @WithTestContainers(containers = {MocoContainer.class})
@@ -21,10 +18,9 @@ public class MocoContainerTest {
 
     @BeforeEach
     void setUp() {
-        server().request(by(uri("/ping"))).response(text("pong"));
-        restart();
-        String url = System.getProperty("test.moco.url");
-        connection = Connection.by(url + "/ping");
+        Moco.server().request(by(uri("/ping"))).response(text("pong"));
+        Moco.restart();
+        connection = Connection.by(Moco.url() + "/ping");
     }
 
     @Test
@@ -32,7 +28,7 @@ public class MocoContainerTest {
         connection.connect();
         assertEquals(connection.responseCode(), 200);
         assertEquals(connection.responseBody(), "pong");
-        hit().verify(by(uri("/ping")), times(1));
+        MocoValidation.hit().verify(by(uri("/ping")), times(1));
     }
 
     @AfterEach

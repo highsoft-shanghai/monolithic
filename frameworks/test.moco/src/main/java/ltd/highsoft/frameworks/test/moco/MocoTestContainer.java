@@ -4,14 +4,14 @@ import com.github.dreamhead.moco.Runner;
 import org.testcontainers.lifecycle.Startable;
 
 import static com.github.dreamhead.moco.Runner.runner;
-import static ltd.highsoft.frameworks.test.moco.MockServerInitialization.server;
+import static ltd.highsoft.frameworks.test.moco.Moco.server;
 
 public class MocoTestContainer implements Startable {
 
     private Runner runner;
 
     public MocoTestContainer() {
-        MockServerInitialization.resetRunner(this);
+        Moco.resetRunner(this);
         resetRunner();
     }
 

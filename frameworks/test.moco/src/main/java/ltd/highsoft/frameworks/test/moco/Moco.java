@@ -8,9 +8,9 @@ import java.net.DatagramSocket;
 import static com.github.dreamhead.moco.Moco.httpServer;
 import static ltd.highsoft.frameworks.test.moco.MocoValidation.hit;
 
-public final class MockServerInitialization {
+public final class Moco {
 
-    private MockServerInitialization() {
+    private Moco() {
     }
 
     private static int port;
@@ -18,11 +18,15 @@ public final class MockServerInitialization {
     private static MocoTestContainer container;
 
     public static void resetRunner(MocoTestContainer mocoTestContainer) {
-        MockServerInitialization.container = mocoTestContainer;
+        Moco.container = mocoTestContainer;
     }
 
     public static HttpServer server() {
         return server;
+    }
+
+    public static String url() {
+        return System.getProperty("test.moco.url");
     }
 
     public static void restart() {
