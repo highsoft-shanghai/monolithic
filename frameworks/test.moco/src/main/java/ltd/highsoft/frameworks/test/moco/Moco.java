@@ -6,6 +6,7 @@ import ltd.highsoft.frameworks.domain.core.Exceptions;
 import java.net.DatagramSocket;
 
 import static com.github.dreamhead.moco.Moco.httpServer;
+import static com.github.dreamhead.moco.Moco.log;
 import static ltd.highsoft.frameworks.test.moco.MocoValidation.hit;
 
 public final class Moco {
@@ -39,7 +40,7 @@ public final class Moco {
         DatagramSocket socket = Exceptions.evaluate(() -> new DatagramSocket(0));
         port = socket.getLocalPort();
         socket.close();
-        server = httpServer(port, hit());
+        server = httpServer(port, hit(), log());
     }
 
     public static int port() {
