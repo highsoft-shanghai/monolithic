@@ -4,4 +4,5 @@ dependencies {
     implementation libs.test.testcontainers.mongodb
     implementation libs.test.junit.jupiter
     implementation libs.persistence.mongodb
+    implementation libs.spring.boot.data.mongodb
 }

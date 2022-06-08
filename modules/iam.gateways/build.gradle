@@ -5,5 +5,4 @@ dependencies {
     implementation project(":frameworks.persistence.mongo")
     implementation libs.spring.boot.data.mongodb
     testImplementation project(":frameworks.test.mongo")
-    testImplementation project(":frameworks.test.persistence")
 }
