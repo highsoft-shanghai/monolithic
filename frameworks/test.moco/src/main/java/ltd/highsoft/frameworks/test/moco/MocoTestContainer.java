@@ -4,13 +4,15 @@ import com.github.dreamhead.moco.Runner;
 import org.testcontainers.lifecycle.Startable;
 
 import static com.github.dreamhead.moco.Runner.runner;
+import static ltd.highsoft.frameworks.test.moco.Moco.server;
 
 public class MocoTestContainer implements Startable {
 
-    private final Runner runner;
+    private Runner runner;
 
-    public MocoTestContainer(MocoServerConfig config) {
-        this.runner = runner(config.configure());
+    public MocoTestContainer() {
+        Moco.resetRunner(this);
+        resetRunner();
     }
 
     @Override
@@ -23,4 +25,7 @@ public class MocoTestContainer implements Startable {
         runner.stop();
     }
 
+    public void resetRunner() {
+        this.runner = runner(server());
+    }
 }

@@ -1,9 +1,0 @@
-dependencies {
-    api project(":frameworks.test.container")
-    api project(":frameworks.test.mongo")
-    api project(":frameworks.domain.core")
-    implementation libs.test.testcontainers.mongodb
-    implementation libs.test.junit.jupiter
-    implementation libs.persistence.mongodb
-    implementation libs.spring.boot.data.mongodb
-}

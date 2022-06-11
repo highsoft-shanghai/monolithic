@@ -12,15 +12,15 @@ import static com.github.dreamhead.moco.MocoRequestHit.times;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @WithTestContainers(containers = {MocoContainer.class})
-public class MocoContainerTest {
+public class MocoContainer2Test {
 
     private Connection connection;
 
     @BeforeEach
     void setUp() {
-        Moco.server().request(by(uri("/ping"))).response(text("pong"));
+        Moco.server().request(by(uri("/ping2"))).response(text("pong"));
         Moco.restart();
-        connection = Connection.by(Moco.url() + "/ping");
+        connection = Connection.by(Moco.url() + "/ping2");
     }
 
     @Test
@@ -28,7 +28,7 @@ public class MocoContainerTest {
         connection.connect();
         assertEquals(200, connection.responseCode());
         assertEquals("pong", connection.responseBody());
-        MocoHit.hit().verify(by(uri("/ping")), times(1));
+        MocoHit.hit().verify(by(uri("/ping2")), times(1));
     }
 
     @AfterEach

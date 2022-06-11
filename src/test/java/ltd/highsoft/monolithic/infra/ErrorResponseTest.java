@@ -1,12 +1,14 @@
 package ltd.highsoft.monolithic.infra;
 
-import ltd.highsoft.frameworks.test.web.*;
+import ltd.highsoft.frameworks.test.web.Documentation;
+import ltd.highsoft.frameworks.test.web.WithGrantedAuthorities;
 import ltd.highsoft.monolithic.IntegrationTest;
 import org.junit.jupiter.api.Test;
 
 import static ltd.highsoft.frameworks.test.web.Documentation.doc;
 import static org.hamcrest.Matchers.is;
-import static org.springframework.restdocs.payload.PayloadDocumentation.*;
+import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
+import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
 
 public class ErrorResponseTest extends IntegrationTest {
 
@@ -15,19 +17,18 @@ public class ErrorResponseTest extends IntegrationTest {
     void should_report_error_info_correctly() {
         removeAccessToken();
         var response = get("/access-tokens/current", document());
-        response.statusCode(is(401));
-        response.body("message", is("登录过期或登录失效，请重新登录"));
+        response.statusCode(is(401)).body("message", is("登录过期或登录失效，请重新登录"));
     }
 
     private Documentation document() {
         return doc("error.general-error",
-            responseFields(
-                fieldWithPath("timestamp").description("错误发生时间"),
-                fieldWithPath("status").description("HTTP状态码"),
-                fieldWithPath("error").description("HTTP状态描述"),
-                fieldWithPath("message").description("本地化错误描述"),
-                fieldWithPath("path").description("资源路程")
-            )
+                responseFields(
+                        fieldWithPath("timestamp").description("错误发生时间"),
+                        fieldWithPath("status").description("HTTP状态码"),
+                        fieldWithPath("error").description("HTTP状态描述"),
+                        fieldWithPath("message").description("本地化错误描述"),
+                        fieldWithPath("path").description("资源路程")
+                )
         );
     }
 
