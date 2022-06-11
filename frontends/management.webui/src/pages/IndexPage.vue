@@ -4,9 +4,12 @@
       <q-btn flat stretch padding="0">
         <q-icon name="arrow_back" size="16px" class="q-ma-sm q-pa-xs text-grey-8"/>
       </q-btn>
-      <q-separator vertical inset/>
-      <q-toolbar-title class="text-body1 text-weight-bold">待处理订单</q-toolbar-title>
-      <q-input dense v-model="text" placeholder="搜索" class="text-body2 search-input q-mr-sm" input-class="q-pa-none">
+      <q-separator vertical class="q-my-xs"/>
+      <q-toolbar-title shrink class="text-body1 text-weight-bold gt-sm">{{ $t(route.name || '') }}</q-toolbar-title>
+      <q-separator vertical inset class="q-my-xs gt-sm"/>
+      <q-btn flat stretch color="primary" padding="sm" label="新增" class="page-header-btn"/>
+      <q-space/>
+      <q-input dense v-model="text" placeholder="搜索" class="text-body2 search-input q-mx-sm col-4" input-class="q-pa-none">
         <template #prepend>
           <q-btn flat dense class="q-ma-none">
             <q-icon name="search" size="20px"/>
@@ -33,6 +36,7 @@
 <script lang="ts">
 import {Meta} from 'components/models';
 import {defineComponent, ref} from 'vue';
+import {useRoute} from 'vue-router';
 
 export default defineComponent({
   name: 'IndexPage',
@@ -109,7 +113,7 @@ export default defineComponent({
       {id: '70', name: '张三', class: '班级', score: '分数', remarks: ''},
     ]);
 
-    return {meta, text: ref(''), columns, rows};
+    return {meta, text: ref(''), columns, rows, route: useRoute()};
   }
 });
 </script>

@@ -105,6 +105,11 @@ $page-header-height: 40px;
   }
 }
 
+.page-header-btn {
+  min-width: 40px;
+  font-size: map-get($body2, 'size');
+}
+
 html {
   font-size: 14px;
 }
