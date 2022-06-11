@@ -9,6 +9,7 @@ export class MainMenuItemModel {
   public readonly requiredAuthorities: string[] = [];
   public readonly level: number = 0;
   public readonly group: string = '';
+  public expanded = false;
 
   public constructor(route: RouteRecordRaw, level: number) {
     if (!route) return;
@@ -19,6 +20,18 @@ export class MainMenuItemModel {
     this.children = route.children?.map(x => new MainMenuItemModel(x, level + 1)) || [];
     this.level = level;
     this.group = level.toString();
+  }
+
+  public toggleExpansion(): void {
+    this.expanded = !this.expanded;
+  }
+
+  public expand(): void {
+    this.expanded = true;
+  }
+
+  public collapse(): void {
+    this.expanded = false;
   }
 
   public get isLeaf(): boolean {

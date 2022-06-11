@@ -1,9 +1,13 @@
 <template>
-  <q-drawer :model-value="model.menuVisible" side="left" show-if-above class="shadow-1" :mini="model.menuMinimized" :mini-width="48">
+  <q-drawer :model-value="model.menuVisible" side="left" show-if-above class="shadow-1" :mini="model.menuMinimized" :mini-width="48" @hide="model.hide()">
     <q-list padding class="non-selectable">
       <main-menu-item v-for="(item, index) in model.menuItems" :key="item.path + '|' + index" :model="item"/>
     </q-list>
-    <q-btn round outline color="secondary" size="xs" :icon="model.menuMinimized ? 'chevron_right' : 'chevron_left'" @click="model.toggleMenuMini()" class="mini-toggle-button"/>
+    <q-btn
+      v-if="$q.screen.gt.sm"
+      round outline color="secondary" size="xs" :icon="model.menuMinimized ? 'chevron_right' : 'chevron_left'" @click="model.toggleMenuMini()"
+      class="mini-toggle-button"
+    />
   </q-drawer>
 </template>
 

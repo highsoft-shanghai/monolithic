@@ -14,6 +14,10 @@ export class MainLayoutModel {
     this._menuMinimized = !this._menuMinimized;
   }
 
+  public hide(): void {
+    this._menuVisible = false;
+  }
+
   public get menuVisible(): boolean {
     return this._menuVisible;
   }
