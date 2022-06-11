@@ -6,7 +6,7 @@
       </q-btn>
       <q-separator dark vertical inset/>
       <q-icon name="troubleshoot" size="24px" class="q-ml-md"/>
-      <q-toolbar-title :shrink="$q.screen.gt.sm">{{ $t('app.title') }}</q-toolbar-title>
+      <q-toolbar-title shrink v-if="$q.screen.gt.sm">{{ $t('app.title') }}</q-toolbar-title>
       <header-breadcrumbs/>
       <div>Quasar v{{ $q.version }}</div>
     </q-toolbar>

@@ -1,5 +1,5 @@
 <template>
-  <q-toolbar-title class="text-body2 gt-sm">
+  <q-toolbar-title class="text-body2">
     <q-breadcrumbs gutter="xs">
       <q-breadcrumbs-el icon="home" to="/"/>
       <q-breadcrumbs-el v-for="item in route.matched.slice(1, route.matched.length - 1)" :label="$t(item.name || '')" :to="item.path" :key="item.path"/>
