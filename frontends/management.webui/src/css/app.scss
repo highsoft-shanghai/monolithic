@@ -92,6 +92,8 @@ $page-header-height: 40px;
 }
 
 .search-input {
+  max-width: 320px !important;
+
   .q-field__control {
     height: 28px;
   }
