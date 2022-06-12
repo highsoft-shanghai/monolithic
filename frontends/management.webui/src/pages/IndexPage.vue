@@ -1,28 +1,25 @@
 <template>
   <q-page class="relative-position q-pa-sm">
-    <q-toolbar class="bg-white page-title-bar q-pa-none shadow-light-2 non-selectable">
-      <q-btn flat stretch padding="0">
-        <q-icon name="arrow_back" size="16px" class="q-ma-sm q-pa-xs text-grey-8"/>
-      </q-btn>
-      <q-separator vertical class="q-my-xs"/>
-      <q-toolbar-title shrink class="text-body1 text-weight-bold gt-sm">{{ $t(route.name || '') }}</q-toolbar-title>
-      <q-separator vertical inset class="q-my-xs gt-sm"/>
-      <q-btn flat stretch color="primary" padding="sm" label="新增" class="page-header-btn"/>
-      <q-space/>
-      <q-input dense v-model="text" placeholder="搜索" class="text-body2 search-input q-mx-sm col-4" input-class="q-pa-none">
+    <div class="page-title-bar non-selectable row">
+      <q-input dense debounce="500" type="search" bg-color="white" model-value="text"
+               class="search-input shadow-light-2 col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2">
         <template #prepend>
-          <q-btn flat dense class="q-ma-none">
+          <q-btn flat stretch dense class="q-ma-none input-btn">
             <q-icon name="search" size="20px"/>
           </q-btn>
         </template>
         <template #append>
-          <q-btn flat dense class="q-ma-none">
+          <q-btn flat stretch dense class="q-ma-none input-btn">
             <q-icon name="o_filter_alt" size="20px"/>
           </q-btn>
         </template>
       </q-input>
-    </q-toolbar>
-    <q-card class="shadow-light-2 q-pa-sm page-content">
+      <q-space/>
+      <q-btn dense stretch flat color="primary" label="添加" class="page-header-btn shadow-light-2 q-px-md text-no-wrap" :class="{'q-ml-sm': $q.screen.gt.xs, 'q-mt-sm': !$q.screen.gt.xs}"/>
+      <q-btn dense stretch flat color="primary" label="编辑" class="page-header-btn shadow-light-2 q-px-md text-no-wrap" :class="{'q-ml-xs': true, 'q-mt-sm': !$q.screen.gt.xs}"/>
+      <q-btn dense stretch flat color="red" label="删除" class="page-header-btn shadow-light-2 q-px-md text-no-wrap" :class="{'q-ml-xs': true, 'q-mt-sm': !$q.screen.gt.xs}"/>
+    </div>
+    <q-card class="shadow-light-2 q-pa-sm page-content" :class="{'double-page-content-top': !$q.screen.gt.xs}">
       <q-table dense virtual-scroll separator="horizontal" :virtual-scroll-sticky-size-start="48" :columns="columns" :rows="rows" row-key="id"
                class="fit data-table">
         <template v-slot:loading>

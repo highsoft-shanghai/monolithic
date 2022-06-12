@@ -1,4 +1,4 @@
-$page-header-height: 40px;
+$page-header-height: 32px;
 
 .shadow-center-1 {
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2), 0 0 1px rgba(0, 0, 0, 0.14), 0 0 0 -1px rgba(0, 0, 0, 0.12);
@@ -9,7 +9,7 @@ $page-header-height: 40px;
 }
 
 .shadow-light-2 {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.04), 0 0 2px rgba(0, 0, 0, 0.02), 0 0 0 -2px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.06), 0 0 2px rgba(0, 0, 0, 0.03), 0 0 0 -2px rgba(0, 0, 0, 0.02);
 }
 
 .page-title-bar {
@@ -24,6 +24,10 @@ $page-header-height: 40px;
   left: map-get($space-sm, 'x');
   right: map-get($space-sm, 'x');
   bottom: map-get($space-sm, 'y');
+}
+
+.double-page-content-top {
+  top: map-get($space-sm, 'x') * 3 + $page-header-height * 2;
 }
 
 .q-table th {
@@ -92,24 +96,32 @@ $page-header-height: 40px;
 }
 
 .search-input {
-  max-width: 320px !important;
-
   .q-field__control {
-    height: 28px;
+    height: 32px;
   }
 
   .q-field__append {
-    height: 28px;
+    height: 32px;
+    padding-left: map-get($space-xs, 'x');
   }
 
   .q-field__prepend {
-    height: 28px;
+    height: 32px;
+    padding-right: map-get($space-xs, 'x');
   }
 }
 
-.page-header-btn {
-  min-width: 40px;
+.input-btn {
+  min-height: 32px;
+  min-width: 32px !important;
   font-size: map-get($body2, 'size');
+}
+
+.page-header-btn {
+  min-height: 32px;
+  min-width: 32px !important;
+  font-size: map-get($body2, 'size');
+  background-color: white;
 }
 
 html {
