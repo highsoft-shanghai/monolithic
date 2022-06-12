@@ -5,7 +5,7 @@ import {Screen} from 'quasar';
 export class MainLayoutModel {
   private _menuVisible = true;
   private _menuMinimized = false;
-  private _menuItems: MainMenuItemModel[] = routes[0].children?.map(x => new MainMenuItemModel(x, 0)) || [];
+  private _menuItems: MainMenuItemModel[] = routes[0].children?.map(x => new MainMenuItemModel(x, '/', 0)) || [];
 
   public constructor() {
     this._menuVisible = Screen.gt.sm;
@@ -13,6 +13,7 @@ export class MainLayoutModel {
 
   public toggleMenu(): void {
     this._menuVisible = !this._menuVisible;
+    console.log(this._menuItems);
   }
 
   public toggleMenuMini(): void {

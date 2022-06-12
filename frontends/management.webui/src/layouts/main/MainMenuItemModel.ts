@@ -11,15 +11,15 @@ export class MainMenuItemModel {
   public readonly group: string = '';
   public expanded = false;
 
-  public constructor(route: RouteRecordRaw, level: number) {
+  public constructor(route: RouteRecordRaw, parentPath: string, level: number) {
     if (!route) return;
     this.path = route.path;
     this.name = asString(route.name);
     this.icon = asString(route.meta?.['icon']);
     this.requiredAuthorities = route.meta?.['requiredAuthorities'] as string[] || [];
-    this.children = route.children?.map(x => new MainMenuItemModel(x, level + 1)) || [];
+    this.children = route.children?.map(x => new MainMenuItemModel(x, this.path, level + 1)) || [];
     this.level = level;
-    this.group = level.toString();
+    this.group = parentPath;
   }
 
   public toggleExpansion(): void {
