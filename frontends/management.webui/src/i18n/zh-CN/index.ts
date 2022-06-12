@@ -1,5 +1,6 @@
 export default {
   'app.title': '管理后台前端脚手架',
+  'message.back-home': '返回首页',
   'route.home': '首页',
   'route.workbench': '工作台',
   'route.workbench.home': '我的首页',
