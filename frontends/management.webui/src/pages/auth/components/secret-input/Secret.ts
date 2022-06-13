@@ -1,17 +1,7 @@
-import {TextInputModel} from 'components/input/text/TextInputModel';
 import {i18n} from 'boot/i18n'
+import {Text} from 'components/input/text/Text';
 
-export class Secret implements TextInputModel {
-  private _value = '';
-
-  public changeValue(value: string): void {
-    this._value = value;
-  }
-
-  public get value(): string {
-    return this._value;
-  }
-
+export class Secret extends Text {
   public get maxLength(): number {
     return 50;
   }
