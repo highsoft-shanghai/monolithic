@@ -1,5 +1,5 @@
-import {CredentialName} from 'pages/auth/components/CredentialName';
-import {Secret} from 'pages/auth/components/Secret';
+import {CredentialName} from 'pages/auth/components/credential-name-input/CredentialName';
+import {Secret} from 'pages/auth/components/secret-input/Secret';
 
 export class LoginModel {
   private _name = new CredentialName();

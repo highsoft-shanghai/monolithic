@@ -6,8 +6,8 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {LoginModel} from 'pages/auth/LoginModel';
-import CredentialNameInput from 'pages/auth/components/CredentialNameInput.vue';
-import SecretInput from 'pages/auth/components/SecretInput.vue';
+import CredentialNameInput from 'pages/auth/components/credential-name-input/CredentialNameInput.vue';
+import SecretInput from 'pages/auth/components/secret-input/SecretInput.vue';
 
 export default defineComponent({
   name: 'UsernamePasswordCredentialView',

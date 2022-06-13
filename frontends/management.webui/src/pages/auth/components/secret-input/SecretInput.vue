@@ -1,21 +1,20 @@
 <template>
-  <text-input :label="$t('label.credential.username-and-password')" icon="s_perm_identity" :model="model"/>
+  <text-input :label="$t('label.credential.secret')" icon="s_lock_outline" type="password" :model="model"/>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import {CredentialName} from 'pages/auth/components/CredentialName';
+import {Secret} from 'pages/auth/components/secret-input/Secret';
 import TextInput from 'components/input/text/TextInput.vue';
 
 export default defineComponent({
-  name: 'CredentialNameInput',
+  name: 'SecretInput',
   components: {TextInput},
   props: {
     model: {
-      type: CredentialName,
+      type: Secret,
       required: true
     }
   }
 });
 </script>
-`
