@@ -1,7 +1,7 @@
 <template>
   <q-drawer :model-value="model.menuVisible" side="left" show-if-above class="shadow-1" :mini="model.menuMinimized" :mini-width="48" @hide="model.hide()">
     <q-list padding class="non-selectable">
-      <main-menu-item v-for="(item, index) in model.menuItems" :key="item.path + '|' + index" :model="item"/>
+      <main-menu-item v-for="(item, index) in model.menuItems" :key="item.path + '|' + index" :model="item" :mini="model.menuMinimized"/>
     </q-list>
     <q-btn
       v-if="$q.screen.gt.sm"

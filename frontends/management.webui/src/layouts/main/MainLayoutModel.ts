@@ -13,7 +13,6 @@ export class MainLayoutModel {
 
   public toggleMenu(): void {
     this._menuVisible = !this._menuVisible;
-    console.log(this._menuItems);
   }
 
   public toggleMenuMini(): void {

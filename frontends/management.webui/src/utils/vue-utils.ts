@@ -1,5 +1,5 @@
-import {ref, Ref} from 'vue';
+import {reactive} from 'vue';
 
-export function useModel<Model extends object>(model: Model): Ref<Model> {
-  return ref(model) as Ref<Model>;
+export function useModel<Model extends object>(model: Model): Model {
+  return reactive(model) as Model;
 }

@@ -11,4 +11,6 @@ export default {
   'route.persons': '人员管理',
   'route.persons.persons': '全部人员',
   'route.persons.historic-persons': '历史人员',
+  'error.login-name-required': '请输入手机号、邮箱或用户名',
+  'error.password-required': '请输入密码',
 };

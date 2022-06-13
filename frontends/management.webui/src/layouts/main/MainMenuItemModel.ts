@@ -34,6 +34,10 @@ export class MainMenuItemModel {
     this.expanded = false;
   }
 
+  public insetLevel(mini: boolean): number | undefined {
+    return mini ? undefined : (this.level / 2 - 0.1428572);
+  }
+
   public get isLeaf(): boolean {
     return !this.children.length;
   }
