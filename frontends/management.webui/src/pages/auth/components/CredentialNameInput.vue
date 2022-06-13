@@ -1,18 +1,15 @@
 <template>
-  <q-input :model-value="model.value" @update:model-value="model.changeValue($event)" :maxlength="model.maxLength" label="手机号/邮箱/用户名" :rules="model.rules">
-    <template #prepend>
-      <q-icon name="s_perm_identity"/>
-    </template>
-  </q-input>
+  <text-input :label="$t('label.credential.username-and-password')" icon="s_perm_identity" :model="model"/>
 </template>
 
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {CredentialName} from 'pages/auth/components/CredentialName';
+import TextInput from 'components/input/text/TextInput.vue';
 
 export default defineComponent({
   name: 'CredentialNameInput',
-  components: {},
+  components: {TextInput},
   props: {
     model: {
       type: CredentialName,

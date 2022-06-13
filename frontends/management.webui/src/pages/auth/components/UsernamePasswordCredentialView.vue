@@ -1,6 +1,6 @@
 <template>
-  <credential-name-input :model="model.name2" class="col-8"/>
-  <secret-input :model="model.secret2" class="col-8"/>
+  <credential-name-input :model="model.name" class="col-8"/>
+  <secret-input :model="model.secret" class="col-8"/>
 </template>
 
 <script lang="ts">

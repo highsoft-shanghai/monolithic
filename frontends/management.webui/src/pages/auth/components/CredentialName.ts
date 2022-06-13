@@ -1,4 +1,4 @@
-import {TextInputModel} from 'pages/auth/components/TextInputModel';
+import {TextInputModel} from 'components/input/text/TextInputModel';
 import {i18n} from 'boot/i18n'
 
 export class CredentialName implements TextInputModel {
