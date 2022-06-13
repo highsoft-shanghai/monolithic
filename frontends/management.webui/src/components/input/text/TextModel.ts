@@ -1,4 +1,4 @@
-export interface TextInputModel {
+export interface TextModel {
   readonly changeValue: (value: string) => void;
   readonly value: string;
   readonly maxLength: number | undefined;

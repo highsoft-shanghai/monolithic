@@ -8,14 +8,14 @@
 
 <script lang="ts">
 import {defineComponent, PropType} from 'vue';
-import {TextInputModel} from 'components/input/text/TextInputModel';
+import {TextModel} from 'components/input/text/TextInputModel';
 
 export default defineComponent({
   name: 'TextInput',
   components: {},
   props: {
     model: {
-      type: Object as PropType<TextInputModel>,
+      type: Object as PropType<TextModel>,
       required: true
     },
     label: {

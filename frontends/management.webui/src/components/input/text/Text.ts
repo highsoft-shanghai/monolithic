@@ -1,6 +1,6 @@
-import {TextInputModel} from 'components/input/text/TextInputModel';
+import {TextModel} from 'components/input/text/TextModel';
 
-export class Text implements TextInputModel {
+export class Text implements TextModel {
   private _value = '';
 
   public changeValue(value: string): void {
