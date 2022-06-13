@@ -1,6 +1,5 @@
 <template>
-  <q-input :model-value="model.value" @update:model-value="model.changeValue($event)" :type="type" :maxlength="model.maxLength" :label="label"
-           :rules="model.rules">
+  <q-input :model-value="model.value" @update:model-value="model.changeValue($event)" :type="type" :maxlength="model.maxLength" :label="label" :rules="model.rules">
     <template v-if="!!icon" #prepend>
       <q-icon :name="icon"/>
     </template>
