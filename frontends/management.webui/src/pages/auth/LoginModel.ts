@@ -1,7 +1,9 @@
 import {CredentialName} from 'pages/auth/components/CredentialName';
+import {Secret} from 'pages/auth/components/Secret';
 
 export class LoginModel {
   private _name2 = new CredentialName();
+  private _secret2 = new Secret();
   private _name = '';
   private _secret = '';
 
@@ -23,5 +25,9 @@ export class LoginModel {
 
   public get name2(): CredentialName {
     return this._name2;
+  }
+
+  public get secret2(): Secret {
+    return this._secret2;
   }
 }

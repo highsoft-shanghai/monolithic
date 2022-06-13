@@ -1,5 +1,5 @@
 <template>
-  <q-input :model-value="model.value" @update:model-value="model.changeValue($event)" maxlength="100" label="手机号/邮箱/用户名" :rules="model.rules">
+  <q-input :model-value="model.value" @update:model-value="model.changeValue($event)" :maxlength="model.maxLength" label="手机号/邮箱/用户名" :rules="model.rules">
     <template #prepend>
       <q-icon name="s_perm_identity"/>
     </template>
