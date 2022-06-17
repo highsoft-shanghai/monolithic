@@ -13,6 +13,7 @@ export default {
   'route.persons.historic-persons': '历史人员',
   'label.credential.username-and-password': '手机号/邮箱/用户名',
   'label.credential.secret': '密码',
+  'label.login.tc': '同意《{0}》用户协议',
   'error.login-name-required': '请输入手机号、邮箱或用户名',
   'error.password-required': '请输入密码',
 };

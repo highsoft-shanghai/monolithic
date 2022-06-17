@@ -5,7 +5,7 @@
     </q-list>
     <q-btn
       v-if="$q.screen.gt.sm"
-      round outline color="secondary" size="xs" :icon="model.menuMinimized ? 'chevron_right' : 'chevron_left'" @click="model.toggleMenuMini()"
+      round outline size="6px" color="secondary" :icon="model.menuMinimized ? 'chevron_right' : 'chevron_left'" @click="model.toggleMenuMini()"
       class="mini-toggle-button"
     />
   </q-drawer>
@@ -28,7 +28,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .mini-toggle-button {
   position: absolute;
-  bottom: map-get($space-xs, 'y') * 3;
-  right: map-get($space-xs, 'x') * 3;
+  bottom: 15px;
+  right: 15px;
 }
 </style>

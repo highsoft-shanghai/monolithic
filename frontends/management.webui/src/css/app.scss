@@ -113,6 +113,10 @@ $page-header-height: 32px;
     height: 32px;
     padding-right: map-get($space-xs, 'x');
   }
+
+  .q-field__control:before {
+    border-bottom: none !important;
+  }
 }
 
 .input-btn {

@@ -9,9 +9,9 @@
         <app-logo size="40px"/>
         <h4 class="q-pl-sm">{{ $t('app.title') }}</h4>
       </div>
-      <div class="col row content-start justify-center q-gutter-md">
+      <div class="col row content-start justify-center q-gutter-sm">
         <username-password-credential-view :model="model"/>
-        <q-checkbox size="xs" :model-value="false" :label="`同意《${$t('app.title')}》用户协议`" class="col-8 q-pa-none q-ml-sm text-primary"/>
+        <q-checkbox size="xs" :model-value="false" :label="tc" class="col-8 q-pa-none text-primary"/>
         <q-btn color="primary" label="登录" class="col-8"/>
       </div>
     </div>
@@ -24,12 +24,14 @@ import AppLogo from 'components/AppLogo.vue';
 import UsernamePasswordCredentialView from 'pages/auth/components/UsernamePasswordCredentialView.vue';
 import {useModel} from 'src/utils/vue-utils';
 import {LoginModel} from 'pages/auth/LoginModel';
+import {useI18n} from 'vue-i18n';
 
 export default defineComponent({
   name: 'LoginPage',
   components: {UsernamePasswordCredentialView, AppLogo},
   setup() {
-    return {model: useModel(new LoginModel())};
+    const i18n = useI18n();
+    return {model: useModel(new LoginModel()), tc: i18n.t('label.login.tc', [i18n.t('app.title')])};
   }
 });
 </script>
