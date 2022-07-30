@@ -1,14 +1,14 @@
 package ltd.highsoft.monolithic.usecases.iam;
 
 import ltd.highsoft.frameworks.test.web.*;
-import ltd.highsoft.monolithic.IntegrationTest;
+import ltd.highsoft.monolithic.*;
 import org.junit.jupiter.api.Test;
 
 import static ltd.highsoft.frameworks.test.web.Documentation.doc;
 import static org.hamcrest.Matchers.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 
-public class GetAccessTokenContentUseCaseTest extends IntegrationTest {
+public class GetAccessTokenContentUseCaseTest extends ApiTest {
 
     @Test
     @WithGrantedAuthorities({"feature-1", "feature-2"})
@@ -17,7 +17,8 @@ public class GetAccessTokenContentUseCaseTest extends IntegrationTest {
         response.statusCode(is(200)).body("accessToken", is("tester-token-id")).body("authorities", hasItems("feature-1", "feature-2"));
     }
 
-    private Documentation document() {
+    @Override
+    public Documentation document() {
         return doc("access-tokens.current.get",
             responseFields(
                 fieldWithPath("accessToken").description("访问令牌标识"),
