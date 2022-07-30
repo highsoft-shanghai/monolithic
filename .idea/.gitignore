@@ -18,3 +18,4 @@
 # Editor-based HTTP Client requests
 /httpRequests/
 /libraries-with-intellij-classes.xml
+/modules.xml
