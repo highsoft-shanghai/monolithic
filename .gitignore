@@ -23,6 +23,7 @@ bin/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+**/yarn.lock
 
 ### NetBeans ###
 /nbproject/private/

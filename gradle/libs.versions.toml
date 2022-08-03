@@ -1,5 +1,4 @@
 [versions]
-spring-dependency-management = "1.0.11.RELEASE"
 spring-boot = "2.6.7"
 spring-data-commons = "2.6.4"
 spring-restdocs = "2.0.6.RELEASE"
@@ -22,9 +21,6 @@ test-asciidoctor = "3.3.2"
 logging-logback = "1.2.11"
 
 [libraries]
-spring-dependency-management-plugin = { module = "io.spring.gradle:dependency-management-plugin", version.ref = "spring-dependency-management" }
-spring-boot-plugin = { module = "org.springframework.boot:spring-boot-gradle-plugin", version.ref = "spring-boot" }
-asciidoctor-plugin = { module = "org.asciidoctor:asciidoctor-gradle-jvm", version.ref = "test-asciidoctor" }
 spring-boot-web = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "spring-boot" }
 spring-boot-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator", version.ref = "spring-boot" }
 spring-data-commons = {module = "org.springframework.data:spring-data-commons", version.ref = "spring-data-commons"}

@@ -5,7 +5,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath(project.extensions.getByType(VersionCatalogsExtension).named("libs").findLibrary("asciidoctor-plugin").get())
+        classpath("org.asciidoctor:asciidoctor-gradle-jvm:3.3.2")
     }
 }
 
@@ -21,6 +21,7 @@ dependencies {
     implementation libs.spring.boot.web
     testImplementation libs.test.spring.boot.test
     testImplementation libs.test.spring.restdocs.restassured
+    testImplementation project(":frameworks.test.context")
 }
 
 tasks.named('test') {
