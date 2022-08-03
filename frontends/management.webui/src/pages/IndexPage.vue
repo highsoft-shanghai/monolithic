@@ -1,25 +1,25 @@
 <template>
   <q-page class="relative-position q-pa-sm">
-    <q-toolbar class="bg-white page-title-bar q-pa-none shadow-light-2 non-selectable">
-      <q-btn flat stretch padding="0">
-        <q-icon name="arrow_back" size="16px" class="q-ma-sm q-pa-xs text-grey-8"/>
-      </q-btn>
-      <q-separator vertical inset/>
-      <q-toolbar-title class="text-body1 text-weight-bold">待处理订单</q-toolbar-title>
-      <q-input dense v-model="text" placeholder="搜索" class="text-body2 search-input q-mr-sm" input-class="q-pa-none">
+    <div class="page-title-bar non-selectable row">
+      <q-input dense debounce="500" type="search" bg-color="white" model-value="text"
+               class="search-input shadow-light-2 col-12 col-sm-5 col-md-4 col-lg-3 col-xl-2">
         <template #prepend>
-          <q-btn flat dense class="q-ma-none">
+          <q-btn flat stretch dense class="q-ma-none input-btn">
             <q-icon name="search" size="20px"/>
           </q-btn>
         </template>
         <template #append>
-          <q-btn flat dense class="q-ma-none">
+          <q-btn flat stretch dense class="q-ma-none input-btn">
             <q-icon name="o_filter_alt" size="20px"/>
           </q-btn>
         </template>
       </q-input>
-    </q-toolbar>
-    <q-card class="shadow-light-2 q-pa-sm page-content">
+      <q-space/>
+      <q-btn dense stretch flat color="primary" label="添加" class="page-header-btn shadow-light-2 q-px-md text-no-wrap" :class="{'q-ml-sm': $q.screen.gt.xs, 'q-mt-sm': !$q.screen.gt.xs}"/>
+      <q-btn dense stretch flat color="primary" label="编辑" class="page-header-btn shadow-light-2 q-px-md text-no-wrap" :class="{'q-ml-xs': true, 'q-mt-sm': !$q.screen.gt.xs}"/>
+      <q-btn dense stretch flat color="red" label="删除" class="page-header-btn shadow-light-2 q-px-md text-no-wrap" :class="{'q-ml-xs': true, 'q-mt-sm': !$q.screen.gt.xs}"/>
+    </div>
+    <q-card class="shadow-light-2 q-pa-sm page-content" :class="{'double-page-content-top': !$q.screen.gt.xs}">
       <q-table dense virtual-scroll separator="horizontal" :virtual-scroll-sticky-size-start="48" :columns="columns" :rows="rows" row-key="id"
                class="fit data-table">
         <template v-slot:loading>
@@ -33,6 +33,7 @@
 <script lang="ts">
 import {Meta} from 'components/models';
 import {defineComponent, ref} from 'vue';
+import {useRoute} from 'vue-router';
 
 export default defineComponent({
   name: 'IndexPage',
@@ -109,7 +110,7 @@ export default defineComponent({
       {id: '70', name: '张三', class: '班级', score: '分数', remarks: ''},
     ]);
 
-    return {meta, text: ref(''), columns, rows};
+    return {meta, text: ref(''), columns, rows, route: useRoute()};
   }
 });
 </script>

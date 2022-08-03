@@ -1,7 +1,19 @@
 export default {
   'app.title': '管理后台前端脚手架',
+  'message.back-home': '返回首页',
   'route.home': '首页',
-  'route.workbench': '我的工作台',
-  'route.order-management': '订单管理',
-  'route.pending-orders': '待处理订单'
+  'route.workbench': '工作台',
+  'route.workbench.home': '我的首页',
+  'route.workbench.others': '其他',
+  'route.orders': '订单管理',
+  'route.orders.pending-orders': '待处理订单',
+  'route.orders.orders': '全部订单',
+  'route.persons': '人员管理',
+  'route.persons.persons': '全部人员',
+  'route.persons.historic-persons': '历史人员',
+  'label.credential.username-and-password': '手机号/邮箱/用户名',
+  'label.credential.secret': '密码',
+  'label.login.tc': '同意《{0}》用户协议',
+  'error.login-name-required': '请输入手机号、邮箱或用户名',
+  'error.password-required': '请输入密码',
 };
