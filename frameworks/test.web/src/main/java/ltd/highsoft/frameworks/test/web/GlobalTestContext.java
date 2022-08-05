@@ -21,7 +21,7 @@ public final class GlobalTestContext {
     }
 
     @VisibleForTesting
-    protected static void reset() {
+    static void reset() {
         INSTANCE.context = null;
     }
 
