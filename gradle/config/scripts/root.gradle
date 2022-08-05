@@ -1,6 +1,18 @@
 apply from: "$rootDir/gradle/config/scripts/web.gradle"
 
 dependencies {
+    implementation project(":frameworks.domain.core")
+    implementation project(":frameworks.application.core")
+    implementation project(":frameworks.security.core")
+    implementation project(":frameworks.application.spring")
+    implementation libs.spring.boot.data.jpa
+    implementation libs.spring.boot.data.mongodb
+    implementation libs.spring.boot.quartz
+    implementation libs.migration.flyway
+    runtimeOnly libs.persistence.postgresql
+    testImplementation project(":frameworks.test.mongo")
+    testImplementation project(":frameworks.test.postgres")
+    testImplementation project(":frameworks.test.moco")
     testImplementation project(":frameworks.test.web")
     testImplementation libs.test.testcontainers.junit.jupiter
 }
