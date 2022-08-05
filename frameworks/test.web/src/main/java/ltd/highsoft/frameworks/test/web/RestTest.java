@@ -18,6 +18,7 @@ import javax.annotation.Nullable;
 import java.lang.reflect.Method;
 
 import static ltd.highsoft.frameworks.test.web.ApiDocUtils.apiHeader;
+import static ltd.highsoft.frameworks.test.web.AuthRequired.authRequired;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
 import static org.springframework.restdocs.restassured3.RestAssuredRestDocumentation.*;
 
@@ -77,8 +78,7 @@ public class RestTest {
 
     private Filter docFilter(Documentation doc) {
         if (doc == null) return EmptyFilter.INSTANCE;
-        var authRequired = GlobalTestContext.token().isPresent();
-        return document(doc.identifier(), ArrayUtils.addAll(doc.snippets(), apiHeader(authRequired), new ApiSnippet()));
+        return document(doc.identifier(), ArrayUtils.addAll(doc.snippets(), apiHeader(authRequired()), new ApiSnippet()));
     }
 
     private RestAssuredOperationPreprocessorsConfigurer documentationFilter() {

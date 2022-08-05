@@ -3,6 +3,7 @@ package ltd.highsoft.frameworks.test.web;
 import ltd.highsoft.frameworks.context.core.SimpleUserContext;
 import ltd.highsoft.frameworks.domain.core.Identity;
 import ltd.highsoft.frameworks.security.core.*;
+import org.assertj.core.util.VisibleForTesting;
 
 import java.util.Optional;
 
@@ -17,6 +18,11 @@ public final class GlobalTestContext {
 
     public static Optional<String> token() {
         return context().map(Context::securityContext).map(SecurityContext::token);
+    }
+
+    @VisibleForTesting
+    protected static void reset() {
+        INSTANCE.context = null;
     }
 
     public static void setup(GrantedAuthorities grantedAuthorities) {
