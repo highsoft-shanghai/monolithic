@@ -45,6 +45,7 @@ public class FieldsTest {
         void should_domain_field_check() {
             DomainField<String> field = new DomainField<>("Hello", new DomainFieldRules<>());
             assertDoesNotThrow(field::verify);
+            assertEquals("Hello", field.get());
         }
 
     }
