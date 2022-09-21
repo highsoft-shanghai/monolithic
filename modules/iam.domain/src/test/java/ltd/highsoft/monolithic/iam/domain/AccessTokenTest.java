@@ -3,12 +3,12 @@ package ltd.highsoft.monolithic.iam.domain;
 import ltd.highsoft.frameworks.context.core.SimpleUserContext;
 import ltd.highsoft.frameworks.domain.core.Identity;
 import ltd.highsoft.frameworks.security.core.*;
-import ltd.highsoft.frameworks.test.context.WithFixedGlobalIdGenerator;
+import ltd.highsoft.frameworks.test.context.WithId;
 import org.junit.jupiter.api.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@WithFixedGlobalIdGenerator("fixed-id")
+@WithId("fixed-id")
 class AccessTokenTest {
 
     public static final Identity KITE_AT_HIGHSOFT = new Identity("kite@highsoft", "Kite");

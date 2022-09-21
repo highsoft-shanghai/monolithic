@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@WithFixedGlobalIdGenerator(value = "a-fixed-id")
+@WithId(value = "a-fixed-id")
 public class GlobalIdGeneratorExtensionTest {
 
     @Test

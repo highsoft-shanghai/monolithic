@@ -8,7 +8,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 @ExtendWith(GlobalIdGeneratorExtension.class)
-public @interface WithFixedGlobalIdGenerator {
+public @interface WithId {
 
     String value();
 
