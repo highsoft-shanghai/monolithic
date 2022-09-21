@@ -8,11 +8,11 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 @Component
-public class MongoAccessTokenRepository implements AccessTokens {
+public class MongoAccessTokens implements AccessTokens {
 
     private final MongoAggregates<MongoAccessToken, AccessToken> aggregates;
 
-    public MongoAccessTokenRepository(MongoTemplate mongoTemplate) {
+    public MongoAccessTokens(MongoTemplate mongoTemplate) {
         aggregates = new MongoAggregates<>(mongoTemplate, MongoAccessToken.class, MongoAccessToken::new, MongoAccessToken::asDomain);
     }
 

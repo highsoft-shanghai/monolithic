@@ -17,6 +17,13 @@ class ListManyTest {
     }
 
     @Test
+    void should_list_many_add() {
+        AlreadyHave<TestAggregate> aggregates = new AlreadyHave<>(Lists.newArrayList(new TestAggregate()));
+        aggregates.add(new TestAggregate());
+        assertThat(aggregates.getAll()).hasSize(2);
+    }
+
+    @Test
     void should_remove_in_already_have() {
         Many<TestAggregate> aggregates = new AlreadyHave<>(Lists.newArrayList(new TestAggregate()));
         aggregates.remove("1");

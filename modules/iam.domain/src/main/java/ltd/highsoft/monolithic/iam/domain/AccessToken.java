@@ -38,10 +38,6 @@ public final class AccessToken implements Context, Aggregate {
         owner.verify();
     }
 
-    public AccessTokenOwner owner() {
-        return owner;
-    }
-
     public String token() {
         return id();
     }
@@ -51,18 +47,25 @@ public final class AccessToken implements Context, Aggregate {
         return this.id.get();
     }
 
-    public GrantedAuthorities grantedAuthorities() {
-        return grantedAuthorities;
-    }
-
     @Override
     public UserContext userContext() {
-        return owner().asUserContext();
+        return owner.asUserContext();
     }
 
     @Override
     public SecurityContext securityContext() {
-        return new SimpleSecurityContext(token(), grantedAuthorities());
+        return new SimpleSecurityContext(token(), grantedAuthorities);
+    }
+
+    public void fullContent(ValueSink sink) {
+        sink.put("id", id());
+        sink.put("owner.userAccount.id", owner.userAccount().id());
+        sink.put("owner.userAccount.name", owner.userAccount().name());
+        sink.put("owner.user.id", owner.user().id());
+        sink.put("owner.user.name", owner.user().name());
+        sink.put("owner.tenant.id", owner.tenant().id());
+        sink.put("owner.tenant.name", owner.tenant().name());
+        sink.put("authorities", grantedAuthorities.asSet());
     }
 
     public void content(ValueSink sink) {

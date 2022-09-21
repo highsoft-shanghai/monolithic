@@ -24,13 +24,8 @@ class AccessTokenTest {
     }
 
     @Test
-    void should_be_able_to_carry_owner_info() {
-        assertThat(AccessToken.create(owner, authorities).owner()).isEqualTo(owner);
-    }
-
-    @Test
     void should_be_able_to_carry_granted_authorities() {
-        assertThat(AccessToken.create(owner, authorities).grantedAuthorities()).isEqualTo(authorities);
+        assertThat(AccessToken.create(owner, authorities).securityContext().grantedAuthorities()).isEqualTo(authorities);
     }
 
     @Test

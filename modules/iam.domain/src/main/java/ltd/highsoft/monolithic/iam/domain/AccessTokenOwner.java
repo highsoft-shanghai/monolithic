@@ -37,7 +37,7 @@ public class AccessTokenOwner {
     }
 
     public UserContext asUserContext() {
-        return new SimpleUserContext(userAccount(), user(), tenant());
+        return new SimpleUserContext(userAccount, user, tenant);
     }
 
     void verify() {

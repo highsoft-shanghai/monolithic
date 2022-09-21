@@ -8,7 +8,9 @@ import ltd.highsoft.monolithic.iam.domain.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.*;
 
-import java.util.Set;
+import java.util.*;
+
+import static ltd.highsoft.frameworks.domain.core.GlobalValueSinkFactory.createValueSink;
 
 @Document(collection = "access_tokens")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -23,15 +25,17 @@ public class MongoAccessToken implements Data<AccessToken> {
     private @Field(name = "tenant_name") String tenantName;
     private @Field(name = "granted_authorities") Set<String> grantedAuthorities;
 
+    @SuppressWarnings("unchecked")
     public MongoAccessToken(AccessToken accessToken) {
-        this.id = accessToken.token();
-        this.userAccountId = accessToken.owner().userAccount().id();
-        this.userAccountName = accessToken.owner().userAccount().name();
-        this.userId = accessToken.owner().user().id();
-        this.userName = accessToken.owner().user().name();
-        this.tenantId = accessToken.owner().tenant().id();
-        this.tenantName = accessToken.owner().tenant().name();
-        this.grantedAuthorities = accessToken.grantedAuthorities().asSet();
+        Map<String, Object> sinkMap = createValueSink(accessToken::fullContent).toMap();
+        this.id = (String) sinkMap.get("id");
+        this.userAccountId = (String) sinkMap.get("owner.userAccount.id");
+        this.userAccountName = (String) sinkMap.get("owner.userAccount.name");
+        this.userId = (String) sinkMap.get("owner.user.id");
+        this.userName = (String) sinkMap.get("owner.user.name");
+        this.tenantId = (String) sinkMap.get("owner.tenant.id");
+        this.tenantName = (String) sinkMap.get("owner.tenant.name");
+        this.grantedAuthorities = (Set<String>) sinkMap.get("authorities");
     }
 
     @Override
