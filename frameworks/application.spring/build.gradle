@@ -4,6 +4,7 @@ dependencies {
     api project(':frameworks.application.core')
     api project(':frameworks.security.core')
     api project(':frameworks.context.core')
+    api project(':frameworks.payload.core')
     implementation libs.spring.boot.web
     implementation libs.spring.boot.aop
     testImplementation libs.test.spring.boot.test
