@@ -1,6 +1,6 @@
 package ltd.highsoft.frameworks.security.core;
 
-import ltd.highsoft.frameworks.domain.core.AuthenticationException;
+import ltd.highsoft.frameworks.domain.core.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.Set;
@@ -12,8 +12,8 @@ class GrantedAuthoritiesTest {
 
     @Test
     void should_be_able_to_hold_authorities() {
-        assertThat(GrantedAuthorities.of("f1", "f2").asSet()).isEqualTo(Set.of("f1", "f2"));
-        assertThat(GrantedAuthorities.of(Set.of("f1", "f2")).asSet()).isEqualTo(Set.of("f1", "f2"));
+        assertThat(Testing.by(GrantedAuthorities.of("f1", "f2")).<Set<String>>get("authorities")).isEqualTo(Set.of("f1", "f2"));
+        assertThat(Testing.by(GrantedAuthorities.of(Set.of("f1", "f2"))).<Set<String>>get("authorities")).isEqualTo(Set.of("f1", "f2"));
     }
 
     @Test

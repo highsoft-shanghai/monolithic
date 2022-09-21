@@ -59,18 +59,13 @@ public final class AccessToken implements Context, Aggregate {
 
     public void fullContent(ValueSink sink) {
         sink.put("id", id());
-        sink.put("owner.userAccount.id", owner.asUserContext().userAccount().id());
-        sink.put("owner.userAccount.name", owner.asUserContext().userAccount().name());
-        sink.put("owner.user.id", owner.asUserContext().user().id());
-        sink.put("owner.user.name", owner.asUserContext().user().name());
-        sink.put("owner.tenant.id", owner.asUserContext().tenant().id());
-        sink.put("owner.tenant.name", owner.asUserContext().tenant().name());
-        sink.put("authorities", grantedAuthorities.asSet());
+        owner.fullContent(sink);
+        grantedAuthorities.fullContent(sink);
     }
 
     public void content(ValueSink sink) {
         sink.put("accessToken", token());
-        sink.put("authorities", grantedAuthorities.asSet());
+        grantedAuthorities.fullContent(sink);
     }
 
 }

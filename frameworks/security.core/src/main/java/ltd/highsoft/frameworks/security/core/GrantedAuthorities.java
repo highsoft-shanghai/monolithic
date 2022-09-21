@@ -2,7 +2,7 @@ package ltd.highsoft.frameworks.security.core;
 
 import com.google.common.collect.Sets;
 import lombok.EqualsAndHashCode;
-import ltd.highsoft.frameworks.domain.core.AuthenticationException;
+import ltd.highsoft.frameworks.domain.core.*;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -38,8 +38,8 @@ public final class GrantedAuthorities {
         throw new AuthorizationException(message("error.access-denied", requiredAuthorities, this));
     }
 
-    public Set<String> asSet() {
-        return authorities;
+    public void fullContent(ValueSink sink) {
+        sink.put("authorities", authorities);
     }
 
     public boolean isAnonymous() {
