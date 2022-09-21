@@ -1,6 +1,7 @@
 package ltd.highsoft.frameworks.domain.core.archtype;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AlreadyHave<Aggregate extends ltd.highsoft.frameworks.domain.core.archtype.Aggregate> implements Many<Aggregate> {
 
@@ -22,6 +23,11 @@ public class AlreadyHave<Aggregate extends ltd.highsoft.frameworks.domain.core.a
     @Override
     public void remove(String id) {
         this.aggregates.removeIf(o -> o.id().equals(id));
+    }
+
+    @Override
+    public List<String> ids() {
+        return this.aggregates.parallelStream().map(Aggregate::id).collect(Collectors.toList());
     }
 
     @Override

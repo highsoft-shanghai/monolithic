@@ -24,6 +24,12 @@ class ListManyTest {
     }
 
     @Test
+    void should_list_many_return_ids() {
+        AlreadyHave<TestAggregate> aggregates = new AlreadyHave<>(Lists.newArrayList(new TestAggregate()));
+        assertThat(aggregates.ids()).containsExactly("1");
+    }
+
+    @Test
     void should_remove_in_already_have() {
         Many<TestAggregate> aggregates = new AlreadyHave<>(Lists.newArrayList(new TestAggregate()));
         aggregates.remove("1");

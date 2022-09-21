@@ -32,6 +32,7 @@ public class NotHave<Aggregate extends ltd.highsoft.frameworks.domain.core.archt
         this.ids.remove(id);
     }
 
+    @Override
     public List<String> ids() {
         return this.ids;
     }
