@@ -86,7 +86,7 @@ public class MongoAggregates<
     }
 
     public List<Aggregate> list(Query query) {
-        return mongoTemplate.find(query, dataClass).parallelStream().map(ltd.highsoft.frameworks.persistence.mongo.Data::asDomain).collect(Collectors.toList());
+        return mongoTemplate.find(query, dataClass).parallelStream().map(asDomain).collect(Collectors.toList());
     }
 
     public Page<Aggregate> list(Query query, Pageable pageable) {
