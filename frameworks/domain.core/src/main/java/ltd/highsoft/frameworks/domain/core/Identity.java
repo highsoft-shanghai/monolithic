@@ -6,16 +6,16 @@ import lombok.*;
 @EqualsAndHashCode
 public class Identity {
 
-    private final String id;
+    private final Id id;
     private final String name;
 
     public Identity(String id, String name) {
-        this.id = id;
+        this.id = new Id(id);
         this.name = name;
     }
 
     public String id() {
-        return id;
+        return id.id();
     }
 
     public String name() {
