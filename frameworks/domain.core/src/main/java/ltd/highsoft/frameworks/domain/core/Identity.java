@@ -1,6 +1,7 @@
 package ltd.highsoft.frameworks.domain.core;
 
 import lombok.*;
+import ltd.highsoft.frameworks.domain.core.fields.Id;
 
 @ToString
 @EqualsAndHashCode

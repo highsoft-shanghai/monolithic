@@ -2,6 +2,7 @@ package ltd.highsoft.monolithic.iam.domain;
 
 import ltd.highsoft.frameworks.context.core.UserContext;
 import ltd.highsoft.frameworks.domain.core.*;
+import ltd.highsoft.frameworks.domain.core.fields.Id;
 import ltd.highsoft.frameworks.security.core.*;
 
 public final class AccessToken implements Context {

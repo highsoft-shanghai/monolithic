@@ -1,5 +1,6 @@
 package ltd.highsoft.frameworks.domain.core;
 
+import ltd.highsoft.frameworks.domain.core.fields.Id;
 import org.junit.jupiter.api.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
