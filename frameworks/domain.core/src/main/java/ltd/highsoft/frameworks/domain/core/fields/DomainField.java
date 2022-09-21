@@ -1,22 +1,20 @@
 package ltd.highsoft.frameworks.domain.core.fields;
 
-public abstract class DomainField<T> {
+public class DomainField<Type> {
 
-    private final T value;
-    private final String errorMessage;
+    private final Type value;
+    private final DomainFieldRules<Type> rules;
 
-    protected DomainField(T value, String errorMessage) {
+    protected DomainField(Type value, DomainFieldRules<Type> rules) {
         this.value = value;
-        this.errorMessage = errorMessage;
+        this.rules = rules;
     }
 
     public void verify() {
-        if (notAllowed()) throw new NotAllowedValueInDomainException(null);
+        rules.verify(value);
     }
 
-    public abstract boolean notAllowed();
-
-    public T get() {
+    public Type get() {
         return value;
     }
 

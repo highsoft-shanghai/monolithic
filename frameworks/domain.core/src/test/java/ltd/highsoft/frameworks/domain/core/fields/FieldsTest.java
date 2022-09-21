@@ -39,6 +39,17 @@ public class FieldsTest {
     }
 
     @Nested
+    class DomainFieldTest {
+
+        @Test
+        void should_domain_field_check() {
+            DomainField<String> field = new DomainField<>("Hello", new DomainFieldRules<>());
+            assertDoesNotThrow(field::verify);
+        }
+
+    }
+
+    @Nested
     class IdTest {
 
         @Test
