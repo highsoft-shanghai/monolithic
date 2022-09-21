@@ -16,7 +16,7 @@ import static org.springframework.data.mongodb.core.query.Query.query;
 
 public class MongoAggregates<
     Data extends ltd.highsoft.frameworks.persistence.mongo.Data<Aggregate>,
-    Aggregate extends ltd.highsoft.frameworks.domain.core.fields.Aggregate
+    Aggregate extends ltd.highsoft.frameworks.domain.core.archtype.Aggregate
     > {
 
     private final MongoTemplate mongoTemplate;

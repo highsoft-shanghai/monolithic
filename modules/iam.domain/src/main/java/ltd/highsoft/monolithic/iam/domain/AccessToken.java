@@ -1,8 +1,9 @@
 package ltd.highsoft.monolithic.iam.domain;
 
 import ltd.highsoft.frameworks.context.core.UserContext;
-import ltd.highsoft.frameworks.domain.core.*;
-import ltd.highsoft.frameworks.domain.core.fields.*;
+import ltd.highsoft.frameworks.domain.core.ValueSink;
+import ltd.highsoft.frameworks.domain.core.archtype.Aggregate;
+import ltd.highsoft.frameworks.domain.core.fields.Id;
 import ltd.highsoft.frameworks.security.core.*;
 
 public final class AccessToken implements Context, Aggregate {
@@ -42,7 +43,12 @@ public final class AccessToken implements Context, Aggregate {
     }
 
     public String token() {
-        return id.get();
+        return id();
+    }
+
+    @Override
+    public String id() {
+        return this.id.get();
     }
 
     public GrantedAuthorities grantedAuthorities() {
