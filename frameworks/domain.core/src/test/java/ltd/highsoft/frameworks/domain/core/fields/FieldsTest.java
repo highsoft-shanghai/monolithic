@@ -9,18 +9,31 @@ import static org.junit.jupiter.api.Assertions.*;
 public class FieldsTest {
 
     @Nested
-    class DomainFieldNotAllowedTest {
+    class DomainFieldRuleTest {
 
         @Test
         void should_allowed_verify_when_value_is_good() {
-            DomainFieldNotAllowed<String> allowed = DomainFieldNotAllowed.with(o -> false, "message");
-            assertDoesNotThrow(() -> allowed.verify("Hello"));
+            DomainFieldRule<String> rule = DomainFieldRule.with(o -> true, "message");
+            assertDoesNotThrow(() -> rule.verify("Hello"));
         }
 
         @Test
         void should_allowed_verify_when_value_is_not_good() {
-            DomainFieldNotAllowed<String> allowed = DomainFieldNotAllowed.with(o -> true, "message");
-            assertThrows(NotAllowedValueInDomainException.class, () -> allowed.verify("Hello"));
+            DomainFieldRule<String> rule = DomainFieldRule.with(o -> false, "message");
+            assertThrows(NotAllowedValueInDomainException.class, () -> rule.verify("Hello"), "message");
+        }
+
+    }
+
+    @Nested
+    class DomainFieldRulesTest {
+
+        @Test
+        void should_not_allowed_verify_value() {
+            DomainFieldRule<String> allowed = DomainFieldRule.with(o -> true, "message");
+            DomainFieldRules<String> rules = new DomainFieldRules<>();
+            rules.add(allowed);
+            assertDoesNotThrow(() -> rules.verify("Hello"));
         }
 
     }
