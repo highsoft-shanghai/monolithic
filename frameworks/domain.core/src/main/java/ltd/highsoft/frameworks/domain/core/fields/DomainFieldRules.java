@@ -14,7 +14,7 @@ public class DomainFieldRules<DomainFieldType> {
         this.rules.add(rule);
     }
 
-    public void verify(DomainFieldType value) {
+    void verify(DomainFieldType value) {
         this.rules.forEach(o -> o.verify(value));
     }
 

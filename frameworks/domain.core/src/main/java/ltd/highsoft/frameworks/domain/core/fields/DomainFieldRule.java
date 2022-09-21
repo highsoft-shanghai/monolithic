@@ -9,7 +9,7 @@ public final class DomainFieldRule<DomainFieldType> {
     private final Predicate<DomainFieldType> rule;
     private final String errorCode;
 
-    static <DomainFieldType> DomainFieldRule<DomainFieldType> with(final Predicate<DomainFieldType> notAllowed, final String errorMessage) {
+    public static <DomainFieldType> DomainFieldRule<DomainFieldType> with(final Predicate<DomainFieldType> notAllowed, final String errorMessage) {
         return new DomainFieldRule<>(notAllowed, errorMessage);
     }
 
