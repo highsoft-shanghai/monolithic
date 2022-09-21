@@ -77,7 +77,7 @@ public class FieldsTest {
         void should_domain_field_check() {
             DomainField<String> field = new DomainField<>("Hello");
             DomainFieldRule<String> rule = DomainFieldRule.with(o -> true, "error");
-            field.withRule(rule);
+            field.addRule(rule);
             assertDoesNotThrow(field::verify);
             assertEquals("Hello", field.get());
         }

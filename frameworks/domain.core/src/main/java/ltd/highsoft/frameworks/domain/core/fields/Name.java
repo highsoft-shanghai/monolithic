@@ -8,9 +8,9 @@ public class Name extends DomainField<String> {
     public Name(String name) {
         super(name);
         final int maxSize = 200;
-        withRule(anything().notNull());
-        withRule(string().notEmpty());
-        withRule(string().maxLength(maxSize));
+        addRule(anything().notNull());
+        addRule(string().notEmpty());
+        addRule(string().maxLength(maxSize));
     }
 
 }

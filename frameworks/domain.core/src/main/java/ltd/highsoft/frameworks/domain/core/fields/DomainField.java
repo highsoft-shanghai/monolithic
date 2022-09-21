@@ -13,7 +13,7 @@ public class DomainField<Type> {
         this.value = value;
     }
 
-    protected void withRule(DomainFieldRule<Type> rule) {
+    protected void addRule(DomainFieldRule<Type> rule) {
         this.rules.add(rule);
     }
 

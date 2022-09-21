@@ -14,9 +14,9 @@ public class Id extends DomainField<String> {
     public Id(String id) {
         super(id);
         final int uuidSize = 32;
-        withRule(anything().notNull());
-        withRule(string().notEmpty());
-        withRule(string().maxLength(uuidSize));
+        addRule(anything().notNull());
+        addRule(string().notEmpty());
+        addRule(string().maxLength(uuidSize));
     }
 
 }
