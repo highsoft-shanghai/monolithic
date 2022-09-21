@@ -1,8 +1,9 @@
 package ltd.highsoft.frameworks.domain.core.fields;
 
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import ltd.highsoft.frameworks.domain.core.GlobalIdGenerator;
 
+@ToString
 @EqualsAndHashCode
 public class Id {
 
