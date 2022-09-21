@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/access-tokens")
-public class AccessTokenController {
+public class AccessTokensApi {
 
     private @Resource GetAccessTokenContentUseCase getAccessTokenContentUseCase;
 

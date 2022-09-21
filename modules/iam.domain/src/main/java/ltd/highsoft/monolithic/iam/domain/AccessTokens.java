@@ -2,11 +2,11 @@ package ltd.highsoft.monolithic.iam.domain;
 
 import java.util.Optional;
 
-public interface AccessTokenRepository {
+public interface AccessTokens {
 
     Optional<AccessToken> optionalAccessTokenFor(String id);
 
-    void save(AccessToken accessToken);
+    void add(AccessToken accessToken);
 
     void remove(AccessToken accessToken);
 

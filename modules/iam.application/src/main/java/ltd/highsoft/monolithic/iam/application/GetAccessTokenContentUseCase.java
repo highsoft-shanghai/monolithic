@@ -3,7 +3,7 @@ package ltd.highsoft.monolithic.iam.application;
 import ltd.highsoft.frameworks.application.core.UseCase;
 import ltd.highsoft.frameworks.domain.core.ValueSink;
 import ltd.highsoft.frameworks.security.core.Authorities;
-import ltd.highsoft.monolithic.iam.domain.AccessTokenRepository;
+import ltd.highsoft.monolithic.iam.domain.AccessTokens;
 
 import java.util.Optional;
 
@@ -13,14 +13,14 @@ import static ltd.highsoft.frameworks.security.core.GlobalSecurityContext.securi
 @UseCase(requiredAuthorities = Authorities.AUTHENTICATED)
 public class GetAccessTokenContentUseCase {
 
-    private final AccessTokenRepository accessTokenRepository;
+    private final AccessTokens accessTokens;
 
-    public GetAccessTokenContentUseCase(AccessTokenRepository accessTokenRepository) {
-        this.accessTokenRepository = accessTokenRepository;
+    public GetAccessTokenContentUseCase(AccessTokens accessTokens) {
+        this.accessTokens = accessTokens;
     }
 
     public Optional<ValueSink> execute() {
-        var accessToken = accessTokenRepository.optionalAccessTokenFor(securityContext().token());
+        var accessToken = accessTokens.optionalAccessTokenFor(securityContext().token());
         return accessToken.map(token -> createValueSink(token::content));
     }
 

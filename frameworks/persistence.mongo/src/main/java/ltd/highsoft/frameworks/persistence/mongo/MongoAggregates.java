@@ -14,41 +14,41 @@ import java.util.stream.*;
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;
 
-public class MongoRepository<D, A> {
+public class MongoAggregates<Data, Aggregate> {
 
     private final MongoTemplate mongoTemplate;
-    private final Class<D> aggregateClass;
-    private final Function<A, D> asData;
-    private final Function<D, A> asDomain;
+    private final Class<Data> aggregateClass;
+    private final Function<Aggregate, Data> asData;
+    private final Function<Data, Aggregate> asDomain;
 
-    public MongoRepository(MongoTemplate mongoTemplate, Class<D> dataClass, Function<A, D> asData, Function<D, A> asDomain) {
+    public MongoAggregates(MongoTemplate mongoTemplate, Class<Data> dataClass, Function<Aggregate, Data> asData, Function<Data, Aggregate> asDomain) {
         this.mongoTemplate = mongoTemplate;
         this.aggregateClass = dataClass;
         this.asData = asData;
         this.asDomain = asDomain;
     }
 
-    public A get(String id) {
+    public Aggregate get(String id) {
         return asDomain.apply(ensureExistence(mongoTemplate.findById(id, aggregateClass), () -> id));
     }
 
-    public A get(Query query) {
+    public Aggregate get(Query query) {
         return asDomain.apply(ensureExistence(mongoTemplate.findOne(query, aggregateClass), query::toString));
     }
 
-    public Optional<A> getOptional(String id) {
+    public Optional<Aggregate> getOptional(String id) {
         return Optional.ofNullable(mongoTemplate.findById(id, aggregateClass)).map(asDomain);
     }
 
-    public Optional<A> getOptional(Query query) {
+    public Optional<Aggregate> getOptional(Query query) {
         return Optional.ofNullable(mongoTemplate.findOne(query, aggregateClass)).map(asDomain);
     }
 
-    public void put(A aggregate) {
+    public void add(Aggregate aggregate) {
         mongoTemplate.save(asData.apply(aggregate));
     }
 
-    public void putAll(List<A> aggregates) {
+    public void addAll(List<Aggregate> aggregates) {
         mongoTemplate.insertAll(aggregates.stream().map(asData).collect(Collectors.toList()));
     }
 
@@ -68,16 +68,16 @@ public class MongoRepository<D, A> {
         mongoTemplate.remove(query, aggregateClass);
     }
 
-    public List<A> list(Query query) {
+    public List<Aggregate> list(Query query) {
         return mongoTemplate.find(query, aggregateClass).stream().map(asDomain).collect(Collectors.toList());
     }
 
-    public Page<A> list(Query query, Pageable pageable) {
+    public Page<Aggregate> list(Query query, Pageable pageable) {
         var aggregates = mongoTemplate.find(Query.of(query).with(pageable), aggregateClass);
         return SpringPage.from(PageableExecutionUtils.getPage(aggregates, pageable, () -> mongoTemplate.count(query, aggregateClass)).map(asDomain));
     }
 
-    public Stream<A> stream(Query query) {
+    public Stream<Aggregate> stream(Query query) {
         return mongoTemplate.stream(query, aggregateClass).stream().map(asDomain);
     }
 
@@ -89,7 +89,7 @@ public class MongoRepository<D, A> {
         return mongoTemplate.count(Query.of(query), aggregateClass);
     }
 
-    private D ensureExistence(D aggregate, Supplier<String> queryString) {
+    private Data ensureExistence(Data aggregate, Supplier<String> queryString) {
         if (aggregate != null) return aggregate;
         throw new AggregateNotFoundException(aggregateClass.getSimpleName(), queryString.get());
     }

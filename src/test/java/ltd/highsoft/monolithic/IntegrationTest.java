@@ -15,12 +15,12 @@ import javax.annotation.Resource;
 @WithTestContainers(containers = {PostgresContainer.class, MongoContainer.class, MocoContainer.class})
 public abstract class IntegrationTest extends RestTest {
 
-    private @Resource AccessTokenRepository accessTokenRepository;
+    private @Resource AccessTokens accessTokens;
     private AccessToken accessToken;
 
     protected void removeAccessToken() {
         if (accessToken != null) {
-            accessTokenRepository.remove(accessToken);
+            accessTokens.remove(accessToken);
         }
     }
 
@@ -28,7 +28,7 @@ public abstract class IntegrationTest extends RestTest {
     void setupAccessToken() {
         GlobalTestContext.context().ifPresent(context -> {
             accessToken = AccessToken.restore(context.securityContext().token(), new AccessTokenOwner(context.userContext()), context.securityContext().grantedAuthorities());
-            accessTokenRepository.save(accessToken);
+            accessTokens.add(accessToken);
         });
     }
 

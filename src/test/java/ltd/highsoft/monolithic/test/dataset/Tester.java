@@ -17,14 +17,14 @@ public class Tester {
     private final String accessTokenId = "tester-access-token";
     private final GrantedAuthorities grantedAuthorities = GrantedAuthorities.of("feature-1", "feature-2");
     private final AccessToken accessToken = AccessToken.restore(accessTokenId, accessTokenOwner, grantedAuthorities);
-    private @Resource AccessTokenRepository accessTokenRepository;
+    private @Resource AccessTokens accessTokens;
 
     public void setup() {
-        accessTokenRepository.save(accessToken);
+        accessTokens.add(accessToken);
     }
 
     public void teardown() {
-        accessTokenRepository.remove(accessToken);
+        accessTokens.remove(accessToken);
     }
 
 }

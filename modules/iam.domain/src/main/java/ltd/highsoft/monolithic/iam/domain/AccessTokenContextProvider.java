@@ -6,15 +6,15 @@ import java.util.Optional;
 
 public class AccessTokenContextProvider implements ContextProvider {
 
-    private final AccessTokenRepository accessTokenRepository;
+    private final AccessTokens accessTokens;
 
-    public AccessTokenContextProvider(AccessTokenRepository accessTokenRepository) {
-        this.accessTokenRepository = accessTokenRepository;
+    public AccessTokenContextProvider(AccessTokens accessTokens) {
+        this.accessTokens = accessTokens;
     }
 
     @Override
     public Optional<Context> get(String id) {
-        return accessTokenRepository.optionalAccessTokenFor(id).map(x -> x);
+        return accessTokens.optionalAccessTokenFor(id).map(x -> x);
     }
 
 }

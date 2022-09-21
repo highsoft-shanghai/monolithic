@@ -5,7 +5,7 @@ import ltd.highsoft.frameworks.security.core.GrantedAuthorities;
 import ltd.highsoft.frameworks.test.mongo.MongoTest;
 import ltd.highsoft.monolithic.iam.domain.AccessToken;
 import ltd.highsoft.monolithic.iam.domain.AccessTokenOwner;
-import ltd.highsoft.monolithic.iam.domain.AccessTokenRepository;
+import ltd.highsoft.monolithic.iam.domain.AccessTokens;
 import ltd.highsoft.monolithic.iam.gateways.persistence.MongoAccessToken;
 import ltd.highsoft.monolithic.iam.gateways.persistence.MongoAccessTokenRepository;
 import org.junit.jupiter.api.Test;
@@ -24,8 +24,8 @@ public class MongoAccessTokenRepositoryTest extends MongoTest {
     void should_be_able_to_load_optional_access_tokens() {
         AccessToken accessToken = AccessToken.restore("test-token", new AccessTokenOwner(KITE_AT_HIGHSOFT, KITE, HIGHSOFT), GrantedAuthorities.of("f1", "f2"));
         mongoTemplate().save(new MongoAccessToken(accessToken));
-        AccessTokenRepository repository = new MongoAccessTokenRepository(mongoTemplate());
-        assertThat(repository.optionalAccessTokenFor("test-token")).usingRecursiveComparison().isEqualTo(Optional.of(accessToken));
+        AccessTokens accessTokens = new MongoAccessTokenRepository(mongoTemplate());
+        assertThat(accessTokens.optionalAccessTokenFor("test-token")).usingRecursiveComparison().isEqualTo(Optional.of(accessToken));
     }
 
 }
