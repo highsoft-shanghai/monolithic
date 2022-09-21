@@ -10,7 +10,7 @@ public interface Aggregates<Aggregate extends ltd.highsoft.frameworks.domain.cor
 
     void add(Aggregate aggregate);
 
-    void addAll(List<Aggregate> aggregates);
+    void addAll(Collection<Aggregate> aggregates);
 
     void remove(String id);
 
@@ -18,6 +18,6 @@ public interface Aggregates<Aggregate extends ltd.highsoft.frameworks.domain.cor
 
     void removeAll();
 
-    List<Aggregate> list(List<String> ids);
+    List<Aggregate> list(Collection<String> ids);
 
 }

@@ -57,7 +57,7 @@ public class MongoAggregates<
     }
 
     @Override
-    public void addAll(List<Aggregate> aggregates) {
+    public void addAll(Collection<Aggregate> aggregates) {
         mongoTemplate.insertAll(aggregates.stream().peek(Aggregate::verify).map(asData).collect(Collectors.toList()));
     }
 
@@ -81,7 +81,7 @@ public class MongoAggregates<
     }
 
     @Override
-    public List<Aggregate> list(List<String> ids) {
+    public List<Aggregate> list(Collection<String> ids) {
         return mongoTemplate.find(query(where("id").in(ids)), dataClass).parallelStream().map(asDomain).collect(Collectors.toList());
     }
 
