@@ -22,7 +22,6 @@ public class NotHas<Aggregate extends ltd.highsoft.frameworks.domain.core.archty
 
     @Override
     public void add(Aggregate aggregate) {
-        aggregates.add(aggregate);
         this.id = aggregate.id();
     }
 
