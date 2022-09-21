@@ -24,18 +24,6 @@ public class AccessTokenOwner {
         this.tenant = userContext.tenant();
     }
 
-    public Identity userAccount() {
-        return userAccount;
-    }
-
-    public Identity user() {
-        return user;
-    }
-
-    public Identity tenant() {
-        return tenant;
-    }
-
     public UserContext asUserContext() {
         return new SimpleUserContext(userAccount, user, tenant);
     }

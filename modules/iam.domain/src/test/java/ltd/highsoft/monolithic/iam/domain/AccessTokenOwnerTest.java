@@ -13,17 +13,17 @@ class AccessTokenOwnerTest {
 
     @Test
     void should_be_able_to_hold_user_account() {
-        assertThat(new AccessTokenOwner(ACCOUNT_OF_JOHN, JOHN, HIGHSOFT).userAccount()).isEqualTo(ACCOUNT_OF_JOHN);
+        assertThat(new AccessTokenOwner(ACCOUNT_OF_JOHN, JOHN, HIGHSOFT).asUserContext().userAccount()).isEqualTo(ACCOUNT_OF_JOHN);
     }
 
     @Test
     void should_be_able_to_hold_user() {
-        assertThat(new AccessTokenOwner(ACCOUNT_OF_JOHN, JOHN, HIGHSOFT).user()).isEqualTo(JOHN);
+        assertThat(new AccessTokenOwner(ACCOUNT_OF_JOHN, JOHN, HIGHSOFT).asUserContext().user()).isEqualTo(JOHN);
     }
 
     @Test
     void should_be_able_to_hold_tenant() {
-        assertThat(new AccessTokenOwner(ACCOUNT_OF_JOHN, JOHN, HIGHSOFT).tenant()).isEqualTo(HIGHSOFT);
+        assertThat(new AccessTokenOwner(ACCOUNT_OF_JOHN, JOHN, HIGHSOFT).asUserContext().tenant()).isEqualTo(HIGHSOFT);
     }
 
     @Test
