@@ -14,6 +14,11 @@ public class AlreadyHas<Aggregate extends ltd.highsoft.frameworks.domain.core.ar
     }
 
     @Override
+    public String id() {
+        return aggregate.id();
+    }
+
+    @Override
     public void add(Aggregate aggregate) {
         this.aggregate = aggregate;
     }

@@ -4,6 +4,8 @@ public interface One<Aggregate extends ltd.highsoft.frameworks.domain.core.archt
 
     Aggregate get();
 
+    String id();
+
     void add(Aggregate aggregate);
 
     void callOff();
