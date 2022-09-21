@@ -23,4 +23,16 @@ public class NotHave<Aggregate extends ltd.highsoft.frameworks.domain.core.archt
         return aggregates.list(this.ids);
     }
 
+    public void add(String id) {
+        this.ids.add(id);
+    }
+
+    public List<String> ids() {
+        return this.ids;
+    }
+
+    public void remove(String id) {
+        this.ids.remove(id);
+    }
+
 }
