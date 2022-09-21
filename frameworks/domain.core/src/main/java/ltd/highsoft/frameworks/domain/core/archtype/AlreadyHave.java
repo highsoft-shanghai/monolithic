@@ -2,11 +2,11 @@ package ltd.highsoft.frameworks.domain.core.archtype;
 
 import java.util.*;
 
-public class ListMany<Aggregate extends ltd.highsoft.frameworks.domain.core.archtype.Aggregate> implements Many<Aggregate> {
+public class AlreadyHave<Aggregate extends ltd.highsoft.frameworks.domain.core.archtype.Aggregate> implements Many<Aggregate> {
 
     private final List<Aggregate> aggregates;
 
-    public ListMany(List<Aggregate> aggregates) {
+    public AlreadyHave(List<Aggregate> aggregates) {
         this.aggregates = aggregates;
     }
 
@@ -16,13 +16,8 @@ public class ListMany<Aggregate extends ltd.highsoft.frameworks.domain.core.arch
     }
 
     @Override
-    public List<Aggregate> findAll() {
+    public List<Aggregate> getAll() {
         return this.aggregates;
-    }
-
-    @Override
-    public Iterator<Aggregate> iterator() {
-        return aggregates.iterator();
     }
 
 }

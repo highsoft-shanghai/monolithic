@@ -10,9 +10,8 @@ class ListManyTest {
 
     @Test
     void should_create_list_many() {
-        Many<TestAggregate> aggregates = new ListMany<>(List.of(new TestAggregate()));
-        assertThat(aggregates.findAll()).hasSize(1);
-        assertThat(aggregates.iterator()).isNotNull();
+        Many<TestAggregate> aggregates = new AlreadyHave<>(List.of(new TestAggregate()));
+        assertThat(aggregates.getAll()).hasSize(1);
         assertThat(aggregates.findOne("1")).isPresent();
     }
 

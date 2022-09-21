@@ -123,6 +123,7 @@ public class MongoRepositoryTest extends MongoTest {
         mongoTemplate().save(new MongoTestAggregate(new TestAggregate("2", "hello1")));
         mongoTemplate().save(new MongoTestAggregate(new TestAggregate("3", "hello2")));
         assertThat(aggregates.list(query(where("name").regex("hello")))).hasSize(3);
+        assertThat(aggregates.list(List.of("1", "2", "3"))).hasSize(3);
     }
 
     @Test
