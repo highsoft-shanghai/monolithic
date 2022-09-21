@@ -23,29 +23,31 @@ public class MongoAggregates<
     private final MongoTemplate mongoTemplate;
     private final Class<Data> dataClass;
     private final Function<Aggregate, Data> asData;
+    private final Function<Data, Aggregate> asDomain;
 
-    public MongoAggregates(MongoTemplate mongoTemplate, Class<Data> dataClass, Function<Aggregate, Data> asData) {
+    public MongoAggregates(MongoTemplate mongoTemplate, Class<Data> dataClass, Function<Aggregate, Data> asData, Function<Data, Aggregate> asDomain) {
         this.mongoTemplate = mongoTemplate;
         this.dataClass = dataClass;
         this.asData = asData;
+        this.asDomain = asDomain;
     }
 
     @Override
     public Aggregate get(String id) {
-        return ensureExistence(mongoTemplate.findById(id, dataClass), () -> id).asDomain();
+        return asDomain.apply(ensureExistence(mongoTemplate.findById(id, dataClass), () -> id));
     }
 
     public Aggregate get(Query query) {
-        return ensureExistence(mongoTemplate.findOne(query, dataClass), query::toString).asDomain();
+        return asDomain.apply(ensureExistence(mongoTemplate.findOne(query, dataClass), query::toString));
     }
 
     @Override
     public Optional<Aggregate> getOptional(String id) {
-        return Optional.ofNullable(mongoTemplate.findById(id, dataClass)).map(ltd.highsoft.frameworks.persistence.mongo.Data::asDomain);
+        return Optional.ofNullable(mongoTemplate.findById(id, dataClass)).map(asDomain);
     }
 
     public Optional<Aggregate> getOptional(Query query) {
-        return Optional.ofNullable(mongoTemplate.findOne(query, dataClass)).map(ltd.highsoft.frameworks.persistence.mongo.Data::asDomain);
+        return Optional.ofNullable(mongoTemplate.findOne(query, dataClass)).map(asDomain);
     }
 
     @Override
@@ -80,7 +82,7 @@ public class MongoAggregates<
 
     @Override
     public List<Aggregate> list(List<String> ids) {
-        return mongoTemplate.find(query(where("id").in(ids)), dataClass).parallelStream().map(ltd.highsoft.frameworks.persistence.mongo.Data::asDomain).collect(Collectors.toList());
+        return mongoTemplate.find(query(where("id").in(ids)), dataClass).parallelStream().map(asDomain).collect(Collectors.toList());
     }
 
     public List<Aggregate> list(Query query) {
@@ -89,11 +91,11 @@ public class MongoAggregates<
 
     public Page<Aggregate> list(Query query, Pageable pageable) {
         var aggregates = mongoTemplate.find(Query.of(query).with(pageable), dataClass);
-        return SpringPage.from(PageableExecutionUtils.getPage(aggregates, pageable, () -> mongoTemplate.count(query, dataClass)).map(ltd.highsoft.frameworks.persistence.mongo.Data::asDomain));
+        return SpringPage.from(PageableExecutionUtils.getPage(aggregates, pageable, () -> mongoTemplate.count(query, dataClass)).map(asDomain));
     }
 
     public Stream<Aggregate> stream(Query query) {
-        return mongoTemplate.stream(query, dataClass).stream().parallel().map(ltd.highsoft.frameworks.persistence.mongo.Data::asDomain);
+        return mongoTemplate.stream(query, dataClass).stream().parallel().map(asDomain);
     }
 
     public boolean exists(Query query) {
