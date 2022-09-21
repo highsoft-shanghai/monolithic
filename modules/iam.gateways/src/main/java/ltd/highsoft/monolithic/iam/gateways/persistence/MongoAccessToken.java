@@ -2,6 +2,7 @@ package ltd.highsoft.monolithic.iam.gateways.persistence;
 
 import lombok.*;
 import ltd.highsoft.frameworks.domain.core.Identity;
+import ltd.highsoft.frameworks.persistence.mongo.Data;
 import ltd.highsoft.frameworks.security.core.GrantedAuthorities;
 import ltd.highsoft.monolithic.iam.domain.*;
 import org.springframework.data.annotation.Id;
@@ -11,7 +12,7 @@ import java.util.Set;
 
 @Document(collection = "access_tokens")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class MongoAccessToken {
+public class MongoAccessToken implements Data<AccessToken> {
 
     private @Id String id;
     private @Field(name = "user_account_id") String userAccountId;
@@ -33,6 +34,7 @@ public class MongoAccessToken {
         this.grantedAuthorities = accessToken.grantedAuthorities().asSet();
     }
 
+    @Override
     public AccessToken asDomain() {
         return AccessToken.restore(
             id, new AccessTokenOwner(new Identity(userAccountId, userAccountName), new Identity(userId, userName), new Identity(tenantId, tenantName)),

@@ -40,4 +40,10 @@ public class AccessTokenOwner {
         return new SimpleUserContext(userAccount(), user(), tenant());
     }
 
+    void verify() {
+        userAccount.verify();
+        user.verify();
+        tenant.verify();
+    }
+
 }

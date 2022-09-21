@@ -1,10 +1,11 @@
 package ltd.highsoft.frameworks.persistence.mongo;
 
 import lombok.*;
+import ltd.highsoft.frameworks.domain.core.fields.Aggregate;
 
 @ToString
 @EqualsAndHashCode
-public class TestAggregate {
+public class TestAggregate implements Aggregate {
 
     private final String id;
     private final String name;
@@ -20,6 +21,10 @@ public class TestAggregate {
 
     public String name() {
         return name;
+    }
+
+    @Override
+    public void verify() {
     }
 
 }

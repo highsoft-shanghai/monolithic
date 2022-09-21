@@ -23,7 +23,7 @@ public class MongoRepositoryTest extends MongoTest {
 
     @BeforeEach
     void setUp() {
-        aggregates = new MongoAggregates<>(mongoTemplate(), MongoTestAggregate.class, MongoTestAggregate::new, MongoTestAggregate::asDomain);
+        aggregates = new MongoAggregates<>(mongoTemplate(), MongoTestAggregate.class, MongoTestAggregate::new);
     }
 
     @Test

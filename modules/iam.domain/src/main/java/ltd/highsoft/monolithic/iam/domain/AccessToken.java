@@ -2,10 +2,10 @@ package ltd.highsoft.monolithic.iam.domain;
 
 import ltd.highsoft.frameworks.context.core.UserContext;
 import ltd.highsoft.frameworks.domain.core.*;
-import ltd.highsoft.frameworks.domain.core.fields.Id;
+import ltd.highsoft.frameworks.domain.core.fields.*;
 import ltd.highsoft.frameworks.security.core.*;
 
-public final class AccessToken implements Context {
+public final class AccessToken implements Context, Aggregate {
 
     private final Id id;
     private final AccessTokenOwner owner;
@@ -29,6 +29,12 @@ public final class AccessToken implements Context {
         this.id = new Id();
         this.owner = owner;
         this.grantedAuthorities = grantedAuthorities;
+    }
+
+    @Override
+    public void verify() {
+        id.verify();
+        owner.verify();
     }
 
     public AccessTokenOwner owner() {

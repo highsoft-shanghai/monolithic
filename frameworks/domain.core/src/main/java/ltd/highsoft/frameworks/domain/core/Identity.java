@@ -23,4 +23,9 @@ public class Identity {
         return name.get();
     }
 
+    public void verify() {
+        id.verify();
+        name.verify();
+    }
+
 }

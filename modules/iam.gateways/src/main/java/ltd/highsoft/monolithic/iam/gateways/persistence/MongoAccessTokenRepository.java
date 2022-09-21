@@ -13,7 +13,7 @@ public class MongoAccessTokenRepository implements AccessTokens {
     private final MongoAggregates<MongoAccessToken, AccessToken> aggregates;
 
     public MongoAccessTokenRepository(MongoTemplate mongoTemplate) {
-        aggregates = new MongoAggregates<>(mongoTemplate, MongoAccessToken.class, MongoAccessToken::new, MongoAccessToken::asDomain);
+        aggregates = new MongoAggregates<>(mongoTemplate, MongoAccessToken.class, MongoAccessToken::new);
     }
 
     @Override
