@@ -1,15 +1,16 @@
 package ltd.highsoft.frameworks.domain.core.fields;
 
-public class Name {
+import static ltd.highsoft.frameworks.domain.core.fields.DomainFieldRule.Anything.anything;
+import static ltd.highsoft.frameworks.domain.core.fields.DomainFieldRule.StringThing.string;
 
-    private final String name;
+public class Name extends DomainField<String> {
 
     public Name(String name) {
-        this.name = name;
-    }
-
-    public String name() {
-        return name;
+        super(name);
+        final int maxSize = 200;
+        withRule(anything().notNull());
+        withRule(string().notEmpty());
+        withRule(string().maxLength(maxSize));
     }
 
 }

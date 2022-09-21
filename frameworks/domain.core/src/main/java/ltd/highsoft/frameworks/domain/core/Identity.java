@@ -20,7 +20,7 @@ public class Identity {
     }
 
     public String name() {
-        return name.name();
+        return name.get();
     }
 
 }

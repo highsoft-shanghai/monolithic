@@ -110,7 +110,7 @@ public class FieldsTest {
 
         @Test
         void should_create_name() {
-            assertEquals("Neil", new Name("Neil").name());
+            assertEquals("Neil", new Name("Neil").get());
         }
 
     }
