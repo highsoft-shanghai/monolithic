@@ -1,24 +1,19 @@
 package ltd.highsoft.frameworks.domain.core.fields;
 
-import lombok.*;
 import ltd.highsoft.frameworks.domain.core.GlobalIdGenerator;
 
-@ToString
-@EqualsAndHashCode
-public class Id {
+import static ltd.highsoft.frameworks.domain.core.fields.DomainFieldRule.*;
 
-    private final String id;
+public class Id extends DomainField<String> {
 
     public Id() {
         this(GlobalIdGenerator.nextId());
     }
 
     public Id(String id) {
-        this.id = id;
-    }
-
-    public String id() {
-        return id;
+        super(id);
+        this.withRule(notNull());
+        this.withRule(maxLength(32));
     }
 
 }

@@ -16,7 +16,7 @@ public class Identity {
     }
 
     public String id() {
-        return id.id();
+        return id.get();
     }
 
     public String name() {

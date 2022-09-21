@@ -20,12 +20,12 @@ class IdTest {
 
     @Test
     void should_create_uuid_id() {
-        assertThat(new Id().id()).hasSize(32);
+        assertThat(new Id().get()).hasSize(32);
     }
 
     @Test
     void should_create_id_by_customize() {
-        assertEquals("123", new Id("123").id());
+        assertEquals("123", new Id("123").get());
     }
 
 }

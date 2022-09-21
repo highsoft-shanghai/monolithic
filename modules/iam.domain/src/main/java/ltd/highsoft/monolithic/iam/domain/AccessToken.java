@@ -36,7 +36,7 @@ public final class AccessToken implements Context {
     }
 
     public String token() {
-        return id.id();
+        return id.get();
     }
 
     public GrantedAuthorities grantedAuthorities() {

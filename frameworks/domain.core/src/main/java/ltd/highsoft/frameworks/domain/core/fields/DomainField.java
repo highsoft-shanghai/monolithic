@@ -1,13 +1,20 @@
 package ltd.highsoft.frameworks.domain.core.fields;
 
+import lombok.*;
+
+@Getter
+@EqualsAndHashCode(exclude = "rules")
 public class DomainField<Type> {
 
     private final Type value;
-    private final DomainFieldRules<Type> rules;
+    private final DomainFieldRules<Type> rules = new DomainFieldRules<>();
 
-    protected DomainField(Type value, DomainFieldRules<Type> rules) {
+    protected DomainField(Type value) {
         this.value = value;
-        this.rules = rules;
+    }
+
+    protected void withRule(DomainFieldRule<Type> rule) {
+        this.rules.add(rule);
     }
 
     public void verify() {

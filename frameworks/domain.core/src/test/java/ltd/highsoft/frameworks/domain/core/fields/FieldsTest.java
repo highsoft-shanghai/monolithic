@@ -3,6 +3,7 @@ package ltd.highsoft.frameworks.domain.core.fields;
 import ltd.highsoft.frameworks.domain.core.*;
 import org.junit.jupiter.api.*;
 
+import static ltd.highsoft.frameworks.domain.core.fields.DomainFieldRule.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,6 +22,26 @@ public class FieldsTest {
         void should_allowed_verify_when_value_is_not_good() {
             DomainFieldRule<String> rule = DomainFieldRule.with(o -> false, "message");
             assertThrows(NotAllowedValueInDomainException.class, () -> rule.verify("Hello"), "message");
+        }
+
+        @Test
+        void should_not_null_verify_when_value_null() {
+            assertThrows(NotAllowedValueInDomainException.class, () -> notNull().verify(null), "error.value-is-null");
+        }
+
+        @Test
+        void should_not_null_verify_when_value_not_null() {
+            assertDoesNotThrow(() -> notNull().verify("Hello"));
+        }
+
+        @Test
+        void should_2_length_verify_when_value_bigger_than_2() {
+            assertThrows(NotAllowedValueInDomainException.class, () -> maxLength(2).verify("Neil"), "error.value-is-too-large");
+        }
+
+        @Test
+        void should_2_length_verify_when_value_smaller_than_2() {
+            assertDoesNotThrow(() -> maxLength(2).verify("H"));
         }
 
     }
@@ -43,7 +64,9 @@ public class FieldsTest {
 
         @Test
         void should_domain_field_check() {
-            DomainField<String> field = new DomainField<>("Hello", new DomainFieldRules<>());
+            DomainField<String> field = new DomainField<>("Hello");
+            DomainFieldRule<String> rule = DomainFieldRule.with(o -> true, "error");
+            field.withRule(rule);
             assertDoesNotThrow(field::verify);
             assertEquals("Hello", field.get());
         }
@@ -56,12 +79,12 @@ public class FieldsTest {
         @Test
         void should_create_random_id() {
             GlobalIdGeneratorResetter.reset(new UuidBasedIdGenerator());
-            assertThat(new Id().id()).hasSize(32);
+            assertThat(new Id().get()).hasSize(32);
         }
 
         @Test
         void should_create_id() {
-            assertThat(new Id("1234").id()).isEqualTo("1234");
+            assertThat(new Id("1234").get()).isEqualTo("1234");
         }
 
     }
