@@ -53,6 +53,10 @@ public final class DomainFieldRule<DomainFieldType> {
             return with(StringUtils::isNoneBlank, "error.value-is-empty");
         }
 
+        public DomainFieldRule<String> regex(String regex) {
+            return with(o -> o.matches(regex), "error.value-do-not-match-regex");
+        }
+
     }
 
 }

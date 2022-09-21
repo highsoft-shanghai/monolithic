@@ -55,6 +55,18 @@ public class FieldsTest {
             assertDoesNotThrow(() -> string().maxLength(2).verify("H"));
         }
 
+        @Test
+        void should_match_regex() {
+            assertThrows(NotAllowedValueInDomainException.class, () -> string().regex("^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$")
+                .verify("Neil"), "error.value-do-not-match-regex");
+        }
+
+        @Test
+        void should_not_match_regex() {
+            assertDoesNotThrow(() -> string().regex("^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$")
+                .verify("a@qq.com"));
+        }
+
     }
 
     @Nested
@@ -111,6 +123,16 @@ public class FieldsTest {
         @Test
         void should_create_name() {
             assertEquals("Neil", new Name("Neil").get());
+        }
+
+    }
+
+    @Nested
+    class EmailTest {
+
+        @Test
+        void should_create_email() {
+            assertEquals("weili.wang@highsoft.ltd", new Email("weili.wang@highsoft.ltd").get());
         }
 
     }
