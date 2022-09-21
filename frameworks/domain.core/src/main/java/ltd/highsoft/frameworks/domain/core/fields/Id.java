@@ -2,7 +2,8 @@ package ltd.highsoft.frameworks.domain.core.fields;
 
 import ltd.highsoft.frameworks.domain.core.GlobalIdGenerator;
 
-import static ltd.highsoft.frameworks.domain.core.fields.DomainFieldRule.*;
+import static ltd.highsoft.frameworks.domain.core.fields.DomainFieldRule.Anything.anything;
+import static ltd.highsoft.frameworks.domain.core.fields.DomainFieldRule.StringThing.string;
 
 public class Id extends DomainField<String> {
 
@@ -12,8 +13,9 @@ public class Id extends DomainField<String> {
 
     public Id(String id) {
         super(id);
-        this.withRule(notNull());
-        this.withRule(maxLength(32));
+        final int uuidSize = 32;
+        withRule(anything().notNull());
+        withRule(string().maxLength(uuidSize));
     }
 
 }

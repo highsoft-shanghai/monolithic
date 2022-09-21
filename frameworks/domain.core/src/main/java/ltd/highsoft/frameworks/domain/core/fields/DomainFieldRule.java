@@ -1,5 +1,7 @@
 package ltd.highsoft.frameworks.domain.core.fields;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Objects;
 import java.util.function.Predicate;
 
@@ -10,14 +12,6 @@ public final class DomainFieldRule<DomainFieldType> {
     private final Predicate<DomainFieldType> rule;
 
     private final String errorCode;
-
-    public static <DomainFieldType> DomainFieldRule<DomainFieldType> notNull() {
-        return with(Objects::nonNull, "error.value-is-null");
-    }
-
-    public static DomainFieldRule<String> maxLength(int maxLength) {
-        return with(o -> o.length() <= maxLength, "error.value-is-too-large");
-    }
 
     public static <DomainFieldType> DomainFieldRule<DomainFieldType> with(final Predicate<DomainFieldType> notAllowed, final String errorMessage) {
         return new DomainFieldRule<>(notAllowed, errorMessage);
@@ -31,6 +25,34 @@ public final class DomainFieldRule<DomainFieldType> {
     private DomainFieldRule(Predicate<DomainFieldType> rule, String errorCode) {
         this.rule = rule;
         this.errorCode = errorCode;
+    }
+
+    public static class Anything {
+
+        public static Anything anything() {
+            return new Anything();
+        }
+
+        public <DomainFieldType> DomainFieldRule<DomainFieldType> notNull() {
+            return with(Objects::nonNull, "error.value-is-null");
+        }
+
+    }
+
+    public static class StringThing {
+
+        public static StringThing string() {
+            return new StringThing();
+        }
+
+        public DomainFieldRule<String> maxLength(int maxLength) {
+            return with(o -> o.length() <= maxLength, "error.value-is-too-large");
+        }
+
+        public DomainFieldRule<String> notEmpty() {
+            return with(StringUtils::isNoneBlank, "error.value-is-empty");
+        }
+
     }
 
 }
