@@ -42,7 +42,7 @@ public final class GrantedAuthorities {
         sink.put("authorities", authorities);
     }
 
-    public boolean isAnonymous() {
+    private boolean isAnonymous() {
         return authorities.contains(Authorities.ANONYMOUS);
     }
 
