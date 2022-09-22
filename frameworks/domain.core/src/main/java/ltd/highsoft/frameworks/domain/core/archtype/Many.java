@@ -10,6 +10,4 @@ public interface Many<Aggregate extends ltd.highsoft.frameworks.domain.core.arch
 
     void remove(String id);
 
-    List<String> ids();
-
 }
