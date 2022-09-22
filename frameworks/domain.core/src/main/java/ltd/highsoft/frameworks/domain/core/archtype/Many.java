@@ -8,6 +8,4 @@ public interface Many<Aggregate extends ltd.highsoft.frameworks.domain.core.arch
 
     Collection<Aggregate> getAll();
 
-    void remove(String id);
-
 }

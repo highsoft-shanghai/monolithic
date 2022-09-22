@@ -31,7 +31,7 @@ class ListManyTest {
 
     @Test
     void should_remove_in_already_have() {
-        Many<TestAggregate> aggregates = new AlreadyHave<>(Lists.newArrayList(new TestAggregate()));
+        AlreadyHave<TestAggregate> aggregates = new AlreadyHave<>(Lists.newArrayList(new TestAggregate()));
         aggregates.remove("1");
         assertThat(aggregates.getAll()).isEmpty();
     }

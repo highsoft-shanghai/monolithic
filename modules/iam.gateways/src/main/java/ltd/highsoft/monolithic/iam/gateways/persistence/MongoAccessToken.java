@@ -38,7 +38,6 @@ public class MongoAccessToken implements Data<AccessToken> {
         this.grantedAuthorities = (Set<String>) sinkMap.get("authorities");
     }
 
-    @Override
     public AccessToken asDomain() {
         return AccessToken.restore(
             id, new AccessTokenOwner(new Identity(userAccountId, userAccountName), new Identity(userId, userName), new Identity(tenantId, tenantName)),

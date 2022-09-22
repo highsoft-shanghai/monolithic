@@ -18,7 +18,6 @@ public class MongoTestAggregate implements Data<TestAggregate> {
         this.name = aggregate.name();
     }
 
-    @Override
     public TestAggregate asDomain() {
         return new TestAggregate(id, name);
     }
