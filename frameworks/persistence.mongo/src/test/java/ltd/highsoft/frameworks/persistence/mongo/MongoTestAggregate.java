@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.*;
 @EqualsAndHashCode
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Document(collection = "test_documents")
-public class MongoTestAggregate implements Data<TestAggregate> {
+public class MongoTestAggregate {
 
     private @Id String id;
     private @Field(name = "name") String name;

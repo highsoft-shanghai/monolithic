@@ -2,7 +2,6 @@ package ltd.highsoft.monolithic.iam.gateways.persistence;
 
 import lombok.*;
 import ltd.highsoft.frameworks.domain.core.Identity;
-import ltd.highsoft.frameworks.persistence.mongo.Data;
 import ltd.highsoft.frameworks.security.core.GrantedAuthorities;
 import ltd.highsoft.monolithic.iam.domain.*;
 import org.springframework.data.annotation.Id;
@@ -14,7 +13,7 @@ import static ltd.highsoft.frameworks.domain.core.GlobalValueSinkFactory.createV
 
 @Document(collection = "access_tokens")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class MongoAccessToken implements Data<AccessToken> {
+public class MongoAccessToken {
 
     private @Id String id;
     private @Field(name = "user_account_id") String userAccountId;
