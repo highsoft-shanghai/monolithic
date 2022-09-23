@@ -43,10 +43,6 @@ class ListManyTest {
             return "1";
         }
 
-        @Override
-        public void verify() {
-        }
-
     }
 
 }

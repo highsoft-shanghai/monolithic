@@ -15,21 +15,26 @@ import java.util.stream.*;
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;
 
-public class MongoAggregates<
-    Data extends ltd.highsoft.frameworks.persistence.mongo.Data<Aggregate>,
-    Aggregate extends ltd.highsoft.frameworks.domain.core.archtype.Aggregate
-    > implements Aggregates<Aggregate> {
+public class MongoAggregates<Data, Aggregate> implements Aggregates<Aggregate> {
 
     private final MongoTemplate mongoTemplate;
     private final Class<Data> dataClass;
     private final Function<Aggregate, Data> asData;
     private final Function<Data, Aggregate> asDomain;
+    private final Consumer<Aggregate> verify;
 
-    public MongoAggregates(MongoTemplate mongoTemplate, Class<Data> dataClass, Function<Aggregate, Data> asData, Function<Data, Aggregate> asDomain) {
+    public MongoAggregates(MongoTemplate mongoTemplate, Class<Data> dataClass, Function<Aggregate, Data> asData, Function<Data, Aggregate> asDomain,
+                           Consumer<Aggregate> verify) {
         this.mongoTemplate = mongoTemplate;
         this.dataClass = dataClass;
         this.asData = asData;
         this.asDomain = asDomain;
+        this.verify = verify;
+    }
+
+    public MongoAggregates(MongoTemplate mongoTemplate, Class<Data> dataClass, Function<Aggregate, Data> asData, Function<Data, Aggregate> asDomain) {
+        this(mongoTemplate, dataClass, asData, asDomain, o -> {
+        });
     }
 
     @Override
@@ -52,13 +57,13 @@ public class MongoAggregates<
 
     @Override
     public void add(Aggregate aggregate) {
-        aggregate.verify();
+        verify.accept(aggregate);
         mongoTemplate.save(asData.apply(aggregate));
     }
 
     @Override
     public void addAll(Collection<Aggregate> aggregates) {
-        mongoTemplate.insertAll(aggregates.stream().peek(Aggregate::verify).map(asData).collect(Collectors.toList()));
+        mongoTemplate.insertAll(aggregates.stream().peek(verify).map(asData).collect(Collectors.toList()));
     }
 
     @Override
@@ -95,7 +100,7 @@ public class MongoAggregates<
     }
 
     public Stream<Aggregate> stream(Query query) {
-        return mongoTemplate.stream(query, dataClass).stream().parallel().map(asDomain);
+        return mongoTemplate.find(query, dataClass).stream().parallel().map(asDomain);
     }
 
     public boolean exists(Query query) {

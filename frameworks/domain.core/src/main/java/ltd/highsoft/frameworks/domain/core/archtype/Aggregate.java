@@ -4,6 +4,4 @@ public interface Aggregate {
 
     String id();
 
-    void verify();
-
 }

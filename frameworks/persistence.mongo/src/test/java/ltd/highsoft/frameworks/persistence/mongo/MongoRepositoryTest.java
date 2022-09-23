@@ -2,17 +2,13 @@ package ltd.highsoft.frameworks.persistence.mongo;
 
 import ltd.highsoft.frameworks.domain.core.AggregateNotFoundException;
 import ltd.highsoft.frameworks.test.mongo.MongoTest;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.mongodb.core.query.Query;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.catchThrowable;
+import static org.assertj.core.api.Assertions.*;
 import static org.springframework.data.domain.Sort.by;
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;
@@ -20,10 +16,12 @@ import static org.springframework.data.mongodb.core.query.Query.query;
 public class MongoRepositoryTest extends MongoTest {
 
     private MongoAggregates<MongoTestAggregate, TestAggregate> aggregates;
+    private MongoAggregates<MongoTestAggregate, TestAggregate> aggregatesWithoutVerify;
 
     @BeforeEach
     void setUp() {
-        aggregates = new MongoAggregates<>(mongoTemplate(), MongoTestAggregate.class, MongoTestAggregate::new, MongoTestAggregate::asDomain);
+        aggregates = new MongoAggregates<>(mongoTemplate(), MongoTestAggregate.class, MongoTestAggregate::new, MongoTestAggregate::asDomain, TestAggregate::verify);
+        aggregatesWithoutVerify = new MongoAggregates<>(mongoTemplate(), MongoTestAggregate.class, MongoTestAggregate::new, MongoTestAggregate::asDomain);
     }
 
     @Test
@@ -156,6 +154,13 @@ public class MongoRepositoryTest extends MongoTest {
         mongoTemplate().save(new MongoTestAggregate(new TestAggregate("1", "hello")));
         assertThat(aggregates.exists(Query.query(where("id").is("1")))).isTrue();
         assertThat(aggregates.exists(Query.query(where("id").is("2")))).isFalse();
+    }
+
+    @Test
+    void should_test_aggregate_existence_from_database_when_aggregate_2() {
+        aggregatesWithoutVerify.addAll(List.of(new TestAggregate("1", "hello"), new TestAggregate("2", "hello2")));
+        assertThat(aggregatesWithoutVerify.exists(Query.query(where("id").is("1")))).isTrue();
+        assertThat(aggregatesWithoutVerify.exists(Query.query(where("id").is("3")))).isFalse();
     }
 
     @AfterEach

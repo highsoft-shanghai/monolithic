@@ -32,7 +32,6 @@ public final class AccessToken implements Context, Aggregate {
         this.grantedAuthorities = grantedAuthorities;
     }
 
-    @Override
     public void verify() {
         id.verify();
         owner.verify();

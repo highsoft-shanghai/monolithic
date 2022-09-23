@@ -2,7 +2,7 @@ package ltd.highsoft.frameworks.domain.core.archtype;
 
 import java.util.*;
 
-public interface Aggregates<Aggregate extends ltd.highsoft.frameworks.domain.core.archtype.Aggregate> {
+public interface Aggregates<Aggregate> {
 
     Aggregate get(String id);
 

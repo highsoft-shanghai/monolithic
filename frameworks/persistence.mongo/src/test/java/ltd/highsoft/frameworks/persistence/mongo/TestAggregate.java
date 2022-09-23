@@ -24,7 +24,6 @@ public class TestAggregate implements Aggregate {
         return name;
     }
 
-    @Override
     public void verify() {
     }
 
