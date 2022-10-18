@@ -14,7 +14,7 @@ public class AccessTokenContextProvider implements ContextProvider {
 
     @Override
     public Optional<Context> get(String id) {
-        return accessTokens.optionalAccessTokenFor(id).map(x -> x);
+        return accessTokens.getOptional(id).map(x -> x);
     }
 
 }

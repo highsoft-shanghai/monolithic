@@ -20,7 +20,7 @@ public class AccessTokenContextProviderTest {
 
     @BeforeEach
     void setUp() {
-        given(accessTokens.optionalAccessTokenFor("token-id")).willReturn(Optional.of(TOKEN_FROM_REPOSITORY));
+        given(accessTokens.getOptional("token-id")).willReturn(Optional.of(TOKEN_FROM_REPOSITORY));
     }
 
     @Test

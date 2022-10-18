@@ -20,7 +20,7 @@ public class GetAccessTokenContentUseCase {
     }
 
     public Optional<ValueSink> execute() {
-        var accessToken = accessTokens.optionalAccessTokenFor(securityContext().token());
+        var accessToken = accessTokens.getOptional(securityContext().token());
         return accessToken.map(token -> createValueSink(token::content));
     }
 

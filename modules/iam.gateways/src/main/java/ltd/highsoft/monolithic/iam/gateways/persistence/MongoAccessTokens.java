@@ -5,18 +5,11 @@ import ltd.highsoft.monolithic.iam.domain.*;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
-
 @Component
 public class MongoAccessTokens extends MongoAggregates<MongoAccessToken, AccessToken> implements AccessTokens {
 
     public MongoAccessTokens(MongoTemplate mongoTemplate) {
         super(mongoTemplate, MongoAccessToken.class, MongoAccessToken::new, MongoAccessToken::asDomain, AccessToken::verify);
-    }
-
-    @Override
-    public Optional<AccessToken> optionalAccessTokenFor(String id) {
-        return super.getOptional(id);
     }
 
     @Override

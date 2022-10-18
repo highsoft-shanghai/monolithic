@@ -4,7 +4,7 @@ import java.util.Optional;
 
 public interface AccessTokens {
 
-    Optional<AccessToken> optionalAccessTokenFor(String id);
+    Optional<AccessToken> getOptional(String id);
 
     void add(AccessToken accessToken);
 

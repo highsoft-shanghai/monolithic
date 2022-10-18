@@ -25,7 +25,7 @@ public class MongoAccessTokenRepositoryTest extends MongoTest {
         AccessToken accessToken = AccessToken.restore("test-token", new AccessTokenOwner(KITE_AT_HIGHSOFT, KITE, HIGHSOFT), GrantedAuthorities.of("f1", "f2"));
         mongoTemplate().save(new MongoAccessToken(accessToken));
         AccessTokens accessTokens = new MongoAccessTokens(mongoTemplate());
-        assertThat(accessTokens.optionalAccessTokenFor("test-token")).usingRecursiveComparison().isEqualTo(Optional.of(accessToken));
+        assertThat(accessTokens.getOptional("test-token")).usingRecursiveComparison().isEqualTo(Optional.of(accessToken));
     }
 
 }
