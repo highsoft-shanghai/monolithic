@@ -8,7 +8,7 @@ class AlreadyHasTest {
 
     @Test
     void should_already_has_operate() {
-        AlreadyHas<ListManyTest.TestAggregate> aggregate = new AlreadyHas<>(new ListManyTest.TestAggregate());
+        AlreadyHasOne<ListManyTest.TestAggregate> aggregate = new AlreadyHasOne<>(new ListManyTest.TestAggregate());
         aggregate.add(new ListManyTest.TestAggregate());
         assertEquals("1", aggregate.get().id());
         assertEquals("1", aggregate.id());

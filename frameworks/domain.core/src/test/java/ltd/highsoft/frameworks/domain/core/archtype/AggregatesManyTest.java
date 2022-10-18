@@ -15,7 +15,7 @@ class AggregatesManyTest {
         Aggregates<ListManyTest.TestAggregate> impl = mock(Aggregates.class);
         when(impl.list(List.of("1", "2"))).thenReturn(List.of(new ListManyTest.TestAggregate(), new ListManyTest.TestAggregate()));
         when(impl.getOptional("1")).thenReturn(Optional.of(new ListManyTest.TestAggregate()));
-        NotHave<ListManyTest.TestAggregate> aggregates = new NotHave<>(List.of("1", "2"), impl);
+        NotHasMany<ListManyTest.TestAggregate> aggregates = new NotHasMany<>(List.of("1", "2"), impl);
         List<ListManyTest.TestAggregate> all = aggregates.getAll();
         assertThat(all).hasSize(2);
         assertThat(aggregates.findOne("1")).isPresent();
@@ -24,14 +24,14 @@ class AggregatesManyTest {
 
     @Test
     void should_add_id_in_not_have() {
-        NotHave<ListManyTest.TestAggregate> aggregates = new NotHave<>(Lists.newArrayList("1", "2"), null);
+        NotHasMany<ListManyTest.TestAggregate> aggregates = new NotHasMany<>(Lists.newArrayList("1", "2"), null);
         aggregates.add("3");
         assertThat(aggregates.ids()).containsExactly("1", "2", "3");
     }
 
     @Test
     void should_remove_id_in_not_have() {
-        NotHave<ListManyTest.TestAggregate> aggregates = new NotHave<>(Lists.newArrayList("1", "2"), null);
+        NotHasMany<ListManyTest.TestAggregate> aggregates = new NotHasMany<>(Lists.newArrayList("1", "2"), null);
         aggregates.remove("2");
         assertThat(aggregates.ids()).containsExactly("1");
     }

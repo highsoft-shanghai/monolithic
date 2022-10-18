@@ -3,11 +3,11 @@ package ltd.highsoft.frameworks.domain.core.archtype;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class AlreadyHave<Aggregate extends ltd.highsoft.frameworks.domain.core.archtype.Aggregate> implements Many<Aggregate> {
+public class AlreadyHasMany<Aggregate extends ltd.highsoft.frameworks.domain.core.archtype.Aggregate> implements Many<Aggregate> {
 
     private final List<Aggregate> aggregates;
 
-    public AlreadyHave(List<Aggregate> aggregates) {
+    public AlreadyHasMany(List<Aggregate> aggregates) {
         this.aggregates = aggregates;
     }
 

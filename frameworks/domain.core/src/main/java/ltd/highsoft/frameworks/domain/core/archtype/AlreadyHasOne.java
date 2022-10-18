@@ -1,10 +1,10 @@
 package ltd.highsoft.frameworks.domain.core.archtype;
 
-public class AlreadyHas<Aggregate extends ltd.highsoft.frameworks.domain.core.archtype.Aggregate> implements One<Aggregate> {
+public class AlreadyHasOne<Aggregate extends ltd.highsoft.frameworks.domain.core.archtype.Aggregate> implements One<Aggregate> {
 
     private Aggregate aggregate;
 
-    public AlreadyHas(Aggregate aggregate) {
+    public AlreadyHasOne(Aggregate aggregate) {
         this.aggregate = aggregate;
     }
 

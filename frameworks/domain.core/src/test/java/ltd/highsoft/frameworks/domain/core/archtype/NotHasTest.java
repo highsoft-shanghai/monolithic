@@ -11,7 +11,7 @@ class NotHasTest {
     void should_not_has_operate() {
         Aggregates<ListManyTest.TestAggregate> impl = mock(Aggregates.class);
         when(impl.get(anyString())).thenReturn(new ListManyTest.TestAggregate());
-        NotHas<ListManyTest.TestAggregate> aggregate = new NotHas<>("1", impl);
+        NotHasOne<ListManyTest.TestAggregate> aggregate = new NotHasOne<>("1", impl);
         assertEquals("1", aggregate.get().id());
         aggregate.add(new ListManyTest.TestAggregate());
         aggregate.callOff();

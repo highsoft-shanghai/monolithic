@@ -2,12 +2,12 @@ package ltd.highsoft.frameworks.domain.core.archtype;
 
 import java.util.*;
 
-public class NotHave<Aggregate extends ltd.highsoft.frameworks.domain.core.archtype.Aggregate> implements Many<Aggregate> {
+public class NotHasMany<Aggregate extends ltd.highsoft.frameworks.domain.core.archtype.Aggregate> implements Many<Aggregate> {
 
     private final List<String> ids;
     private final Aggregates<Aggregate> aggregates;
 
-    public NotHave(List<String> ids, Aggregates<Aggregate> aggregates) {
+    public NotHasMany(List<String> ids, Aggregates<Aggregate> aggregates) {
         this.ids = ids;
         this.aggregates = aggregates;
     }
