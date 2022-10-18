@@ -8,27 +8,20 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 @Component
-public class MongoAccessTokens implements AccessTokens {
-
-    private final MongoAggregates<MongoAccessToken, AccessToken> aggregates;
+public class MongoAccessTokens extends MongoAggregates<MongoAccessToken, AccessToken> implements AccessTokens {
 
     public MongoAccessTokens(MongoTemplate mongoTemplate) {
-        aggregates = new MongoAggregates<>(mongoTemplate, MongoAccessToken.class, MongoAccessToken::new, MongoAccessToken::asDomain, AccessToken::verify);
+        super(mongoTemplate, MongoAccessToken.class, MongoAccessToken::new, MongoAccessToken::asDomain, AccessToken::verify);
     }
 
     @Override
     public Optional<AccessToken> optionalAccessTokenFor(String id) {
-        return aggregates.getOptional(id);
-    }
-
-    @Override
-    public void add(AccessToken accessToken) {
-        aggregates.add(accessToken);
+        return super.getOptional(id);
     }
 
     @Override
     public void remove(AccessToken accessToken) {
-        aggregates.remove(accessToken.token());
+        super.remove(accessToken.token());
     }
 
 }
