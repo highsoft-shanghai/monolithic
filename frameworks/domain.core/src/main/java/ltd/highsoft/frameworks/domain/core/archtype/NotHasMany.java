@@ -6,10 +6,12 @@ public class NotHasMany<Aggregate extends ltd.highsoft.frameworks.domain.core.ar
 
     private final List<String> ids;
     private final Aggregates<Aggregate> aggregates;
+    private Optional<List<Aggregate>> cached;
 
     public NotHasMany(List<String> ids, Aggregates<Aggregate> aggregates) {
         this.ids = ids;
         this.aggregates = aggregates;
+        this.cached = Optional.empty();
     }
 
     @Override
@@ -20,7 +22,10 @@ public class NotHasMany<Aggregate extends ltd.highsoft.frameworks.domain.core.ar
 
     @Override
     public List<Aggregate> getAll() {
-        return aggregates.list(this.ids);
+        if (cached.isEmpty()) {
+            this.cached = Optional.ofNullable(aggregates.list(this.ids));
+        }
+        return cached.get();
     }
 
     public void add(String id) {

@@ -1,18 +1,26 @@
 package ltd.highsoft.frameworks.domain.core.archtype;
 
+import java.util.Optional;
+
 public class NotHasOne<Aggregate extends ltd.highsoft.frameworks.domain.core.archtype.Aggregate> implements One<Aggregate> {
 
     private String id;
     private final Aggregates<Aggregate> aggregates;
+    private Optional<Aggregate> cached;
 
     public NotHasOne(String id, Aggregates<Aggregate> aggregates) {
         this.id = id;
         this.aggregates = aggregates;
+        this.cached = Optional.empty();
     }
 
     @Override
     public Aggregate get() {
-        return aggregates.get(id);
+        if (cached.isEmpty()) {
+            Aggregate aggregate = aggregates.get(id);
+            cached = Optional.ofNullable(aggregate);
+        }
+        return cached.get();
     }
 
     @Override
