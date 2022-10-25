@@ -29,8 +29,6 @@ class AggregatesManyTest {
         when(impl.list(newArrayList("1", "2"))).thenReturn(newArrayList(new ListManyTest.TestAggregate(), new ListManyTest.TestAggregate()));
         when(impl.getOptional("1")).thenReturn(Optional.of(new ListManyTest.TestAggregate()));
         NotHasMany<ListManyTest.TestAggregate> aggregates = new NotHasMany<>(newArrayList("1", "2"), impl);
-        List<ListManyTest.TestAggregate> all = aggregates.getAll();
-        assertThat(all).hasSize(2);
         assertThat(aggregates.findOne("1")).isPresent();
         assertThat(aggregates.findOne("3")).isNotPresent();
     }
