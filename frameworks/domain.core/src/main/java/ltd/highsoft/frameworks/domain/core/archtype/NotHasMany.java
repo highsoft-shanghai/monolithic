@@ -17,7 +17,8 @@ public class NotHasMany<Aggregate extends ltd.highsoft.frameworks.domain.core.ar
     @Override
     public Optional<Aggregate> findOne(String id) {
         if (!ids.contains(id)) return Optional.empty();
-        return aggregates.getOptional(id);
+        return cached.map(list -> list.stream().filter(o -> o.id().equals(id)).findFirst())
+            .orElseGet(() -> aggregates.getOptional(id));
     }
 
     @Override

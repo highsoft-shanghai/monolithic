@@ -1,6 +1,5 @@
 package ltd.highsoft.frameworks.domain.core.archtype;
 
-import com.google.common.collect.Lists;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -20,6 +19,8 @@ class AggregatesManyTest {
         List<ListManyTest.TestAggregate> all = aggregates.getAll();
         List<ListManyTest.TestAggregate> all2 = aggregates.getAll();
         then(impl).should(only()).list(any());
+        Optional<ListManyTest.TestAggregate> one = aggregates.findOne("1");
+        then(impl).should(never()).get(anyString());
     }
 
     @Test
