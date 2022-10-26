@@ -6,7 +6,7 @@ public class Email extends InputContent {
 
     public Email(String value) {
         super(value);
-        final String emailRegex = "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$";
+        final String emailRegex = "^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
         addRule(string().regex(emailRegex));
     }
 

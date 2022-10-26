@@ -2,6 +2,8 @@ package ltd.highsoft.frameworks.domain.core.fields;
 
 import ltd.highsoft.frameworks.domain.core.*;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static ltd.highsoft.frameworks.domain.core.fields.DomainFieldRule.Anything.anything;
 import static ltd.highsoft.frameworks.domain.core.fields.DomainFieldRule.StringThing.string;
@@ -133,6 +135,30 @@ public class FieldsTest {
         @Test
         void should_create_email() {
             assertEquals("weili.wang@highsoft.ltd", new Email("weili.wang@highsoft.ltd").get());
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {
+            "Hello",
+            "Hello.",
+            "@Hello",
+            "@Hello.com",
+            "a@Hello.",
+            "a@.com",
+        })
+        void should_not_pass_when_invalid_email(String email) {
+            assertThrows(NotAllowedValueInDomainException.class, () -> new Email(email).verify());
+        }
+
+        @ParameterizedTest
+        @ValueSource(strings = {
+            "emailAddress@qq.com",
+            "weili.wang@highsoft.ltd",
+            "a@qq.com",
+            "a@1.c",
+        })
+        void should_pass_when_valid_email(String email) {
+            assertDoesNotThrow(() -> new Email(email).verify());
         }
 
     }
