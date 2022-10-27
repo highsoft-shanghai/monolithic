@@ -4,7 +4,7 @@ import java.util.*;
 
 public class MapBasedValueSink implements ValueSink {
 
-    private final Map<String, Object> values = new LinkedHashMap<>();
+    private Map<String, Object> values = new LinkedHashMap<>();
 
     public Map<String, Object> values() {
         return values;
@@ -23,6 +23,10 @@ public class MapBasedValueSink implements ValueSink {
     @Override
     public Map<String, Object> toMap() {
         return values;
+    }
+
+    public void finishInitialize() {
+        this.values = Collections.unmodifiableMap(this.values);
     }
 
 }

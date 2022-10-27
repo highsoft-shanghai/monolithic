@@ -8,6 +8,7 @@ public class MapBasedValueSinkFactory implements ValueSinkFactory {
     public ValueSink createValueSink(Consumer<ValueSink> initializer) {
         MapBasedValueSink sink = new MapBasedValueSink();
         initializer.accept(sink);
+        sink.finishInitialize();
         return sink;
     }
 
