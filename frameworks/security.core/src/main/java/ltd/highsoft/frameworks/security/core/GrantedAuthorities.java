@@ -38,6 +38,10 @@ public final class GrantedAuthorities {
         throw new AuthorizationException(message("error.access-denied", requiredAuthorities, this));
     }
 
+    public void createDescription(Description description) {
+        description.put("authorities", authorities);
+    }
+
     public void fullContent(ValueSink sink) {
         sink.put("authorities", authorities);
     }

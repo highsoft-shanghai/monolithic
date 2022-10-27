@@ -9,8 +9,6 @@ import org.springframework.data.mongodb.core.mapping.*;
 
 import java.util.*;
 
-import static ltd.highsoft.frameworks.domain.core.GlobalValueSinkFactory.createValueSink;
-
 @Document(collection = "access_tokens")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MongoAccessToken {
@@ -26,15 +24,15 @@ public class MongoAccessToken {
 
     @SuppressWarnings("unchecked")
     public MongoAccessToken(AccessToken accessToken) {
-        Map<String, Object> sinkMap = createValueSink(accessToken::fullContent).toMap();
-        this.id = (String) sinkMap.get("id");
-        this.userAccountId = (String) sinkMap.get("owner.userAccount.id");
-        this.userAccountName = (String) sinkMap.get("owner.userAccount.name");
-        this.userId = (String) sinkMap.get("owner.user.id");
-        this.userName = (String) sinkMap.get("owner.user.name");
-        this.tenantId = (String) sinkMap.get("owner.tenant.id");
-        this.tenantName = (String) sinkMap.get("owner.tenant.name");
-        this.grantedAuthorities = (Set<String>) sinkMap.get("authorities");
+        Map<String, Object> descriptionMap = accessToken.fullContent().toMap();
+        this.id = (String) descriptionMap.get("id");
+        this.userAccountId = (String) descriptionMap.get("owner.userAccount.id");
+        this.userAccountName = (String) descriptionMap.get("owner.userAccount.name");
+        this.userId = (String) descriptionMap.get("owner.user.id");
+        this.userName = (String) descriptionMap.get("owner.user.name");
+        this.tenantId = (String) descriptionMap.get("owner.tenant.id");
+        this.tenantName = (String) descriptionMap.get("owner.tenant.name");
+        this.grantedAuthorities = (Set<String>) descriptionMap.get("authorities");
     }
 
     public AccessToken asDomain() {

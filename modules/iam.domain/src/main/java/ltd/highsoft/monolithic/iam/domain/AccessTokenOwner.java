@@ -28,13 +28,13 @@ public class AccessTokenOwner {
         return new SimpleUserContext(userAccount, user, tenant);
     }
 
-    void fullContent(ValueSink sink) {
-        sink.put("owner.userAccount.id", userAccount.id());
-        sink.put("owner.userAccount.name", userAccount.name());
-        sink.put("owner.user.id", user.id());
-        sink.put("owner.user.name", user.name());
-        sink.put("owner.tenant.id", tenant.id());
-        sink.put("owner.tenant.name", tenant.name());
+    void createDescription(Description description) {
+        description.put("owner.userAccount.id", userAccount.id());
+        description.put("owner.userAccount.name", userAccount.name());
+        description.put("owner.user.id", user.id());
+        description.put("owner.user.name", user.name());
+        description.put("owner.tenant.id", tenant.id());
+        description.put("owner.tenant.name", tenant.name());
     }
 
     void verify() {
