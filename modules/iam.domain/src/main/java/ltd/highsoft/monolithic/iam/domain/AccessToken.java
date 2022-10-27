@@ -58,7 +58,7 @@ public final class AccessToken implements Context, Aggregate {
         return new SimpleSecurityContext(token(), grantedAuthorities);
     }
 
-    public Description fullContent() {
+    public Description description() {
         return createDescription(description -> {
             description.put("id", id());
             owner.createDescription(description);

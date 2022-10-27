@@ -24,7 +24,7 @@ public class MongoAccessToken {
 
     @SuppressWarnings("unchecked")
     public MongoAccessToken(AccessToken accessToken) {
-        Map<String, Object> descriptionMap = accessToken.fullContent().toMap();
+        Map<String, Object> descriptionMap = accessToken.description().toMap();
         this.id = (String) descriptionMap.get("id");
         this.userAccountId = (String) descriptionMap.get("owner.userAccount.id");
         this.userAccountName = (String) descriptionMap.get("owner.userAccount.name");
