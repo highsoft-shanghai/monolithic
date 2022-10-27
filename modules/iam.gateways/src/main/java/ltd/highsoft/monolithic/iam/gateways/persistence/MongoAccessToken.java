@@ -1,13 +1,13 @@
 package ltd.highsoft.monolithic.iam.gateways.persistence;
 
 import lombok.*;
-import ltd.highsoft.frameworks.domain.core.Identity;
+import ltd.highsoft.frameworks.domain.core.*;
 import ltd.highsoft.frameworks.security.core.GrantedAuthorities;
 import ltd.highsoft.monolithic.iam.domain.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.*;
 
-import java.util.*;
+import java.util.Set;
 
 @Document(collection = "access_tokens")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -22,17 +22,16 @@ public class MongoAccessToken {
     private @Field(name = "tenant_name") String tenantName;
     private @Field(name = "granted_authorities") Set<String> grantedAuthorities;
 
-    @SuppressWarnings("unchecked")
     public MongoAccessToken(AccessToken accessToken) {
-        Map<String, Object> descriptionMap = accessToken.description().toMap();
-        this.id = (String) descriptionMap.get("id");
-        this.userAccountId = (String) descriptionMap.get("owner.userAccount.id");
-        this.userAccountName = (String) descriptionMap.get("owner.userAccount.name");
-        this.userId = (String) descriptionMap.get("owner.user.id");
-        this.userName = (String) descriptionMap.get("owner.user.name");
-        this.tenantId = (String) descriptionMap.get("owner.tenant.id");
-        this.tenantName = (String) descriptionMap.get("owner.tenant.name");
-        this.grantedAuthorities = (Set<String>) descriptionMap.get("authorities");
+        Description description = accessToken.description();
+        this.id = description.get("id");
+        this.userAccountId = description.get("owner.userAccount.id");
+        this.userAccountName = description.get("owner.userAccount.name");
+        this.userId = description.get("owner.user.id");
+        this.userName = description.get("owner.user.name");
+        this.tenantId = description.get("owner.tenant.id");
+        this.tenantName = description.get("owner.tenant.name");
+        this.grantedAuthorities = description.get("authorities");
     }
 
     public AccessToken asDomain() {

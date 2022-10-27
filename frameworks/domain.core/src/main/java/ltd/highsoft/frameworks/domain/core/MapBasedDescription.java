@@ -12,8 +12,9 @@ public class MapBasedDescription implements Description {
     }
 
     @Override
-    public Map<String, Object> toMap() {
-        return this.impl;
+    @SuppressWarnings("unchecked")
+    public <T> T get(String name) {
+        return (T) this.impl.getOrDefault(name, null);
     }
 
     @Override
