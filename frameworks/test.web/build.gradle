@@ -1,5 +1,3 @@
-apply from: "$rootDir/gradle/config/scripts/boot.gradle"
-
 dependencies {
     implementation project(":frameworks.security.core")
     implementation libs.spring.boot.web

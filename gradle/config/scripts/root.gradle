@@ -99,7 +99,7 @@ class GatewaysProject implements Project {
     }
 
     String injectDependencies() {
-        return "/gradle/config/scripts/web.gradle"
+        return "/gradle/config/scripts/gateways.gradle"
     }
 }
 

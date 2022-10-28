@@ -1,5 +1,3 @@
-apply from: "$rootDir/gradle/config/scripts/boot.gradle"
-
 dependencies {
     api project(':frameworks.application.core')
     api project(':frameworks.security.core')

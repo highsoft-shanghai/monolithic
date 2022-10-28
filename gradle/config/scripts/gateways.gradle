@@ -1,0 +1,7 @@
+dependencies {
+    implementation libs.spring.boot.actuator
+    implementation libs.spring.boot.web
+    testImplementation libs.test.spring.boot.test
+    testImplementation libs.test.spring.restdocs.restassured
+    testImplementation project(":frameworks.test.context")
+}
