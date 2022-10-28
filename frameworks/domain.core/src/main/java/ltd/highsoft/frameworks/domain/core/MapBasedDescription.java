@@ -17,8 +17,7 @@ public class MapBasedDescription implements Description {
         return (T) this.impl.getOrDefault(name, null);
     }
 
-    @Override
-    public void finishInitialize() {
+    void finishInitialize() {
         this.impl = Collections.unmodifiableMap(this.impl);
     }
 

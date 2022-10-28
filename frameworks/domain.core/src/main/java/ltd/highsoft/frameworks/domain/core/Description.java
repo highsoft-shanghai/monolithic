@@ -6,6 +6,4 @@ public interface Description {
 
     <T> T get(String name);
 
-    void finishInitialize();
-
 }
