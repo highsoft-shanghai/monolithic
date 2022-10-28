@@ -25,7 +25,7 @@ public class MapBasedValueSink implements ValueSink {
         return values;
     }
 
-    public void finishInitialize() {
+    void finishInitialize() {
         this.values = Collections.unmodifiableMap(this.values);
     }
 
