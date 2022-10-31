@@ -1,4 +1,4 @@
-package ltd.highsoft.frameworks.domain.core.archtype;
+package ltd.highsoft.frameworks.persistence.mongo;
 
 import org.junit.jupiter.api.Test;
 
@@ -10,9 +10,9 @@ class NotHasTest {
 
     @Test
     void should_not_has_operate() {
-        Aggregates<ListManyTest.TestAggregate> impl = mock(Aggregates.class);
+        MongoAggregates<ListManyTest.DbTestAggregate, ListManyTest.TestAggregate> impl = mock(MongoAggregates.class);
         when(impl.get(anyString())).thenReturn(new ListManyTest.TestAggregate());
-        NotHasOne<ListManyTest.TestAggregate> aggregate = new NotHasOne<>("1", impl);
+        NotHasOne<ListManyTest.DbTestAggregate, ListManyTest.TestAggregate> aggregate = new NotHasOne<>("1", impl, ListManyTest.TestAggregate::id);
         assertEquals("1", aggregate.get().id());
         assertEquals("1", aggregate.get().id());
         aggregate.add(new ListManyTest.TestAggregate());

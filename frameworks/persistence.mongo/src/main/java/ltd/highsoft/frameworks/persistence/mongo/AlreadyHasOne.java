@@ -1,11 +1,15 @@
-package ltd.highsoft.frameworks.domain.core.archtype;
+package ltd.highsoft.frameworks.persistence.mongo;
 
-public class AlreadyHasOne<Aggregate extends ltd.highsoft.frameworks.domain.core.archtype.Aggregate> implements One<Aggregate> {
+import java.util.function.Function;
+
+public class AlreadyHasOne<Aggregate> implements One<Aggregate> {
 
     private Aggregate aggregate;
+    private final Function<Aggregate, String> getIdFromAggregate;
 
-    public AlreadyHasOne(Aggregate aggregate) {
+    public AlreadyHasOne(Aggregate aggregate, Function<Aggregate, String> getIdFromAggregate) {
         this.aggregate = aggregate;
+        this.getIdFromAggregate = getIdFromAggregate;
     }
 
     @Override
@@ -16,7 +20,7 @@ public class AlreadyHasOne<Aggregate extends ltd.highsoft.frameworks.domain.core
     @Override
     public String id() {
         if (aggregate == null) return "";
-        return aggregate.id();
+        return getIdFromAggregate.apply(aggregate);
     }
 
     @Override

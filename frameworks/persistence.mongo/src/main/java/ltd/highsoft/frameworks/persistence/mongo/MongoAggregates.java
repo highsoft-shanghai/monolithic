@@ -1,7 +1,6 @@
 package ltd.highsoft.frameworks.persistence.mongo;
 
 import ltd.highsoft.frameworks.domain.core.*;
-import ltd.highsoft.frameworks.domain.core.archtype.Aggregates;
 import ltd.highsoft.frameworks.persistence.spring.SpringPage;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;

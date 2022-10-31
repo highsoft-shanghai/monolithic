@@ -2,13 +2,12 @@ package ltd.highsoft.monolithic.iam.domain;
 
 import ltd.highsoft.frameworks.context.core.UserContext;
 import ltd.highsoft.frameworks.domain.core.*;
-import ltd.highsoft.frameworks.domain.core.archtype.Aggregate;
 import ltd.highsoft.frameworks.domain.core.fields.Id;
 import ltd.highsoft.frameworks.security.core.*;
 
 import static ltd.highsoft.frameworks.domain.core.MapBasedDescriptionFactory.createDescription;
 
-public final class AccessToken implements Context, Aggregate {
+public final class AccessToken implements Context {
 
     private final Id id;
     private final AccessTokenOwner owner;
@@ -43,7 +42,6 @@ public final class AccessToken implements Context, Aggregate {
         return id();
     }
 
-    @Override
     public String id() {
         return this.id.get();
     }

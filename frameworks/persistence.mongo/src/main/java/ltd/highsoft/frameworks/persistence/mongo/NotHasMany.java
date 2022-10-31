@@ -1,23 +1,27 @@
-package ltd.highsoft.frameworks.domain.core.archtype;
+package ltd.highsoft.frameworks.persistence.mongo;
 
 import java.util.*;
+import java.util.function.Function;
 
-public class NotHasMany<Aggregate extends ltd.highsoft.frameworks.domain.core.archtype.Aggregate> implements Many<Aggregate> {
+public class NotHasMany<Data, Aggregate> implements Many<Aggregate> {
 
     private final List<String> ids;
     private final Aggregates<Aggregate> aggregates;
+    private final Function<Aggregate, String> getIdFromAggregate;
+
     private Optional<List<Aggregate>> cached;
 
-    public NotHasMany(List<String> ids, Aggregates<Aggregate> aggregates) {
+    public NotHasMany(List<String> ids, MongoAggregates<Data, Aggregate> aggregates, Function<Aggregate, String> getIdFromAggregate) {
         this.ids = ids;
         this.aggregates = aggregates;
+        this.getIdFromAggregate = getIdFromAggregate;
         this.cached = Optional.empty();
     }
 
     @Override
     public Optional<Aggregate> findOne(String id) {
         if (!ids.contains(id)) return Optional.empty();
-        return cached.map(list -> list.stream().filter(o -> o.id().equals(id)).findFirst())
+        return cached.map(list -> list.stream().filter(o -> getIdFromAggregate.apply(o).equals(id)).findFirst())
             .orElseGet(() -> aggregates.getOptional(id));
     }
 

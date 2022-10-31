@@ -1,16 +1,20 @@
-package ltd.highsoft.frameworks.domain.core.archtype;
+package ltd.highsoft.frameworks.persistence.mongo;
 
 import java.util.Optional;
+import java.util.function.Function;
 
-public class NotHasOne<Aggregate extends ltd.highsoft.frameworks.domain.core.archtype.Aggregate> implements One<Aggregate> {
+public class NotHasOne<Data, Aggregate> implements One<Aggregate> {
 
     private String id;
-    private final Aggregates<Aggregate> aggregates;
+    private final MongoAggregates<Data, Aggregate> aggregates;
+    private final Function<Aggregate, String> getIdFromAggregate;
+
     private Optional<Aggregate> cached;
 
-    public NotHasOne(String id, Aggregates<Aggregate> aggregates) {
+    public NotHasOne(String id, MongoAggregates<Data, Aggregate> aggregates, Function<Aggregate, String> getIdFromAggregate) {
         this.id = id;
         this.aggregates = aggregates;
+        this.getIdFromAggregate = getIdFromAggregate;
         this.cached = Optional.empty();
     }
 
@@ -30,7 +34,7 @@ public class NotHasOne<Aggregate extends ltd.highsoft.frameworks.domain.core.arc
 
     @Override
     public void add(Aggregate aggregate) {
-        this.id = aggregate.id();
+        this.id = getIdFromAggregate.apply(aggregate);
     }
 
     @Override

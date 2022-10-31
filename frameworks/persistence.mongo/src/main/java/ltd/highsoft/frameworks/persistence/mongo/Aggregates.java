@@ -1,4 +1,4 @@
-package ltd.highsoft.frameworks.domain.core.archtype;
+package ltd.highsoft.frameworks.persistence.mongo;
 
 import java.util.*;
 
