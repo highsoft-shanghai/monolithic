@@ -6,7 +6,7 @@ import java.util.function.Function;
 public class NotHasMany<Data, Aggregate> implements Many<Aggregate> {
 
     private final List<String> ids;
-    private final Aggregates<Aggregate> aggregates;
+    private final MongoAggregates<Data, Aggregate> aggregates;
     private final Function<Aggregate, String> getIdFromAggregate;
 
     private Optional<List<Aggregate>> cached;
