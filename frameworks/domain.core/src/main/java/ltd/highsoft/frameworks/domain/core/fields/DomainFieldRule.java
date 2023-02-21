@@ -49,12 +49,16 @@ public final class DomainFieldRule<DomainFieldType> {
             return with(o -> o.length() <= maxLength, "error.value-is-too-large");
         }
 
+        public DomainFieldRule<String> minLength(int minLength) {
+            return with(o -> o.length() >= minLength, "error.value-is-too-short");
+        }
+
         public DomainFieldRule<String> notEmpty() {
             return with(StringUtils::isNoneBlank, "error.value-is-empty");
         }
 
-        public DomainFieldRule<String> regex(String regex) {
-            return with(o -> o.matches(regex), "error.value-do-not-match-regex");
+        public DomainFieldRule<String> regex(String regex, String errorMessage) {
+            return with(o -> o.matches(regex), errorMessage);
         }
 
     }

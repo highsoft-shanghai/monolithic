@@ -1,8 +1,7 @@
 package ltd.highsoft.frameworks.domain.core.fields;
 
-import lombok.*;
+import lombok.EqualsAndHashCode;
 
-@Getter
 @EqualsAndHashCode(exclude = "rules")
 public class DomainField<Type> {
 
