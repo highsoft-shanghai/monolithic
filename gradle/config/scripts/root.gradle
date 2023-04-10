@@ -20,7 +20,7 @@ dependencies {
 allprojects {
     if (subprojects.size() > 0 && name != rootProject.name) return
     if (name == "documents" || projectDir.parentFile.name == "frontends") return
-//   apply from: "$rootDir/gradle/config/scripts/kotlin.gradle"
+   apply from: "$rootDir/gradle/config/scripts/kotlin.gradle"
 }
 
 
